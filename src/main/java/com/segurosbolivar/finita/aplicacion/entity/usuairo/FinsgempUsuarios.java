@@ -28,6 +28,7 @@ public class FinsgempUsuarios implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected FinsgempUsuariosPK finsgempUsuariosPK;
+    
     @JoinColumn(name = "EXU_USU_CODIGO", referencedColumnName = "USU_CODIGO", nullable = false, insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Finsgusuarios finsgusuarios;

@@ -2,6 +2,7 @@ package com.segurosbolivar.finita.aplicacion;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,10 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.segurosbolivar.finita.aplicacion.service.FinsgusuariosDetailsServiceImpl;
-
 @Configuration
 @EnableWebSecurity
+@ComponentScan("com.segurosbolivar.finita.aplicacion.controller")
 public class WebSecurityConfig  extends  WebSecurityConfigurerAdapter{
 
 	String[] resources = new String[]{
@@ -48,7 +48,8 @@ public class WebSecurityConfig  extends  WebSecurityConfigurerAdapter{
     public BCryptPasswordEncoder passwordEncoder() {
 		bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
         return bCryptPasswordEncoder;
-    }
+    }  
+   
     
     @Autowired
     UserDetailsService userDetailsService;

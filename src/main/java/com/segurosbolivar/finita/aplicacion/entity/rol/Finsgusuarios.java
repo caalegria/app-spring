@@ -9,22 +9,22 @@ package com.segurosbolivar.finita.aplicacion.entity.rol;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
 
+import com.segurosbolivar.finita.aplicacion.entity.Persistente;
 import com.segurosbolivar.finita.aplicacion.entity.usuairo.FinsgempUsuarios;
-
-import javax.persistence.Transient;
 
 
 /**
@@ -32,7 +32,7 @@ import javax.persistence.Transient;
  * @author calegria
  */
 @Entity
-public class Finsgusuarios implements Serializable {
+public class Finsgusuarios extends Persistente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

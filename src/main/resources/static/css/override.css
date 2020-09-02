@@ -1,0 +1,65 @@
+.tabla1 {
+	
+}
+
+.tabla1 th, td {
+	padding: 0px;
+	text-align: center;
+}
+
+.tabla1 tr:hover {
+	background-color: #f5f5f5;
+}
+
+.tabla1 th {
+	background: #eee;
+	color: gray;	
+	border: 2px solid gray;
+}
+
+.sizeCol5 {
+	width: 5%;
+}
+
+.sizeCol10 {
+	width: 10%;
+}
+
+.sizeCol15 {
+	width: 15%;
+}
+
+.sizeCol20 {
+	width: 20%;
+}
+
+.sizeCol25 {
+	width: 25%;
+}
+
+.btn_verde_blanco {
+	color: #FFFFFF;
+	background-color: #008B46;
+	border-color: #008B46;
+	border-radius: 0.60rem;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding: 2px 15px;
+}
+
+.btn_gris_gris {
+	color: gray;
+	background-color: #eee;
+	border-color: #eee;
+	border-radius: 0.60rem;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding: 2px 15px;
+}
+
+
+.alert-info {
+  color: #fadb14;
+  background-color: #ffffb8;
+  border-color: #fff566;
+}

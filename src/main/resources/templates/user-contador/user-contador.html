@@ -43,8 +43,10 @@
 
                 <li class="nav-item dropdown">
                   <a id="pagos" class="nav-link dropdown-toggle" href="#" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pagos</a>
-                <div class="dropdown-menu" aria-labelledby="pagos">
-                    <a class="dropdown-item" href="#">Plan cuentas</a>
+                <div class="dropdown-menu" aria-labelledby="pagos">                    
+                    <a class="dropdown-item"  th:href="@{/plaCuentas(editMode=1)}">Plan Cuentas</a>
+                    <a class="dropdown-item"  th:href="@{/genOrdPagos}">Generacion Ordenes Pagos</a>
+                    <a class="dropdown-item"  th:href="@{/aplicacion}">Aplicación</a>                   
                   </div>
                 </li>                
 
@@ -86,7 +88,7 @@
         
 		<!-- plancuentas -->
 		<div class="card-body">
-			<div th:include="user-contador/plancuentas.html" th:remove="tag" ></div>
+			
 		</div>
 		<!-- Opcion # -->
 

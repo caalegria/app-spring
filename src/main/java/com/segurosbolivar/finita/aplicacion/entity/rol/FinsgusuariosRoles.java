@@ -8,21 +8,21 @@ package com.segurosbolivar.finita.aplicacion.entity.rol;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.NotFound;
 import org.hibernate.annotations.NotFoundAction;
+
+import com.segurosbolivar.finita.aplicacion.entity.Persistente;
 
 /**
  *
@@ -30,7 +30,7 @@ import org.hibernate.annotations.NotFoundAction;
  */
 @Entity
 @Table(name = "FINSGUSUARIOS_ROLES")
-public class FinsgusuariosRoles implements Serializable {
+public class FinsgusuariosRoles extends Persistente implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected FinsgusuariosRolesPK finsgusuariosRolesPK;
