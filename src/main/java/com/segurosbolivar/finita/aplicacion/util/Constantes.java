@@ -57,6 +57,13 @@ public final class Constantes {
 	 */
 	public static String INICIANDO="0";
 	public static String REDIRECT="1";
+	
+	/*
+	 * Constante CRUD  
+	 */
+	public static String OPERACION_GUARDAR="guardar";
+	public static String OPERACION_ACTUALIZAR="actualizar";
+	public static String OPERACION_ELIMINAR="eliminar";
 
 	/*
 	 * Constante mensajes
@@ -64,6 +71,7 @@ public final class Constantes {
 	 */
 	public static String KEY_COD="<cod>";
 	public static String KEY_ERROR="<error>";
-	public static String MSJ_OPERACION_EXITOSA="La operación se ha completado con exito.";
-	public static String MSJ_OPERACION_FALLIDA="La operación se ha completado con exito.ERROR: <cod> <error>";
+	public static String KEY_OPERACION="<operacion>";
+	public static String MSJ_OPERACION_EXITOSA="La operacion <operacion> se ha completado con exito.";
+	public static String MSJ_OPERACION_FALLIDA="La operación <operacion> no se ha completado con exito.ERROR: <cod> <error>";
 }

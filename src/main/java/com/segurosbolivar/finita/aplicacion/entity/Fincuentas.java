@@ -25,7 +25,7 @@ public class Fincuentas extends Persistente {
 
 	@Id
 	@Column(name="CTA_CUENTA",length = 16)
-	private String id;
+	private String id="";
 
 	@Column(name="CTA_SINONIMO",length = 60)
 	private String descripcion;

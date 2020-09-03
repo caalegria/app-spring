@@ -1,3 +1,7 @@
+.card-body{
+	    padding-top: 0px;
+}
+
 .tabla1 {
 	
 }
@@ -13,8 +17,12 @@
 
 .tabla1 th {
 	background: #eee;
-	color: gray;	
+	color: gray;
 	border: 2px solid gray;
+}
+
+hr {
+	border: 1px solid gray;
 }
 
 .sizeCol5 {
@@ -57,9 +65,61 @@
 	padding: 2px 15px;
 }
 
+.alert-success {
+	max-height: 30px;
+	text-align: center;
+	padding: 1px 1px;
+}
 
 .alert-info {
-  color: #fadb14;
-  background-color: #ffffb8;
-  border-color: #fff566;
+	max-height: 30px;
+	text-align: center;
+	padding: 1px 1px;
+}
+
+.alert-danger {
+	max-height: 30px;
+	text-align: center;
+	padding: 1px 1px;
+}
+
+.alert-info {
+	color: #fadb14;
+	background-color: #ffffb8;
+	border-color: #fff566;
+}
+
+.hiddenMe {
+	animation: hiddenTransition 50000ms ease-in;
+	animation-fill-mode: forwards;
+	will-change: opacity, transform, display;
+	cursor: pointer;
+}
+
+@keyframes hiddenTransition {
+  0% {
+    opacity: 1;
+    transform: none;
+    display: block;
+  }
+  
+  10% {
+    opacity: 0;
+    transform: translateY(20%);
+    display: block;
+    display: none;
+  }
+  
+  20% {
+    opacity: 0;
+    transform: translateY(20%);
+    display: block;
+    display: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(20%);
+    display: none;
+  }  
 }

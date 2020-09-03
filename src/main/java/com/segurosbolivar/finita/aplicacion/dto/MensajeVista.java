@@ -9,7 +9,7 @@ import com.segurosbolivar.finita.aplicacion.util.Constantes;
  */
 public class MensajeVista {
 	
-	public String render=Constantes.RENDERIZAR;
+	public String render=Constantes.NO_RENDERIZAR;
 	public String tipo=Constantes.INFO;
 	public String mensaje="";
 	

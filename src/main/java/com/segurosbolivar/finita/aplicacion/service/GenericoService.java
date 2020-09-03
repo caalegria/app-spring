@@ -15,7 +15,7 @@ public class GenericoService implements IGenericoService {
 	private IGenericoDAO iGenericoDAO;
 	
 	@Override
-	public Persistente getObjetctById(Class<? extends Persistente> classz,int idObject) {
+	public Persistente getObjetctById(Class<? extends Persistente> classz,Object idObject) {
 		return this.iGenericoDAO.getObjetctById(classz,idObject);
 	}
 	

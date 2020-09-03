@@ -19,7 +19,7 @@ public class GenericoDAO implements IGenericoDAO {
 	private EntityManager entityManager;
 
 	@Override
-	public Persistente getObjetctById(Class<? extends Persistente> classz, int idObject) {
+	public Persistente getObjetctById(Class<? extends Persistente> classz, Object idObject) {
 		return entityManager.find(classz, idObject);
 	}
 
