@@ -2,6 +2,13 @@ package com.segurosbolivar.finita.aplicacion.util;
 
 public final class Constantes {
 
+	
+	/*
+	 * Claves de respuesta de PL y Funciones 
+	 */
+	public static String CLAVE_NAME="name";
+	public static String CLAVE_LISTA="list";
+	public static String CLAVE_RESPUSTA="respuesta";
 
 	/*
 	 * Constantes de capsula de errores
