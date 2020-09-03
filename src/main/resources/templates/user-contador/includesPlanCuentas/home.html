@@ -3,7 +3,7 @@
 	<hr>
 	<form class="form" role="form" autocomplete="off" method="post"
 		th:object="${cuenta}"
-		th:action="${editMode}=='0'?@{/plaCuentas/guardar}:(${editMode}=='1'?@{/plaCuentas/actualizar}:@{/plaCuentas/guardar})">
+		th:action="${editMode}=='0'?@{/plaCuentas/guardar}:(${editMode}=='2'?@{/plaCuentas/actualizar}:@{/plaCuentas/guardar})">
 
 		<div class="form-group row">
 			<div class="col-lg-3">

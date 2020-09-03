@@ -64,6 +64,9 @@ public final class Constantes {
 	 */
 	public static String INICIANDO="0";
 	public static String REDIRECT="1";
+	public static String CREANDO="2";
+	public static String ACTUALIZANDO="3";
+	public static String BUSCANDO="4";
 	
 	/*
 	 * Constante CRUD  

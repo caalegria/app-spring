@@ -61,7 +61,23 @@ public class PlanCuentaCTL {
 	public String irPlanCuenta(Model model,@SessionAttribute("usuarioLogin") UsuarioLogin user,@RequestParam(value = "editMode",defaultValue = "redirect")String editMode) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {
-			this.setUsuario(user);					
+			this.setUsuario(user);		
+			if(editMode.contentEquals("redirect")) {
+				if(editMode.contentEquals("0")){
+					this.setCuenta(new Fincuentas());
+					this.setCuentaBusqueda(new Fincuentas());
+					this.setMensaje(new MensajeVista());
+					this.cuentas.clear();
+				}if(editMode.contentEquals("2")) {
+					this.setCuentaBusqueda(new Fincuentas());
+				}
+			}else if(editMode.contentEquals("redirect")) {
+				if(this.editMode.contentEquals(Constantes.BUSCANDO))
+					this.setMensaje(new MensajeVista());				
+			}else if (editMode.contentEquals("0")) {
+				this.setMensaje(new MensajeVista());
+			}
+				
 			this.loadData();			
 		}catch (Exception e) {
 			Log.getError(logger, e);
@@ -76,15 +92,16 @@ public class PlanCuentaCTL {
 		CapsulaOperacion operacion=guardarCuenta(cuenta);
 		this.setMensaje(operacion.getMensaje());
 		if(operacion.isEstadoOperacion()) {
-			if(cuentaBusqueda.getId().trim().contentEquals("")) {
+			if(cuentaBusqueda.getId().trim().contentEquals("") && this.editMode.contentEquals(Constantes.BUSCANDO)) {
 				this.setCuentaBusqueda(new Fincuentas());
 				this.cuentas.clear();
 				this.loadData();				
+			}else {
+				this.cuentas.add(cuenta);
 			}
-			this.cuentas.add(cuenta);
 		}						
 		this.cuenta= new Fincuentas();
-		this.editMode=Constantes.INICIANDO;
+		this.setEditMode(Constantes.INICIANDO);
 		return Constantes.URL_HOME_PLAN_CUENTA;
 	}
 
@@ -95,10 +112,14 @@ public class PlanCuentaCTL {
 		CapsulaOperacion operacion=actualizarCuenta(cuenta);
 		this.setMensaje(operacion.getMensaje());		
 		if(operacion.isEstadoOperacion()) {
-			this.cuentas.add(cuenta);
+			if(cuentaBusqueda.getId().trim().contentEquals("") && this.editMode.contentEquals(Constantes.BUSCANDO)) {
+				this.setCuentaBusqueda(new Fincuentas());
+				this.cuentas.clear();
+				this.loadData();				
+			}
 		}		
 		this.cuenta= new Fincuentas();
-		this.editMode=Constantes.INICIANDO;
+		this.setEditMode(Constantes.INICIANDO);
 		return Constantes.URL_HOME_PLAN_CUENTA;
 	}
 	
@@ -112,6 +133,7 @@ public class PlanCuentaCTL {
 		else {
 			this.loadData();
 		}	
+		this.setEditMode(Constantes.BUSCANDO);
 		return Constantes.URL_HOME_PLAN_CUENTA;
 	}
 
@@ -120,7 +142,8 @@ public class PlanCuentaCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));			
 		this.cuenta=this.localizarData(idCuenta);
 		logger.info("Cuenta data "+ cuenta.toString());
-		this.editMode=Constantes.CRUD_ACTUALIZAR;		
+		this.editMode=Constantes.CRUD_ACTUALIZAR;	
+		this.setMensaje(new MensajeVista());
 		return Constantes.URL_HOME_PLAN_CUENTA;
 	}
 
