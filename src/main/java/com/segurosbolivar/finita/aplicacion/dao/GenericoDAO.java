@@ -66,6 +66,7 @@ public class GenericoDAO implements IGenericoDAO {
 		}
 	}	
 	
+	@Override
 	public HashMap<String, Object> callProcedimientoPl(String nombrePL,List<Parametro> pametros,List<Class<?>> typeSalidaSalida,boolean tieneCursor) {		
 		logger.info(Log.getCurrentClassAndMethodNames(getClass().getName(), "Llamado al PL "+nombrePL));
 		HashMap<String, Object> dataRespuesta= new HashMap<String, Object>();

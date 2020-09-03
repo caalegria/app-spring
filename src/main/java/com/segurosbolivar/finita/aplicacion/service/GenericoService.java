@@ -1,11 +1,13 @@
 package com.segurosbolivar.finita.aplicacion.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.segurosbolivar.finita.aplicacion.dao.IGenericoDAO;
+import com.segurosbolivar.finita.aplicacion.dto.Parametro;
 import com.segurosbolivar.finita.aplicacion.entity.Persistente;
 
 
@@ -37,6 +39,11 @@ public class GenericoService implements IGenericoService {
 	@Override
 	public boolean deleteObject(Class<? extends Persistente> object,Integer id) {
 		return this.iGenericoDAO.deleteObject(object, id);		
+	}
+	
+	@Override
+	public HashMap<String, Object> callProcedimientoPl(String nombrePL, List<Parametro> pametros,List<Class<?>> typeSalidaSalida, boolean tieneCursor){
+		return this.iGenericoDAO.callProcedimientoPl(nombrePL, pametros, typeSalidaSalida, tieneCursor);
 	}
 	
 }
