@@ -21,7 +21,7 @@ public class Log {
 	public static void getError(Logger logger,Exception e) {
 		final StackTraceElement exce = Thread.currentThread().getStackTrace()[2];		
 		Thread.currentThread().getStackTrace()[1].getLineNumber();		
-		logger.error("[Error RIPS "+ exce.getMethodName()+" ] --> "+e);		
+		logger.error("[Error FINITA "+ exce.getMethodName()+" ] --> "+e.getMessage());		
 		logger.error("[Iniciando trace de Error ..............");
 		e.printStackTrace();		
 		logger.warn("[Finalizo trace de Error ..............");
@@ -30,7 +30,7 @@ public class Log {
 	public static void getWarn(Logger logger, Exception e) {
 		final StackTraceElement exce = Thread.currentThread().getStackTrace()[2];		
 		Thread.currentThread().getStackTrace()[1].getLineNumber();		
-		logger.warn("[Warning RIPS "+ exce.getMethodName()+" ] --> "+e);
+		logger.warn("[Warning FINITA "+ exce.getMethodName()+" ] --> "+e.getMessage());
 		logger.warn("[Iniciando trace de Warning ..............");
 		e.printStackTrace();		
 		logger.warn("[Finalizo trace de Warning ..............");		
