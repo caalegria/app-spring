@@ -84,4 +84,13 @@ public final class Constantes {
 	public static String KEY_OPERACION="<operacion>";
 	public static String MSJ_OPERACION_EXITOSA="La operacion <operacion> se ha completado con exito.";
 	public static String MSJ_OPERACION_FALLIDA="La operación <operacion> no se ha completado con exito.ERROR: <cod> <error>";
+	
+	/*
+	 * Constantes Dividendos
+	 * Menu
+	 */
+	
+	public static String OPC_CARGUE= "Cargue Archivo Plano";
+	public static String OPC_VALIDACION= "Validación Cargue Plano";
+
 }
