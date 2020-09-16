@@ -1,7 +1,9 @@
 package com.segurosbolivar.finita.aplicacion.service;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,16 @@ public class GenericoService implements IGenericoService {
 	@Override
 	public HashMap<String, Object> callProcedimientoPl(String nombrePL, List<Parametro> pametros,List<Class<?>> typeSalidaSalida, boolean tieneCursor){
 		return this.iGenericoDAO.callProcedimientoPl(nombrePL, pametros, typeSalidaSalida, tieneCursor);
+	}
+	
+	@Override
+	public List<? extends Persistente> findObjectsByFields(Class<? extends Persistente> classz, ConditionMap conditions,boolean embebedId){
+		return this.iGenericoDAO.findObjectsByFields(classz, conditions,embebedId);
+	}
+	
+	@Override
+	public List<? extends Persistente> findObjects(Class<? extends Persistente> classz, String conditionField,Serializable conditionValue, Map<String, Boolean> ordering) {	
+		return this.iGenericoDAO.findObjects(classz, conditionField, conditionValue, ordering);
 	}
 	
 }

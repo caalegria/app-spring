@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Finita - Generación Orden Pagos</title>
+<title th:text=" |#{label.nombre.aplicacion } - #{label.page.configurar.beneficiarios} - #{label.page.configurar.beneficiarios.accionista}|" />
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
@@ -17,38 +17,34 @@
 <!-- Custom styles for this template -->
 <link href="css/scrolling-nav.css" rel="stylesheet">
 <link href="css/scrolling-nav.css" rel="stylesheet">
+<link href="css/override.css" rel="stylesheet">
 
 </head>
-
 <body id="page-top">
-
 	<div class="row" th:replace="fragments/header :: header" />
-	
-		<section id="id" class="bg-light">
+	<section id="id" class="bg-light">
 		<div class="container align-items-center" style="padding-top: -200px">
-			<div class="col-lg-8 mx-auto">
-
-				<!--Contenido-->
-
+			<div class="col-lg-10 mx-auto">
 				<!--Miga de pan-->
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><span style=""
-								class="glyphicon glyphicon-user">&nbsp;</span><label>Rol:&nbsp;
-								<span th:text="${RolAut}"></span>
+							class="glyphicon glyphicon-user">&nbsp;</span><label>Rol:&nbsp;
+								<span th:text="${userLogin.rol}"></span>
 						</label></li>
 						<li class="breadcrumb-item"><a href="#"></a></li>
 					</ol>
-				</nav>
-
-				<!-- plancuentas -->
+				</nav>				
 				<div class="card-body">
-					Pagina de generacion de pagos
-				</div>
-				<!-- Opcion # -->
+					<div id="msjProcess"
+						th:class="${mensaje.render=='0'}?'display:none':(${mensaje.tipo=='1'}?'alert col-lg-10 mx-auto alert-info hiddenMe':(${mensaje.tipo=='2'}?  'alert col-lg-10 mx-auto alert-success hiddenMe':(${mensaje.tipo=='3'}?  'alert col-lg-10 mx-auto alert-danger hiddenMe':'display:none')))">
+						<p th:text="${mensaje.mensaje}" />					
+					</div>
 
-			</div>
-			<!--Fin contenido-->
+					<div th:include="user-contador/includesGenOrdenPagos/accionista.html"
+						th:remove="tag"></div>
+				</div>
+			</div>			
 		</div>
 	</section>
 
@@ -73,7 +69,7 @@
 
 	<!-- Los iconos tipo Solid de Fontawesome-->
 	<link rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
 	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 </body>

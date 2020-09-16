@@ -1,0 +1,27 @@
+<h5 th:text="#{subtitlte.listado.personas}"
+	th:title="|#{label.resultado}: ${#lists.size(personas)}|" />
+<a class="btn btn_verde_blanco" th:text="#{btn.nuevo}"
+	th:href="@{/agregarBeneficiariosAccionista/nuevo}" />
+<hr>
+<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
+	<thead>
+		<tr>
+			<th class="sizeCol5" th:text="#{label.nombres}" /th>
+			<th class="sizeCol5" th:text="#{label.apellidos}" /th>
+			<th class="sizeCol15" th:text="#{label.tipo.documento}" /th>
+			<th class="sizeCol5" th:text="#{label.identificacion}" /th>
+			<th class="sizeCol15" th:text="#{label.acciones}" /th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="objPer,iterador: ${personas}">
+			<form id="${iterador.index}">
+				<td th:text="${objPer.perNombre} " />
+				<td th:text="|${objPer.perPrimerApellido} ${objPer.perSegundoApellido}|" />
+				<td />
+				<td th:text="${objPer.id}" />
+				<td><a th:href="@{/agregarBeneficiariosAccionista/agregar(idPersona=${objPer.id})}"	class="btn btn_gris_gris" th:text="#{btn.agregar}" /></td>
+			</form>
+		</tr>
+	</tbody>
+</table>

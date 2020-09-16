@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.segurosbolivar.finita.aplicacion.dto.CapsulaOperacion;
 import com.segurosbolivar.finita.aplicacion.dto.MensajeVista;
 import com.segurosbolivar.finita.aplicacion.dto.UsuarioLogin;
-import com.segurosbolivar.finita.aplicacion.entity.Fincuentas;
+import com.segurosbolivar.finita.aplicacion.entity.Cuenta;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
@@ -44,10 +44,10 @@ public class PlanCuentaCTL {
 	/*
 	 * Variables
 	 */
-	private Fincuentas cuenta= new Fincuentas();	
-	private Fincuentas cuentaBusqueda= new Fincuentas();		
+	private Cuenta cuenta= new Cuenta();	
+	private Cuenta cuentaBusqueda= new Cuenta();		
 	private UsuarioLogin usuario= new UsuarioLogin();
-	private List<Fincuentas> cuentas = new ArrayList<Fincuentas>();
+	private List<Cuenta> cuentas = new ArrayList<Cuenta>();
 	private String editMode=Constantes.INICIANDO;	
 	private MensajeVista mensaje= new MensajeVista();
 
@@ -64,12 +64,12 @@ public class PlanCuentaCTL {
 			this.setUsuario(user);		
 			if(editMode.contentEquals("redirect")) {
 				if(editMode.contentEquals("0")){
-					this.setCuenta(new Fincuentas());
-					this.setCuentaBusqueda(new Fincuentas());
+					this.setCuenta(new Cuenta());
+					this.setCuentaBusqueda(new Cuenta());
 					this.setMensaje(new MensajeVista());
 					this.cuentas.clear();
 				}if(editMode.contentEquals("2")) {
-					this.setCuentaBusqueda(new Fincuentas());
+					this.setCuentaBusqueda(new Cuenta());
 				}
 			}else if(editMode.contentEquals("redirect")) {
 				if(this.editMode.contentEquals(Constantes.BUSCANDO))
@@ -86,50 +86,50 @@ public class PlanCuentaCTL {
 	}
 
 	@PostMapping("/plaCuentas/guardar")
-	public String savPlaCuenta(ModelMap model,@ModelAttribute("cuenta")Fincuentas cuenta) {
+	public String savPlaCuenta(ModelMap model,@ModelAttribute("cuenta")Cuenta cuenta) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		logger.info("Cuenta data "+ cuenta.toString());
 		CapsulaOperacion operacion=guardarCuenta(cuenta);
 		this.setMensaje(operacion.getMensaje());
 		if(operacion.isEstadoOperacion()) {
 			if(cuentaBusqueda.getId().trim().contentEquals("") && this.editMode.contentEquals(Constantes.BUSCANDO)) {
-				this.setCuentaBusqueda(new Fincuentas());
+				this.setCuentaBusqueda(new Cuenta());
 				this.cuentas.clear();
 				this.loadData();				
 			}else {
 				this.cuentas.add(cuenta);
 			}
 		}						
-		this.cuenta= new Fincuentas();
+		this.cuenta= new Cuenta();
 		this.setEditMode(Constantes.INICIANDO);
 		return Constantes.URL_HOME_PLAN_CUENTA;
 	}
 
 	@PostMapping("/plaCuentas/actualizar")
-	public String actPlaCuenta(ModelMap model,@ModelAttribute("cuenta")Fincuentas cuenta) {
+	public String actPlaCuenta(ModelMap model,@ModelAttribute("cuenta")Cuenta cuenta) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		logger.info("Cuenta data "+ cuenta.toString());
 		CapsulaOperacion operacion=actualizarCuenta(cuenta);
 		this.setMensaje(operacion.getMensaje());		
 		if(operacion.isEstadoOperacion()) {
 			if(cuentaBusqueda.getId().trim().contentEquals("") && this.editMode.contentEquals(Constantes.BUSCANDO)) {
-				this.setCuentaBusqueda(new Fincuentas());
+				this.setCuentaBusqueda(new Cuenta());
 				this.cuentas.clear();
 				this.loadData();				
 			}
 		}		
-		this.cuenta= new Fincuentas();
+		this.cuenta= new Cuenta();
 		this.setEditMode(Constantes.INICIANDO);
 		return Constantes.URL_HOME_PLAN_CUENTA;
 	}
 	
 	@PostMapping("/plaCuentas/buscar")	
-	public String busPlaCuenta(ModelMap model,@ModelAttribute("filtroBusqueda")Fincuentas filtroBusqueda) {
+	public String busPlaCuenta(ModelMap model,@ModelAttribute("filtroBusqueda")Cuenta filtroBusqueda) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		logger.info("Filtro: "+ filtroBusqueda);
 		this.cuentas.clear();
 		if(!filtroBusqueda.getId().trim().contentEquals(""))
-			this.cuentas.add((Fincuentas) this.genericoService.getObjetctById(Fincuentas.class, filtroBusqueda.getId()));
+			this.cuentas.add((Cuenta) this.genericoService.getObjetctById(Cuenta.class, filtroBusqueda.getId()));
 		else {
 			this.loadData();
 		}	
@@ -150,7 +150,7 @@ public class PlanCuentaCTL {
 	@GetMapping("/plaCuentas/bloquear")
 	public String bloPlaCuenta(ModelMap model,@RequestParam("cuentaEditId")String idCuenta) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));			
-		Fincuentas cntTmp=this.localizarData(idCuenta);
+		Cuenta cntTmp=this.localizarData(idCuenta);
 		logger.info("Cuenta data "+ cntTmp.toString());
 		CapsulaOperacion operacion=actualizarEstadoCuenta(cntTmp);
 		this.setMensaje(operacion.getMensaje());		
@@ -164,7 +164,7 @@ public class PlanCuentaCTL {
 	public void loadData() {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));		
 		if(cuentas.isEmpty())
-			this.cuentas.addAll((Collection<? extends Fincuentas>) genericoService.getObjects(Fincuentas.class));		
+			this.cuentas.addAll((Collection<? extends Cuenta>) genericoService.getObjects(Cuenta.class));		
 	}
 
 	/*
@@ -172,9 +172,9 @@ public class PlanCuentaCTL {
 	 * desde el listado de cuentas de la pagina, con el numero de
 	 * idCuenta(CTA_CUENTA)
 	 */
-	private Fincuentas localizarData(String idCuenta) {
+	private Cuenta localizarData(String idCuenta) {
 		try {
-			Fincuentas cuentaTmp= new Fincuentas(idCuenta);
+			Cuenta cuentaTmp= new Cuenta(idCuenta);
 			cuentaTmp= this.cuentas.get(this.cuentas.indexOf(cuentaTmp));
 			return cuentaTmp;
 		}catch (Exception e) {
@@ -186,12 +186,12 @@ public class PlanCuentaCTL {
 		if(!editMode.equals("redirect")) {
 			this.editMode=editMode;
 			if(this.editMode.equals("1")) 
-				this.cuenta= new Fincuentas();
+				this.cuenta= new Cuenta();
 		}	
 	}
 
 
-	public CapsulaOperacion guardarCuenta(Fincuentas cuenta) {
+	public CapsulaOperacion guardarCuenta(Cuenta cuenta) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));			
 		try {
 			cuenta.setFechaCreacion(new Date());
@@ -205,7 +205,7 @@ public class PlanCuentaCTL {
 		}
 	}
 
-	public CapsulaOperacion actualizarCuenta(Fincuentas cuenta) {
+	public CapsulaOperacion actualizarCuenta(Cuenta cuenta) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));			
 		try {
 			cuenta.setFechaUltimaModificacion(new Date());			
@@ -217,7 +217,7 @@ public class PlanCuentaCTL {
 		}
 	}
 
-	public CapsulaOperacion actualizarEstadoCuenta(Fincuentas cuenta) {
+	public CapsulaOperacion actualizarEstadoCuenta(Cuenta cuenta) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));			
 		try {
 			cuenta.setFechaUltimaModificacion(new Date());	
@@ -246,20 +246,20 @@ public class PlanCuentaCTL {
 	}
 
 	@ModelAttribute("cuentas")
-	public List<Fincuentas> getCuentas() {
+	public List<Cuenta> getCuentas() {
 		return cuentas;
 	}
 
-	public void setCuentas(List<Fincuentas> cuentas) {
+	public void setCuentas(List<Cuenta> cuentas) {
 		this.cuentas = cuentas;
 	}
 
 	@ModelAttribute("cuenta")
-	public Fincuentas getCuenta() {
+	public Cuenta getCuenta() {
 		return cuenta;
 	}
 
-	public void setCuenta(Fincuentas cuenta) {
+	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}	
 
@@ -273,11 +273,11 @@ public class PlanCuentaCTL {
 	}	
 
 	@ModelAttribute("filtroBusqueda")
-	public Fincuentas getCuentaBusqueda() {
+	public Cuenta getCuentaBusqueda() {
 		return cuentaBusqueda;
 	}
 
-	public void setCuentaBusqueda(Fincuentas cuentaBusqueda) {
+	public void setCuentaBusqueda(Cuenta cuentaBusqueda) {
 		this.cuentaBusqueda = cuentaBusqueda;
 	}
 

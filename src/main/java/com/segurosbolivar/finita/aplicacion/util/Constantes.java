@@ -1,7 +1,30 @@
 package com.segurosbolivar.finita.aplicacion.util;
 
+/**
+ * 
+ * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
+ *
+ */
 public final class Constantes {
 
+	
+	/*
+	 * Datos de constante BD
+	 */
+	public static final int BASIC_SIZE = 400;
+	public static final int DBLIST_MAX_SIZE = 500;	
+	
+	/*
+	 * Claves ENV properties Spring Boot
+	 * REST terceros
+	 */
+	public static String CONSULTA_NATURAL = "rest.terceros.consulta.natural";
+	public static String CREAR_NATURAL = "rest.terceros.crear.natural";
+	public static String ACTUALIZAR_NATURAL = "rest.terceros.actualizar.natural";
+
+	public static String CONSULTA_JURIDICO = "rest.terceros.consulta.juridico";	
+	public static String CREAR_JURIDICO = "rest.terceros.crear.juridico";
+	public static String ACTUALIZAR_JURIDICO = "rest.terceros.actualizar.juridico"; 
 	
 	/*
 	 * Claves de respuesta de PL y Funciones 
@@ -25,9 +48,19 @@ public final class Constantes {
 	public static String NOMBRE_FOLDER_CONTADOR="user-contador";
 	public static String NOMBRE_FOLDER_CONTADOR_OPCIONES="opciones";
 	public static String NOMBRE_URL_CONTADOR_1="plaCuentas";
-	public static String NOMBRE_URL_CONTADOR_2="genOrdPagos";
+	public static String NOMBRE_URL_CONTADOR_2_1="configurarBeneficiarios";
+	public static String NOMBRE_URL_CONTADOR_2_1_1="configurarBeneficiariosAccionista";
+	public static String NOMBRE_URL_CONTADOR_2_1_2="agregarBeneficiariosAccionista";	
+	public static String NOMBRE_URL_CONTADOR_2_2="generarOrdenPagos";
 	public static String NOMBRE_URL_CONTADOR_3="aplicacion";
+	
+	
+	public static String URL_REDIRECT="redirect:";
 	public static String URL_HOME_PLAN_CUENTA="redirect:/plaCuentas";
+	public static String URL_HOME_CONFIGURAR_BENEFICARIOS="redirect:/configurarBeneficiarios";
+	public static String URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA="redirect:/configurarBeneficiariosAccionista";
+	public static String URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA="redirect:/agregarBeneficiariosAccionista";
+	public static String URL_HOME_GENERAR_ORDEN_PAGOS="redirect:/generarOdernesPagos";
 
 
 	/*
@@ -84,4 +117,11 @@ public final class Constantes {
 	public static String KEY_OPERACION="<operacion>";
 	public static String MSJ_OPERACION_EXITOSA="La operacion <operacion> se ha completado con exito.";
 	public static String MSJ_OPERACION_FALLIDA="La operación <operacion> no se ha completado con exito.ERROR: <cod> <error>";
+	
+	/*
+	 * Datos y rectricciones de consultas
+	 * sobre BD
+	 */
+	
+	public static String CODIGO_EMPRESA_ACCIONISTA="50";  
 }

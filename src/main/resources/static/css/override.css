@@ -3,12 +3,21 @@
 }
 
 .tabla1 {
-	
+	border-right: 0px;
+	border-left: 0px;
 }
 
 .tabla1 th, td {
 	padding: 0px;
-	text-align: center;
+	text-align: center;	
+	
+}
+.tabla1 td{
+	padding: 5px;
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid gray;
+    border-left: 0px;
 }
 
 .tabla1 tr:hover {
@@ -55,6 +64,11 @@ hr {
 	padding: 2px 15px;
 }
 
+.btn_verde_blanco:hover {
+	color: #FDCF46;
+	font-weight: bold;
+}
+
 .btn_gris_gris {
 	color: gray;
 	background-color: #eee;
@@ -63,6 +77,11 @@ hr {
 	padding-left: 30px;
 	padding-right: 30px;
 	padding: 2px 15px;
+}
+
+.btn_gris_gris:hover {
+	color: gray;
+	font-weight: bold;
 }
 
 .alert-success {
@@ -122,4 +141,24 @@ hr {
     transform: translateY(20%);
     display: none;
   }  
+}
+
+.div_gris_gris {
+	color: gray;
+	background-color: #eee;
+	border-color: #eee;
+	border-radius: 0.60rem;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding: 2px 15px;
+	border:1px solid gray;
+	-webkit-box-shadow: 10px 10px 9px -7px rgba(128, 124, 128, 1);
+	-moz-box-shadow: 10px 10px 9px -7px rgba(128, 124, 128, 1);
+	box-shadow: 10px 10px 9px -7px rgba(128, 124, 128, 1);
+	border-radius: 0px;
+}
+
+.p_gris_bold{
+	color: gray;
+	font-weight: bold;
 }

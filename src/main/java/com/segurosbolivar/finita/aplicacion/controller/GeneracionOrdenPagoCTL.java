@@ -1,5 +1,8 @@
 package com.segurosbolivar.finita.aplicacion.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.apache.log4j.Logger;
@@ -7,9 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.dto.UsuarioLogin;
+import com.segurosbolivar.finita.aplicacion.service.IComunidadService;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
@@ -27,29 +33,46 @@ public class GeneracionOrdenPagoCTL {
 
 	@Autowired
 	IGenericoService genericoService;
-
+	
+	@Autowired
+	IComunidadService comunidadService;
+	
 	private UsuarioLogin usuario;
+	private List<SaldoBeneficiario> saldos= new ArrayList<SaldoBeneficiario>(); 
 	
 	@PostConstruct
 	private void init() {
 		logger.info(Log.logStartBeans(this.getClass().getName()));
 	}
 
-
-
 	@GetMapping("/genOrdPagos")
 	public String irGenOrdPagos(Model model,@SessionAttribute("usuarioLogin") UsuarioLogin user) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			this.setUsuario(user);
-			Utilidades.datosDeLogin(model,user);	
+			Utilidades.datosDeLogin(model,user);
+			this.loadData();
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}	
 		
-		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2;
+		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_2;
 	}
 	
+	/*
+	 * Cargar accionistas desde la BD
+	 */
+	@SuppressWarnings({ "unchecked"})
+	public void loadData() {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+		try {
+			this.saldos.addAll(this.comunidadService.getSaldosBeneficiario());
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+	@ModelAttribute("userLogin")
 	public UsuarioLogin getUsuario() {
 		return usuario;
 	}

@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 @Entity
 @Table(name="FINCUENTAS")
-public class Fincuentas extends Persistente {
+public class Cuenta extends Persistente {
 
 	/**
 	 * 
@@ -40,16 +40,16 @@ public class Fincuentas extends Persistente {
 	private char estado;
 
 
-	public Fincuentas() {
+	public Cuenta() {
 		// TODO Auto-generated constructor stub
 	}	
 	
-	public Fincuentas(String id) {
+	public Cuenta(String id) {
 		super();
 		this.id = id;
 	}
 
-	public Fincuentas(String id, String descripcion, Date fechaCreacion, Date fechaUltimaModificacion, char estado) {
+	public Cuenta(String id, String descripcion, Date fechaCreacion, Date fechaUltimaModificacion, char estado) {
 		super();
 		this.id = id;
 		this.descripcion = descripcion;
@@ -119,9 +119,9 @@ public class Fincuentas extends Persistente {
 	@Override
 	public boolean equals(Object obj) {
 		if(null == obj)return false;
-		if(!(obj instanceof Fincuentas))return false;
+		if(!(obj instanceof Cuenta))return false;
 		else {
-			Fincuentas objeto= (Fincuentas) obj;
+			Cuenta objeto= (Cuenta) obj;
 			if(null == this.getId()|| null== objeto.getId())return false;
 			else return (this.getId().equals(objeto.getId()));
 		}

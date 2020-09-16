@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "rest.terceros.consulta.natural",
+    "type": "java.lang.String",
+    "description": "A description for 'rest.terceros.consulta.natural'"
+  },
+  {
+    "name": "rest.terceros.crear.natural",
+    "type": "java.lang.String",
+    "description": "A description for 'rest.terceros.crear.natural'"
+  },
+  {
+    "name": "rest.terceros.crear.juridico",
+    "type": "java.lang.String",
+    "description": "A description for 'rest.terceros.crear.juridico'"
+  },
+  {
+    "name": "rest.terceros.actualizar.natural",
+    "type": "java.lang.String",
+    "description": "A description for 'rest.terceros.actualizar.natural'"
+  },
+  {
+    "name": "rest.terceros.consulta.juridico",
+    "type": "java.lang.String",
+    "description": "A description for 'rest.terceros.consulta.juridico'"
+  },
+  {
+    "name": "rest.terceros.actualizar.juridico",
+    "type": "java.lang.String",
+    "description": "A description for 'rest.terceros.actualizar.juridico'"
+  }
+]}

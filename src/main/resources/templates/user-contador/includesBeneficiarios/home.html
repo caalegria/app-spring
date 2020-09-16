@@ -1,0 +1,8 @@
+
+<th:block th:if="${viewState == '0'}">
+	<div th:include="user-contador/includesBeneficiarios/body/listadoPersonas.html" />
+</th:block>
+
+<th:block th:if="${viewState == '1'}">
+	<div th:include="user-contador/includesBeneficiarios/body/formularioPersona.html" />		
+</th:block>

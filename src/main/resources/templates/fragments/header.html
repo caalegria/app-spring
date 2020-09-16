@@ -6,9 +6,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 mx-auto">
-					<h2>
-						<img src="img/logo_grupo_bolivar.jpg" alt="logo_grupo_bolivar">
-						Sistema de Accionistas
+					<h2 th:text="#{title.accionistas}">
+						<img src="img/logo_grupo_bolivar.jpg" alt="logo_grupo_bolivar" />
 					</h2>
 					<!--Barra de opciones-->
 					<nav class="navbar navbar-expand-lg navbar-light bg-light-nav">
@@ -25,17 +24,27 @@
 										<span class="sr-only">(current)</span>
 								</a></li>
 
-								<li class="nav-item dropdown"><a id="pagos"
-									class="nav-link dropdown-toggle" href="#" role="button"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">Pagos</a>
-									<div class="dropdown-menu" aria-labelledby="pagos">
-										<a class="dropdown-item" th:href="@{/plaCuentas(editMode=1)}">Plan
-											Cuentas</a> <a class="dropdown-item" th:href="@{/genOrdPagos}">Generacion
-											Ordenes Pagos</a> <a class="dropdown-item"
-											th:href="@{/aplicacion}">Aplicación</a>
-									</div></li>
-
+								<div class="dropdown">
+									<a class="nav-link dropdown-toggle" href="#" role="button"
+										data-toggle="dropdown" aria-haspopup="true"
+										aria-expanded="false" th:text="#{label.configurar.pago}" />
+									<div class="dropdown-menu">
+										<li><a class="dropdown-item"
+											th:text="#{label.configurar.plan.cuentas}"
+											th:href="@{/plaCuentas(editMode=0)}" /></li>
+										<li class="dropdown-submenu"><a class="dropdown-item"
+											href="#" th:text="#{label.configurar.generacion.orden.pagos}" />
+											<ul class="dropdown-menu">
+												<li><a class="dropdown-item"
+													th:href="@{/configurarBeneficiarios(viewState=0)}"
+													th:text="#{label.configurar.beneficiarios}" /></li>
+												<li><a class="dropdown-item"
+													th:href="@{/generarOdernesPagos(viewState=0)}"
+													th:text="#{label.configurar.generar}" /></li>
+											</ul></li>
+										<li><a class="dropdown-item" th:href="@{/aplicacion}"
+											th:text="#{label.configurar.aplicacion}" /></li>
+									</div>
 							</ul>
 						</div>
 
