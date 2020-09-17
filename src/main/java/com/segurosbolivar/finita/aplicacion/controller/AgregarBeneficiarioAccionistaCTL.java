@@ -15,7 +15,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,9 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.segurosbolivar.finita.aplicacion.dto.Catalogo;
 import com.segurosbolivar.finita.aplicacion.dto.MensajeVista;
 import com.segurosbolivar.finita.aplicacion.dto.UsuarioLogin;
-import com.segurosbolivar.finita.aplicacion.dto.Catalogo;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.BeneficiarioPK;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
@@ -76,6 +75,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 	TercerosREST tercero= new TercerosRESTImplementacion();
 	private UsuarioLogin usuario= new UsuarioLogin();
 	private Persona persona= new Persona();	
+	private Beneficiario beneficiario;
 	private List<Persona> personas= new ArrayList<Persona>();
 	private List<Catalogo> catalogoNit= new ArrayList<Catalogo>();
 	private String viewState=Constantes.INICIANDO;	
@@ -91,15 +91,28 @@ public class AgregarBeneficiarioAccionistaCTL {
 	public String irAgregarBeneficiarosAccionista(Model model,@SessionAttribute("usuarioLogin") UsuarioLogin user,@RequestParam(value = "viewState",defaultValue = "0")String viewState) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {
-			this.setUsuario(user);					
-			this.loadData();
-			this.setViewState(viewState);
+			this.setUsuario(user);		
+			this.loadData();			
+			this.setViewState(viewState);				
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
 		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_1_2;
 	}
 	
+	@GetMapping(value = "/agregarBeneficiariosAccionista/regresar")
+	public String regresar(Model model) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+		if(this.getViewState().contentEquals("1") || this.getViewState().contentEquals("2")) {		
+			this.setViewState("0");
+			this.setPersona(new Persona());
+			return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewSate=0";
+		}else if(this.getViewState().contentEquals("3")){
+			this.setViewState("0");
+			return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
+		}
+		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewSate=0";		
+	}
 
 	@GetMapping(value = "/agregarBeneficiariosAccionista/nuevo")
 	public String irAgregarBeneficiarosAccionistaNuevo(Model model) {
@@ -110,18 +123,18 @@ public class AgregarBeneficiarioAccionistaCTL {
 	}
 	
 	@PostMapping("/agregarBeneficiariosAccionista/guardar")
-	public String savPersona(ModelMap model,@ModelAttribute("persona")Persona persona) {
+	public String savPersona(Model model,@ModelAttribute("persona")Persona persona) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		logger.info("Persona data "+ persona.toString());
 		Beneficiario ben= new Beneficiario();		
 		this.validarTerceros(persona,ben,true);
 		this.setViewState("0");		
 		model.addAttribute(this.configurarBeneficiario.getAccionista());
-		return Constantes.URL_REDIRECT+Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_1_1;
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
 	}
 
 	@PostMapping("/agregarBeneficiariosAccionista/buscar")	
-	public String buscarPersona(ModelMap model,@ModelAttribute("persona")Persona persona,BindingResult result) {
+	public String buscarPersona(Model model,@ModelAttribute("persona")Persona persona,BindingResult result) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		logger.info("Filtro: "+ persona);		
 		ConditionMap condiciones= new ConditionMap();
@@ -140,16 +153,69 @@ public class AgregarBeneficiarioAccionistaCTL {
 	 * Asigna un registro de tipo persona 
 	 * como relacion al accionista como beneficiario
 	 */
-	@GetMapping("/agregarBeneficiariosAccionista/agregar")
-	private String agregarBenficiario(ModelMap model,@RequestParam("idPersona")String idPersona) {
-		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+	@GetMapping("/agregarBeneficiariosAccionista/configurar")
+	public String irConfigurarBeneficiario(Model model,@RequestParam("idPersona")String idPersona) {
 		try {
 			Persona tmp= new Persona(idPersona);
 			tmp= this.personas.get(this.personas.indexOf(tmp));
-			boolean process = this.validarTerceros(tmp,null,false);
+			this.setPersona(tmp);			
+			this.setViewState("2");
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewState=2";
+	}
+	
+	/*
+	 * Asigna un registro de tipo persona 
+	 * como relacion al accionista como beneficiario
+	 */
+	@GetMapping("/agregarBeneficiariosAccionista/editar")
+	public String irEditarBeneficiario(Model model,@RequestParam("idBeneficiario")String idBeneficiario) {
+		try {
+			this.beneficiario = new Beneficiario(new BeneficiarioPK(this.configurarBeneficiario.getAccionista().getId().getAccPerIdent(), this.configurarBeneficiario.getAccionista().getAccEmpCodigo(), idBeneficiario));
+			this.setBeneficiario(this.configurarBeneficiario.getAccionista().getBeneficiarios().get(this.configurarBeneficiario.getAccionista().getBeneficiarios().indexOf(this.beneficiario)));		
+			this.setPersona(this.beneficiario.getPersona());
+			this.persona.setBenValor(this.beneficiario.getBenValor().toString());
+			this.persona.setBenNit(this.beneficiario.getBenNit());			
+			this.setViewState("3");
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewState=3";
+	}
+	
+	/*
+	 * Asigna un registro de tipo persona 
+	 * como relacion al accionista como beneficiario
+	 */
+	@PostMapping("/agregarBeneficiariosAccionista/agregar")
+	public String agregarBeneficiario(Model model,@ModelAttribute("persona")Persona persona) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+		try {				
+			boolean process = this.validarTerceros(persona,null,false);
 			if(process) {
-				this.agregarBeneficiario(tmp,null);				
+				this.agregarBeneficiario(persona,null);				
 			}
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		model.addAttribute(this.configurarBeneficiario.getAccionista());		
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
+	}
+	
+	/*
+	 * Asigna un registro de tipo persona 
+	 * como relacion al accionista como beneficiario
+	 */
+	@PostMapping("/agregarBeneficiariosAccionista/actualizar")
+	public String actualizarBenficiario(Model model,@ModelAttribute("persona")Persona persona) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+		try {				
+			this.beneficiario.setBenValor(new BigInteger(persona.getBenValor()));
+			this.beneficiario.setBenNit(persona.getBenNit());
+			this.genericoService.updateObject(this.getBeneficiario());
+			this.setViewState("1");
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
@@ -374,6 +440,14 @@ public class AgregarBeneficiarioAccionistaCTL {
 
 	public void setCatalogoNit(List<Catalogo> catalogoNit) {
 		this.catalogoNit = catalogoNit;
+	}
+
+	public Beneficiario getBeneficiario() {
+		return beneficiario;
+	}
+
+	public void setBeneficiario(Beneficiario beneficiario) {
+		this.beneficiario = beneficiario;
 	}
 
 }

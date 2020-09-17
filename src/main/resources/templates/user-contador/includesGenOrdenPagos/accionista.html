@@ -14,33 +14,30 @@
 	<h5 th:text="#{subtitlte.beneficiarios}"
 		th:title="|#{label.resultado}: ${#lists.size(accionista.beneficiarios)}|" />
 	<hr />
-	<a class="btn btn_verde_blanco" th:text="#{btn.agregar}"
-		th:href="@{/agregarBeneficiariosAccionista}"/>
-	<table border="1" class="col-lg-12 mx-auto tabla1" >
+	<div class="col-lg-12 alinearDerecha">
+		<a class="btn btn_verde_blanco" th:text="#{btn.agregar}"
+			th:href="@{/agregarBeneficiariosAccionista(viewState=0)}" />
+	</div>
+
+	<table border="1" class="col-lg-12 mx-auto tabla1">
 		<thead>
 			<tr>
-				<th class="sizeCol5" th:text="#{label.nombres}" /th>
-				<th class="sizeCol5" th:text="#{label.apellidos}" /th>
 				<th class="sizeCol15" th:text="#{label.tipo.documento}" /th>
-				<th class="sizeCol5" th:text="#{label.identificacion}" /th>
-				<th class="sizeCol15" th:text="#{label.porcentaje.accion}" /th>
-				<th class="sizeCol15" th:text="#{label.acciones}" /th>
+				<th class="sizeCol10" th:text="#{label.identificacion}" /th>
+				<th class="sizeCol20"
+					th:text="|#{label.nombres} #{label.apellidos}|" /th>
+				<th class="sizeCol10" th:text="#{label.porcentaje.accion}" /th>
+				<th class="sizeCol5" th:text="#{label.acciones}" /th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="objAccBen : ${accionista.beneficiarios}">
+				<td th:text="${objAccBen.persona.perTipoIdentRef.refDescripcion}" />
+				<td th:text="${objAccBen.persona.id}" />
 				<td th:text="${objAccBen.persona.perNombre} " />
-				<td	th:text="|${objAccBen.persona.perPrimerApellido} ${objAccBen.persona.perSegundoApellido}|" />				
-				<td />
-				<td th:text="${objAccBen.persona.id}" />				
-				<td th:text="${objAccBen.benValor}" />				
-				<td><a class="btn btn_gris_gris" th:text="#{btn.guardar}" /></td>
-				<!-- 				<td th:text="${objAcc.finPersona.perNombre} " /> -->
-				<!-- 				<td th:text="|${objAcc.finPersona.perPrimerApellido} ${objAcc.finPersona.perSegundoApellido}|" /> -->
-				<!-- 				<td th:text="${objAcc.finPersona.perTipoIdent}" /> -->
-				<!-- 				<td th:text="${objAcc.finPersona.id}" /> -->
-				<!-- 				<td th:text="${objAcc.finPersona.perDireccion}" /> -->
-				<!-- 				<td th:text="${objAcc.finPersona.perTelefono}" />								 -->
+				<td th:text="${objAccBen.benValor}" />
+				<td><a class="btn btn_gris_gris" th:text="#{btn.editar}"
+					th:href="@{/agregarBeneficiariosAccionista/editar(idBeneficiario=${objAccBen.id.benPerIdent})}" /></td>
 			</tr>
 		</tbody>
 	</table>

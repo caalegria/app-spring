@@ -1,8 +1,9 @@
 <h5 th:text="#{subtitlte.listado.personas}"
 	th:title="|#{label.resultado}: ${#lists.size(personas)}|" />
-<a class="btn btn_verde_blanco" th:text="#{btn.nuevo}"
-	th:href="@{/agregarBeneficiariosAccionista/nuevo}" />
-<hr>
+<div class="col-lg-12 alinearDerecha">
+	<a class="btn btn_verde_blanco" th:text="#{btn.nuevo}"
+		th:href="@{/agregarBeneficiariosAccionista/nuevo}" />
+</div>
 <table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
 	<thead>
 		<tr>
@@ -17,10 +18,13 @@
 		<tr th:each="objPer,iterador: ${personas}">
 			<form id="${iterador.index}">
 				<td th:text="${objPer.perNombre} " />
-				<td th:text="|${objPer.perPrimerApellido} ${objPer.perSegundoApellido}|" />
+				<td
+					th:text="|${objPer.perPrimerApellido} ${objPer.perSegundoApellido}|" />
 				<td />
 				<td th:text="${objPer.id}" />
-				<td><a th:href="@{/agregarBeneficiariosAccionista/agregar(idPersona=${objPer.id})}"	class="btn btn_gris_gris" th:text="#{btn.agregar}" /></td>
+				<td><a
+					th:href="@{/agregarBeneficiariosAccionista/configurar(idPersona=${objPer.id})}"
+					class="btn btn_gris_gris" th:text="#{btn.agregar}" /></td>
 			</form>
 		</tr>
 	</tbody>

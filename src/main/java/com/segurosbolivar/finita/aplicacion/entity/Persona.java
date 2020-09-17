@@ -58,6 +58,9 @@ public class Persona extends Persistente{
 
 	@Column(name="PER_TIPO_IDENT",length = 3)	
 	private String perTipoIdent;
+	
+	@Transient
+	private Referencia perTipoIdentRef;
 
 	@Column(name="PER_CIU_CODIGO",length = 3)
 	private String perCiuCodigo;
@@ -73,6 +76,9 @@ public class Persona extends Persistente{
 
 	@Column(name="PER_NATURALEZA",length = 3)
 	private String perNaturaleza;
+	
+	@Transient
+	private Referencia perNaturalezaRef;
 
 	@Column(name="PER_DIRECCION_2",length = 50)
 	private String perDireccion2;
@@ -441,6 +447,23 @@ public class Persona extends Persistente{
 
 	public void setBenNit(String benNit) {
 		this.benNit = benNit;
+	}
+	
+
+	public Referencia getPerTipoIdentRef() {
+		return perTipoIdentRef;
+	}
+
+	public void setPerTipoIdentRef(Referencia perTipoIdentRef) {
+		this.perTipoIdentRef = perTipoIdentRef;
+	}	
+
+	public Referencia getPerNaturalezaRef() {
+		return perNaturalezaRef;
+	}
+
+	public void setPerNaturalezaRef(Referencia perNaturalezaRef) {
+		this.perNaturalezaRef = perNaturalezaRef;
 	}
 
 	@Override

@@ -123,8 +123,7 @@ public class ConfigurarBeneficiariosCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			if(accionistas.isEmpty()) {
-				this.accionistas.addAll((Collection<? extends Accionista>) this.genericoService.findObjects(Accionista.class, Accionista.PROP_EMP_CODIGO, Constantes.CODIGO_EMPRESA_ACCIONISTA	, null));
-				//this.accionistas.addAll((Collection<? extends Accionista>) genericoService.getObjects(Accionista.class));
+				this.accionistas.addAll((Collection<? extends Accionista>) this.genericoService.findObjects(Accionista.class, Accionista.PROP_EMP_CODIGO, Constantes.CODIGO_EMPRESA_ACCIONISTA	, null));				
 				List<Accionista> accionistasTmp= new ArrayList<Accionista>();
 				for(Accionista accionista:this.accionistas) {
 					if(accionista!=null ) {
@@ -135,23 +134,17 @@ public class ConfigurarBeneficiariosCTL {
 									mapaPersonas.put(accionista.getId().getAccPerIdent(), (Persona) this.genericoService.getObjetctById(Persona.class, accionista.getId().getAccPerIdent()));
 
 								accionista.setFinPersona(mapaPersonas.get(accionista.getId().getAccPerIdent()));	
-								accionista.setAccSecCodigoRef(mapaReferencias.get(accionista.getAccTipoCapital()));
-								if(accionista.getAccFormaPago()!=null)
-									accionista.setAccFormaPagoRef(mapaReferencias.get(accionista.getAccFormaPago()));
-								if(accionista.getAccNacionalidad()!=null)
-									accionista.setAccNacionalidadRef(mapaReferencias.get(accionista.getAccNacionalidad()));
-								if(accionista.getAccEmpCodigo()!=null)
-									accionista.setAccEmpCodigoRef(mapaReferencias.get(accionista.getAccEmpCodigo()));
-								if(accionista.getAccCiuCodigo()!=null)
-									accionista.setAccCiuCodigoRef(mapaReferencias.get(accionista.getAccCiuCodigo()));
-								if(accionista.getAccCiuDptPaisCodigo()!=null)
-									accionista.setAccCiuDptPaisCodigoRef(mapaReferencias.get(accionista.getAccCiuDptPaisCodigo().toString()));
-								if(accionista.getAccCiuDptCodigo()!=null)
-									accionista.setAccCiuDptCodigoRef(mapaReferencias.get(accionista.getAccCiuDptCodigo()));
-								if(accionista.getAccTipoCuenta()!=null)
-									accionista.setAccTipoCuentaRef(mapaReferencias.get(accionista.getAccTipoCuenta()));
-								if(accionista.getAccTipoCapital()!=null)
-									accionista.setAccTipoCapitalRef(mapaReferencias.get(accionista.getAccTipoCapital()));
+								accionista.getFinPersona().setPerTipoIdentRef(mapaReferencias.get(accionista.getFinPersona().getPerTipoIdent()));
+								accionista.getFinPersona().setPerNaturalezaRef(mapaReferencias.get(accionista.getFinPersona().getPerNaturaleza()));
+								accionista.setAccSecCodigoRef(mapaReferencias.get(accionista.getAccTipoCapital()));								
+								accionista.setAccFormaPagoRef(accionista.getAccFormaPago()!=null?mapaReferencias.get(accionista.getAccFormaPago()):new Referencia());
+								accionista.setAccNacionalidadRef(accionista.getAccNacionalidad()!=null?mapaReferencias.get(accionista.getAccNacionalidad()):new Referencia());
+								accionista.setAccEmpCodigoRef(accionista.getAccEmpCodigo()!=null?mapaReferencias.get(accionista.getAccEmpCodigo()):new Referencia());								
+								accionista.setAccCiuCodigoRef(accionista.getAccCiuCodigo()!=null?mapaReferencias.get(accionista.getAccCiuCodigo()):new Referencia());
+								accionista.setAccCiuDptPaisCodigoRef(accionista.getAccCiuDptPaisCodigo()!=null?mapaReferencias.get(accionista.getAccCiuDptPaisCodigo().toString()):new Referencia());
+								accionista.setAccCiuDptCodigoRef(accionista.getAccCiuDptCodigo()!=null?mapaReferencias.get(accionista.getAccCiuDptCodigo()):new Referencia());
+								accionista.setAccTipoCuentaRef(accionista.getAccTipoCuenta()!=null?mapaReferencias.get(accionista.getAccTipoCuenta()):new Referencia());
+								accionista.setAccTipoCapitalRef(accionista.getAccTipoCapital()!=null?mapaReferencias.get(accionista.getAccTipoCapital()):new Referencia());
 
 								if(accionista.getFinPersona()!=null)
 									accionistasTmp.add(accionista);
@@ -183,6 +176,7 @@ public class ConfigurarBeneficiariosCTL {
 			for(Beneficiario ben:this.accionista.getBeneficiarios()) {
 				try {				
 					ben.setPersona((Persona) this.genericoService.getObjetctById(Persona.class, ben.getId().getBenPerIdent()));
+					ben.getPersona().setPerTipoIdentRef(mapaReferencias.get(ben.getPersona().getPerTipoIdent()));					
 				}catch (Exception e) {
 					Log.getError(logger, e);
 				}

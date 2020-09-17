@@ -162,3 +162,21 @@ hr {
 	color: gray;
 	font-weight: bold;
 }
+
+.alinearDerecha{
+	text-align: right;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.alinearIzquierda{
+	text-align: left;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.alinearCentro{
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
