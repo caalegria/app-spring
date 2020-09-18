@@ -126,5 +126,4 @@ public class Cuenta extends Persistente {
 			else return (this.getId().equals(objeto.getId()));
 		}
 	}
-
 }

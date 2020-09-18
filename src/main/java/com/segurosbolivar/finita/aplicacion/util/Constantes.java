@@ -123,5 +123,13 @@ public final class Constantes {
 	 * sobre BD
 	 */
 	
-	public static String CODIGO_EMPRESA_ACCIONISTA="50";  
+	public static String CODIGO_EMPRESA_ACCIONISTA="50";
+	
+	/*
+	 * Constantes Dividendos
+	 * Menu
+	 */
+	
+	public static String OPC_CARGUE= "Cargue Archivo Plano";
+	public static String OPC_VALIDACION= "Validación Cargue Plano";
 }

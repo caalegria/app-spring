@@ -24,13 +24,14 @@ import com.segurosbolivar.finita.aplicacion.repository.FinsgrolesRepository;
 import com.segurosbolivar.finita.aplicacion.repository.FinsgusuariosRolesRepository;
 import com.segurosbolivar.finita.aplicacion.service.FinsgusuariosService;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
+import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
 
 @Controller
 @SessionAttributes("usuarioLogin")
-public class FrontController {
+public class AutenticaciónACL {
 
-	public static final Logger logger = Logger.getLogger(FrontController.class);
+	public static final Logger logger = Logger.getLogger(AutenticaciónACL.class);
 	private final String TAB_FORM = "formTab";
 	private final String TAB_LIST = "listTab";
 	
@@ -46,7 +47,7 @@ public class FrontController {
 	
 	@PostConstruct
 	public void init() {
-		logger.info(Log.logStartBeans(FrontController.class.getName()));		
+		logger.info(Log.logStartBeans(AutenticaciónACL.class.getName()));		
 	}
 	
 	@GetMapping({"/","/login"})
@@ -108,7 +109,9 @@ public class FrontController {
 		baseAttributerForUserForm(model, new Finsgusuarios(), TAB_LIST);		
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username = userDetails.getUsername();
-		model.addAttribute("username",username.toLowerCase());
+		
+		model.addAttribute("OPC_CARGUE",Constantes.OPC_CARGUE);
+		model.addAttribute("OPC_VALIDACION",Constantes.OPC_VALIDACION);
 		
 		FinsgusuariosRoles usersRoles = usersRolesRepository.findByUxrUsuario(username);
 		String rol = usersRoles.getFinsgroles().getRolCodigo();				
