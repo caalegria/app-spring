@@ -236,14 +236,21 @@ public class GenericoDAO implements IGenericoDAO {
 						}else if(par.getValorParametro() instanceof Date) {
 							query.registerStoredProcedureParameter(i,Date.class,ParameterMode.IN);
 							i++;
-						}					
+						}else if(par.getValorParametro() instanceof List) {
+							query.registerStoredProcedureParameter(i,ArrayList.class ,ParameterMode.IN);
+							i++;
+						}else {
+							query.registerStoredProcedureParameter(i,List.class,ParameterMode.IN);
+							i++;
+						}
 					}
 				try {	
 					int j=i;
-					for(Class<?> type:typeSalidaSalida) {
-						query.registerStoredProcedureParameter(j, type, ParameterMode.OUT);
-						j++;
-					}
+					if(typeSalidaSalida!=null)
+						for(Class<?> type:typeSalidaSalida) {
+							query.registerStoredProcedureParameter(j, type, ParameterMode.OUT);
+							j++;
+						}
 					if(tieneCursor)
 						query.registerStoredProcedureParameter(j, ResultSet.class, ParameterMode.REF_CURSOR);
 					
@@ -272,7 +279,10 @@ public class GenericoDAO implements IGenericoDAO {
 						}else if(par.getValorParametro() instanceof Date) {
 							query.setParameter(i, par.getValorParametro());
 							i++;
-						}					
+						}else if(par.getValorParametro() instanceof List) {
+							query.setParameter(i,par.getValorParametro());
+							i++;
+						}				
 					}				
 			}catch (Exception e) {
 				Log.getError(logger,e);

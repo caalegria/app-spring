@@ -71,6 +71,23 @@
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
 	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">		
+		$(document).ready(function() {
+			$('input[type="checkbox"]').click(function() {
+				if ($(this).prop("checked") == true) {
+					$(this).val('true');					
+					console.log("Checkbox is checked.Id:"+$(this).prop("id")+" valor: "+ $(this).val()+" "+$(this).prop("checked"));
+					$(this).load('/finita/generarOrdenesDePagos/eventoSeleccionar?posicion='+$(this).prop("id")+"&estado="+$(this).prop("value"), $('#form:input[type="checkbox"]').serialize());
+				} else if ($(this).prop("checked") == false) {
+					$(this).val('false');					
+					console.log("Checkbox is unchecked.Id:"+$(this).prop("id")+" valor: "+ $(this).val());
+					$(this).load('/finita/generarOrdenesDePagos/eventoSeleccionar?posicion='+$(this).prop("id")+"&estado="+$(this).prop("value"), $('#form:input[type="checkbox"]').serialize());
+				}			    
+			  });
+			});
+	</script>
 
 </body>
 

@@ -192,11 +192,13 @@ public class AgregarBeneficiarioAccionistaCTL {
 	@PostMapping("/agregarBeneficiariosAccionista/agregar")
 	public String agregarBeneficiario(Model model,@ModelAttribute("persona")Persona persona) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
-		try {				
-			boolean process = this.validarTerceros(persona,null,false);
+		try {
+			beneficiario = new Beneficiario();
+			boolean process = this.validarTerceros(persona,this.beneficiario,false);
 			if(process) {
-				this.agregarBeneficiario(persona,null);				
+				this.agregarBeneficiario(persona,this.beneficiario);				
 			}
+			this.setViewState("0");
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}

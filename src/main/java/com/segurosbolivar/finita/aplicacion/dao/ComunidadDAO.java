@@ -1,4 +1,6 @@
 package com.segurosbolivar.finita.aplicacion.dao;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +19,7 @@ import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.BeneficiarioPK;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
+import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Log;
 
 
@@ -28,20 +32,35 @@ public class ComunidadDAO  implements IComunidadDAO {
 	@PersistenceContext	
 	private EntityManager entityManager;	
 	
+	@Autowired
+	IGenericoService genericoService;	
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SaldoBeneficiario> getSaldosBeneficiario(){
+		List<SaldoBeneficiario> saldosData=new ArrayList<SaldoBeneficiario>();
 		try {
-			StringBuffer hqlNative= new StringBuffer();
-			hqlNative.append("SELECT sb.* from FINVIEW_SALDOS_BENEFICIARIOS");
-			Query query= entityManager.createNativeQuery(hqlNative.toString(), "SaldoBeneficiarioMapping");
-			List<SaldoBeneficiario> saldos= query.getResultList();
-			return saldos;
+			StringBuffer hqlNative= new StringBuffer();			
+			hqlNative.append("SELECT * FROM  FINVIEW_SALDOS_BENEFICIARIOS WHERE ROWNUM <= 10");		
+			Query query= entityManager.createNativeQuery(hqlNative.toString());			
+			List<Object []> saldos= query.getResultList();
+			for(Object[] obj:saldos) {
+				SaldoBeneficiario saldobeneficiario = new SaldoBeneficiario();
+				saldobeneficiario.setEmpresa(obj[0].toString());
+				saldobeneficiario.setBeneficiario(obj[1].toString());
+				saldobeneficiario.setDiviendo(new BigInteger(obj[2].toString()));
+				saldobeneficiario.setMoneda(obj[3].toString());
+				saldobeneficiario.setGrupo(obj[4].toString());
+				saldobeneficiario.setSaldo(new BigDecimal(obj[5].toString()));
+				saldobeneficiario.setRetencion(new BigDecimal(obj[6].toString()));				
+				saldobeneficiario.setPersona((Persona) this.genericoService.getObjetctById(Persona.class, saldobeneficiario.getBeneficiario()));
+				saldosData.add(saldobeneficiario);
+			}
+			return saldosData;
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
-		return new ArrayList<SaldoBeneficiario>();		
+		return saldosData;		
 	}
 	
 	

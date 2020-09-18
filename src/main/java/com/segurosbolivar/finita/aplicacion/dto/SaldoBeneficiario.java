@@ -1,42 +1,40 @@
 package com.segurosbolivar.finita.aplicacion.dto;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import javax.persistence.ColumnResult;
-import javax.persistence.ConstructorResult;
-import javax.persistence.SqlResultSetMapping;
+import com.segurosbolivar.finita.aplicacion.entity.Dividendo;
+import com.segurosbolivar.finita.aplicacion.entity.Persona;
 
 /**
  * 
  * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
  *
  */
-@SqlResultSetMapping(name = "SaldoBeneficiarioMapping",classes = @ConstructorResult(
-		targetClass = SaldoBeneficiario.class,
-		columns = {
-				@ColumnResult(name="EMPRESA",type=String.class),
-				@ColumnResult(name="BENEFICIARIO",type=String.class),
-				@ColumnResult(name="DIVIDENDO",type=BigInteger.class),
-				@ColumnResult(name="MONEDA",type=String.class),
-				@ColumnResult(name="GRUPO",type=String.class),
-				@ColumnResult(name="SALDO",type=BigInteger.class),
-				@ColumnResult(name="RETENCION",type=BigInteger.class),
-		}))
-public class SaldoBeneficiario {
+public class SaldoBeneficiario implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6288648792344764837L;
+	private boolean select=false;
 	private String empresa;
 	private String beneficiario;
 	private BigInteger diviendo;
 	private String moneda;
 	private String grupo;
-	private BigInteger saldo;
-	private BigInteger retencion;
+	private BigDecimal saldo;
+	private BigDecimal retencion;
+	
+	private Persona persona;
+	private Dividendo dividendo;
 	
 	public SaldoBeneficiario() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public SaldoBeneficiario(String empresa, String beneficiario, BigInteger diviendo, String moneda, String grupo,	BigInteger saldo, BigInteger retencion) {
+	public SaldoBeneficiario(String empresa, String beneficiario, BigInteger diviendo, String moneda, String grupo,	BigDecimal saldo, BigDecimal retencion) {
 		super();
 		this.empresa = empresa;
 		this.beneficiario = beneficiario;
@@ -46,8 +44,6 @@ public class SaldoBeneficiario {
 		this.saldo = saldo;
 		this.retencion = retencion;
 	}
-
-
 
 	public String getEmpresa() {
 		return empresa;
@@ -89,20 +85,52 @@ public class SaldoBeneficiario {
 		this.grupo = grupo;
 	}
 
-	public BigInteger getSaldo() {
+	public BigDecimal getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(BigInteger saldo) {
+	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
 
-	public BigInteger getRetencion() {
+	public BigDecimal getRetencion() {
 		return retencion;
 	}
 
-	public void setRetencion(BigInteger retencion) {
+	public void setRetencion(BigDecimal retencion) {
 		this.retencion = retencion;
 	}
 
+	public Persona getPersona() {
+		return persona;
+	}
+
+	public void setPersona(Persona persona) {
+		this.persona = persona;
+	}
+
+	public Dividendo getDividendo() {
+		return dividendo;
+	}
+
+	public void setDividendo(Dividendo dividendo) {
+		this.dividendo = dividendo;
+	}
+
+	public boolean isSelect() {
+		return select;
+	}
+
+	public void setSelect(boolean select) {
+		this.select = select;
+	}
+
+	@Override
+	public String toString() {
+		return "SaldoBeneficiario [select=" + select + ", empresa=" + empresa + ", beneficiario=" + beneficiario
+				+ ", diviendo=" + diviendo + ", moneda=" + moneda + ", grupo=" + grupo + ", saldo=" + saldo
+				+ ", retencion=" + retencion + ", persona=" + persona + ", dividendo=" + dividendo + "]";
+	}
+	
+	
 }

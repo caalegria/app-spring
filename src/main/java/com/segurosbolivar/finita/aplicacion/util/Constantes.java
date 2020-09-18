@@ -51,7 +51,7 @@ public final class Constantes {
 	public static String NOMBRE_URL_CONTADOR_2_1="configurarBeneficiarios";
 	public static String NOMBRE_URL_CONTADOR_2_1_1="configurarBeneficiariosAccionista";
 	public static String NOMBRE_URL_CONTADOR_2_1_2="agregarBeneficiariosAccionista";	
-	public static String NOMBRE_URL_CONTADOR_2_2="generarOrdenPagos";
+	public static String NOMBRE_URL_CONTADOR_2_2="generarOrdenesDePagos";
 	public static String NOMBRE_URL_CONTADOR_3="aplicacion";
 	
 	
@@ -60,7 +60,7 @@ public final class Constantes {
 	public static String URL_HOME_CONFIGURAR_BENEFICARIOS="redirect:/configurarBeneficiarios";
 	public static String URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA="redirect:/configurarBeneficiariosAccionista";
 	public static String URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA="redirect:/agregarBeneficiariosAccionista";
-	public static String URL_HOME_GENERAR_ORDEN_PAGOS="redirect:/generarOdernesPagos";
+	public static String URL_HOME_GENERAR_ORDEN_PAGOS="redirect:/generarOrdenesDePagos";
 
 
 	/*

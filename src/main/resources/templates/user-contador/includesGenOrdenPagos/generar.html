@@ -1,12 +1,39 @@
+
 <div>
-	<div class="col-lg-4">
-		<input type="submit" class="btn btn_verde_blanco"
-			th:value="#{btn.buscar}">
-	</div>
+	<h5 th:text="#{label.Saldos}" />
+	<hr>
 
-	<div class="div_gris_gris col-lg-12">
-		<p th:text="label.resultado.proceso}" class="p_gris_bold" />
-		<hr>
-	</div>
-
+	<form class="form" role="form" autocomplete="off" method="post"
+		th:action="@{/generarOrdenesDePagos/generar}">
+		<div class="col-lg-12 alinearDerecha">
+			<input type="submit" class="btn btn_verde_blanco"
+				th:value="#{btn.generar}" />
+		</div>
+		<table border="1" class="col-lg-12 mx-auto tabla1" th:fragment="saldosTable">
+			<thead>
+				<tr>
+					<th class="sizeCol5" /th>
+					<th class="sizeCol15" th:text="#{label.beneficiario}" /th>
+					<th class="sizeCol10" th:text="#{label.dividendo}" /th>
+					<th class="sizeCol10" th:text="#{label.moneda}" /th>
+					<th class="sizeCol10" th:text="#{label.saldo.bruto}" /th>
+					<th class="sizeCol10" th:text="#{label.impuestos}" /th>
+					<th class="sizeCol10" th:text="#{label.a.pagar}" /th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="objSaldo,i : ${saldos}">
+					<td><input th:id="${i.index}" type="checkbox" name="active"
+						class="save" th:attr="data-customer-id = ${i.index}"
+						th:value="${objSaldo.select}" th:checked="${objSaldo.select}" />
+					<td th:text="${objSaldo.persona.perNombre}" />
+					<td th:text="${objSaldo.diviendo}" />
+					<td th:text="${objSaldo.moneda}" />
+					<td th:text="${objSaldo.saldo}" />
+					<td th:text="${objSaldo.retencion}" />
+					<td th:text="|A pagar|" />
+				</tr>
+			</tbody>
+		</table>
+	</form>
 </div>
