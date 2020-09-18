@@ -1,7 +1,6 @@
 package com.segurosbolivar.finita.aplicacion.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.segurosbolivar.finita.aplicacion.dto.MensajeVista;
-import com.segurosbolivar.finita.aplicacion.dto.Parametro;
+import com.segurosbolivar.finita.aplicacion.dto.RespuestaCallPL;
 import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.dto.UsuarioLogin;
 import com.segurosbolivar.finita.aplicacion.service.IComunidadService;
@@ -50,15 +49,17 @@ public class GeneracionOrdenPagoCTL {
 	@PostConstruct
 	private void init() {
 		logger.info(Log.logStartBeans(this.getClass().getName()));
-	}
+	}	
 
 	@GetMapping("/generarOrdenesDePagos")
-	public String irGenOrdPagos(Model model,@SessionAttribute("usuarioLogin") UsuarioLogin user,@RequestParam(value = "viewState",defaultValue = "0")String viewState) {
+	public String irGenOrdPagos(Model model,@SessionAttribute("usuarioLogin") UsuarioLogin user,@RequestParam(value = "viewState",defaultValue = "0")String viewState,@RequestParam(value = "reload",defaultValue = "0")String reload) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			this.setUsuario(user);
 			model.addAttribute("userLogin",user);
-			this.loadData();			
+			if(reload.contentEquals("1")) {				
+				this.loadData();
+			}
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}	
@@ -78,25 +79,23 @@ public class GeneracionOrdenPagoCTL {
 			tmp.setSelect(estado);			
 		}catch (Exception e) {
 			Log.getError(logger, e);
-		}		
-		return  "generarOrdenesDePagos/eventoSeleccionar :: saldosTable";
+		}
+		return Constantes.URL_HOME_GENERAR_ORDEN_PAGOS;
 	}
 	
 	@PostMapping("/generarOrdenesDePagos/generar")
 	public String generarOrdenesDePago(Model model) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
+			this.saldosApagar.clear();
 			for(SaldoBeneficiario saldo:saldos) {
 				if(saldo.isSelect()) {					
-					logger.info("Saldo Selecionado para pagar: "+saldo);
+					logger.info("Saldo Selecionado para pagar: "+saldo);					
 					this.saldosApagar.add(saldo);
 				}
-			}
-			
-			List<Parametro> parametros= new ArrayList<Parametro>();
-			parametros.add(new Parametro(Date.class,new Date()));			
-			parametros.add(new Parametro(List.class,saldosApagar));			
-			this.genericoService.callProcedimientoPl("PKG_FIN_ORDEN_PAGO.ENVIAR_A_PAGO", parametros, null, false);
+			}			
+			RespuestaCallPL respuesta=this.genericoService.callProcedimientoGenerarOrdenPago(saldosApagar,new RespuestaCallPL());
+			logger.info("Respuesta de PRC --> "+respuesta.getCodigo());			
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
@@ -110,6 +109,7 @@ public class GeneracionOrdenPagoCTL {
 	public void loadData() {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
+			this.saldos.clear();
 			this.saldos.addAll(this.comunidadService.getSaldosBeneficiario());
 		}catch (Exception e) {
 			Log.getError(logger, e);

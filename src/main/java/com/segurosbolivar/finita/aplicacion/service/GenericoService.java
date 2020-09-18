@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.segurosbolivar.finita.aplicacion.dao.IGenericoDAO;
 import com.segurosbolivar.finita.aplicacion.dto.Parametro;
+import com.segurosbolivar.finita.aplicacion.dto.RespuestaCallPL;
+import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Persistente;
 
 
@@ -58,4 +60,8 @@ public class GenericoService implements IGenericoService {
 		return this.iGenericoDAO.findObjects(classz, conditionField, conditionValue, ordering);
 	}
 	
+	@Override
+	public RespuestaCallPL callProcedimientoGenerarOrdenPago(List<SaldoBeneficiario> saldos,RespuestaCallPL respuesta) {
+		return this.iGenericoDAO.callProcedimientoGenerarOrdenPago(saldos,respuesta);
+}
 }

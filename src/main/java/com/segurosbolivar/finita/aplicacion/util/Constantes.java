@@ -132,4 +132,10 @@ public final class Constantes {
 	
 	public static String OPC_CARGUE= "Cargue Archivo Plano";
 	public static String OPC_VALIDACION= "Validación Cargue Plano";
+	
+	
+	/*
+	 * Listado de PRC 
+	 */
+	public static final String PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO="PKG_FIN_ORDEN_PAGO.ENVIAR_A_PAGO";
 }

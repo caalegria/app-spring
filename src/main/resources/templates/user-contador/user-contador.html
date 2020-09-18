@@ -50,7 +50,7 @@
                         <a class="dropdown-item" href="#" th:text="#{label.configurar.generacion.orden.pagos}" />
                         <ul class="dropdown-menu">
                              <li><a class="dropdown-item" th:href="@{/configurarBeneficiarios(viewState=0)}" th:text="#{label.configurar.beneficiarios}" /></li>
-                             <li><a class="dropdown-item" th:href="@{/generarOrdenesDePagos(viewState=0)}" th:text="#{label.configurar.generar}" /></li>                             
+                             <li><a class="dropdown-item" th:href="@{/generarOrdenesDePagos(viewState=0,reload=1)}" th:text="#{label.configurar.generar}" /></li>                             
                         </ul>
                       </li>
                       <li >

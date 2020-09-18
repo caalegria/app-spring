@@ -1,8 +1,12 @@
 package com.segurosbolivar.finita.aplicacion.dao;
 import java.io.Serializable;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,15 +24,25 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.jdbc.Work;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.segurosbolivar.finita.aplicacion.dto.Parametro;
+import com.segurosbolivar.finita.aplicacion.dto.RespuestaCallPL;
+import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Persistente;
 import com.segurosbolivar.finita.aplicacion.service.ConditionMap;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
 import com.segurosbolivar.finita.aplicacion.util.Utilidades;
+
+import oracle.jdbc.OracleConnection;
+import oracle.sql.ARRAY;
+import oracle.sql.ArrayDescriptor;
+import oracle.sql.STRUCT;
+import oracle.sql.StructDescriptor;
 
 
 /**
@@ -40,12 +54,12 @@ import com.segurosbolivar.finita.aplicacion.util.Utilidades;
 @Transactional
 @Repository
 public class GenericoDAO implements IGenericoDAO {
-	
+
 	public static final Logger logger = Logger.getLogger(GenericoDAO.class);
 
 	@PersistenceContext	
 	private EntityManager entityManager;
-	
+
 	/**
 	 * Metodo para persistir(Insert) cualquier entity
 	 * que extienda de la clase persistente
@@ -66,7 +80,7 @@ public class GenericoDAO implements IGenericoDAO {
 		return object;
 	}	
 
-	
+
 	/**
 	 * Metodo para eliminar(Delete) cualquier entity
 	 * que extienda de la clase persistente
@@ -83,8 +97,8 @@ public class GenericoDAO implements IGenericoDAO {
 			return false;
 		}
 	}	
-	
-	
+
+
 	/**
 	 * Metodo para obtener un listado de objeto entity 
 	 * que extiendan de persistente bajo una sola condicion 
@@ -112,15 +126,15 @@ public class GenericoDAO implements IGenericoDAO {
 		}
 		return new ArrayList<Persistente>();
 	}
-	
-	
-	
+
+
+
 	/*
 	 * Consulta generica para cualquier entity que sea mapeado
 	 * y que herede de la clase peristente enviando el listado de condiciones
 	 * dentro de un map de condiciones
 	 */
-	
+
 	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<? extends Persistente> findObjectsByFields(Class<? extends Persistente> classz, ConditionMap conditions,boolean embebedId){
@@ -150,7 +164,7 @@ public class GenericoDAO implements IGenericoDAO {
 							conditions.getProps().get(property).get(VALUE)!=null) {
 						restriction = Utilidades.addPredicateCriterio(builder,restriction,root,oper,embebedId,property,conditions.getProps().get(property).get(VALUE));
 					}					
-					
+
 				}
 			}
 			if(restriction != null) {
@@ -160,7 +174,7 @@ public class GenericoDAO implements IGenericoDAO {
 		result = entityManager.createQuery(criteria).getResultList();
 		return result;
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Persistente findObjectByFields(Class<? extends Persistente> classz, ConditionMap conditions,boolean embebedId){
 		Set<String> keys = null;
@@ -212,14 +226,14 @@ public class GenericoDAO implements IGenericoDAO {
 		return (List<Persistente>) entityManager.createQuery(hql).getResultList();
 	}	
 
-	
-	
+
+
 	@Override
 	public HashMap<String, Object> callProcedimientoPl(String nombrePL,List<Parametro> pametros,List<Class<?>> typeSalidaSalida,boolean tieneCursor) {		
 		logger.info(Log.getCurrentClassAndMethodNames(getClass().getName(), "Llamado al PL "+nombrePL));
-		HashMap<String, Object> dataRespuesta= new HashMap<String, Object>();
+		HashMap<String, Object> dataRespuesta= new HashMap<String, Object>();		
 		try{			 
-			StoredProcedureQuery query=entityManager.createStoredProcedureQuery(nombrePL);			
+			StoredProcedureQuery query=entityManager.createStoredProcedureQuery(nombrePL);			 
 			/*
 			 * Agregando los parametros de entrada del PL
 			 */
@@ -236,12 +250,6 @@ public class GenericoDAO implements IGenericoDAO {
 						}else if(par.getValorParametro() instanceof Date) {
 							query.registerStoredProcedureParameter(i,Date.class,ParameterMode.IN);
 							i++;
-						}else if(par.getValorParametro() instanceof List) {
-							query.registerStoredProcedureParameter(i,ArrayList.class ,ParameterMode.IN);
-							i++;
-						}else {
-							query.registerStoredProcedureParameter(i,List.class,ParameterMode.IN);
-							i++;
 						}
 					}
 				try {	
@@ -253,7 +261,7 @@ public class GenericoDAO implements IGenericoDAO {
 						}
 					if(tieneCursor)
 						query.registerStoredProcedureParameter(j, ResultSet.class, ParameterMode.REF_CURSOR);
-					
+
 				}catch (Exception e) {
 					Log.getError(logger,e);
 				}
@@ -279,10 +287,7 @@ public class GenericoDAO implements IGenericoDAO {
 						}else if(par.getValorParametro() instanceof Date) {
 							query.setParameter(i, par.getValorParametro());
 							i++;
-						}else if(par.getValorParametro() instanceof List) {
-							query.setParameter(i,par.getValorParametro());
-							i++;
-						}				
+						}
 					}				
 			}catch (Exception e) {
 				Log.getError(logger,e);
@@ -315,9 +320,69 @@ public class GenericoDAO implements IGenericoDAO {
 		}
 		return null;
 	}
-	
-	
-	
-	
-	
+
+
+
+	/**
+	 * 
+	 * @param saldos
+	 */
+	@Override
+	public RespuestaCallPL callProcedimientoGenerarOrdenPago(List<SaldoBeneficiario> saldos,RespuestaCallPL respuesta) {
+		logger.info(Log.getCurrentClassAndMethodNames(getClass().getName(), "Llamado al PL "+Constantes.PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO));
+		try {			
+			Session session = entityManager.unwrap( Session.class );						
+			session.doWork(new Work(){				
+				public void execute(Connection conn) throws SQLException {
+					try {						
+						try {
+							OracleConnection connection=null;							
+							if (conn.isWrapperFor(OracleConnection.class)) {								
+								connection = conn.unwrap(OracleConnection.class);
+							}
+
+							if(connection!=null) {
+								String query = "{call " + Constantes.PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO + "(?,?,?)}";
+								StructDescriptor descriptorType = StructDescriptor.createDescriptor("TYP_FILA_SALDOS_BENEF", connection);
+								Object[] type;			            
+								STRUCT[] estructurasTypoArchivo = new STRUCT[saldos.size()];
+								int i=0;
+								for(SaldoBeneficiario sb:saldos) {
+									type = new Object[]{sb.getEmpresa(),sb.getBeneficiario(),sb.getDividendo(),sb.getMoneda(),sb.getGrupo(),sb.getSaldo(),sb.getRetencion()};
+									STRUCT estructuraTypoArchivo = new STRUCT(descriptorType, connection, type);
+									estructurasTypoArchivo[i] = estructuraTypoArchivo;
+									i++;
+								}
+
+								ArrayDescriptor descriptorTypeTBL = ArrayDescriptor.createDescriptor("TYP_ARRAY_SALDOS_BENEF", connection);
+								ARRAY typoTBLArchivos = new ARRAY(descriptorTypeTBL, connection, estructurasTypoArchivo);
+
+								CallableStatement cs = connection.prepareCall(query);
+								cs.setDate(1,Date.valueOf("2020-09-18"));
+								cs.setObject(2, (Object) typoTBLArchivos);								
+								cs.registerOutParameter(3, Types.VARCHAR);							
+
+								cs.executeUpdate();															
+								respuesta.setCodigo(cs.getString(3));			                
+								logger.info("Resultado " + respuesta);		
+							}else {
+								logger.info("La OracleConnection no se pudo castear.");
+							}
+						}catch (Exception e) {
+							Log.getError(logger, e);
+						}
+
+					}catch (Exception e) {
+						Log.getError(logger, e);
+					}
+				}
+			});
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		
+		return respuesta;
+	}
+
+
 }
