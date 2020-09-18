@@ -2,6 +2,11 @@ package com.segurosbolivar.finita.aplicacion.dto;
 
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 
+/**
+ * 
+ * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
+ *
+ */
 public class CapsulaOperacion {
 
 	public boolean estadoOperacion=false; 

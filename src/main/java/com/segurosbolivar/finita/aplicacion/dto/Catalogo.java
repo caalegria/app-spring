@@ -1,5 +1,10 @@
 package com.segurosbolivar.finita.aplicacion.dto;
 
+/**
+ * 
+ * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
+ *
+ */
 public class Catalogo {
 
 	private String codigo;

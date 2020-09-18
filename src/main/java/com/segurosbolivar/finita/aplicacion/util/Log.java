@@ -2,6 +2,11 @@ package com.segurosbolivar.finita.aplicacion.util;
 
 import org.apache.log4j.Logger;
 
+/**
+ * 
+ * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
+ *
+ */
 public class Log {
 	public static final Logger logger = Logger.getLogger(Log.class);
 

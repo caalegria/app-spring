@@ -8,6 +8,11 @@ import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
 
+/**
+ * 
+ * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
+ *
+ */
 public interface IComunidadDAO {
 
 	List<SaldoBeneficiario> getSaldosBeneficiario();

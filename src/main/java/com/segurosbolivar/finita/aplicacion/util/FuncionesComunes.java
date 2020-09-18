@@ -1,6 +1,8 @@
 package com.segurosbolivar.finita.aplicacion.util;
 
-
+/**
+ * 
+ */
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
 import com.segurosbolivar.objetos.json.InfoGeneralTercero;
 import com.segurosbolivar.objetos.json.Rol;

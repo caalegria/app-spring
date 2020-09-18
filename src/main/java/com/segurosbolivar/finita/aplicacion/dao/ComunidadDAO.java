@@ -22,7 +22,11 @@ import com.segurosbolivar.finita.aplicacion.entity.Persona;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Log;
 
-
+/**
+ * 
+ * @author Gustavo Adolfo Lopez Mendieta(Shark_426) - galopez@asesoftware
+ *
+ */
 @Transactional
 @Repository
 public class ComunidadDAO  implements IComunidadDAO {
