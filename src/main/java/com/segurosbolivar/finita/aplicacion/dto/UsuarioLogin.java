@@ -2,8 +2,8 @@ package com.segurosbolivar.finita.aplicacion.dto;
 
 public class UsuarioLogin {
 	
-	private String username;
-	private String rol;
+	private String username="";
+	private String rol="";
 	
 	public UsuarioLogin() {
 		// TODO Auto-generated constructor stub

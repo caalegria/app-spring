@@ -31,6 +31,7 @@ import com.segurosbolivar.finita.aplicacion.service.IComunidadService;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
+import com.segurosbolivar.finita.aplicacion.util.Utilidades;
 import com.segurosbolivar.impl.TercerosRESTImplementacion;
 import com.segurosbolivar.objeto.Data;
 import com.segurosbolivar.objetos.json.Dataheader;
@@ -78,6 +79,7 @@ public class ConfigurarBeneficiariosCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {
 			this.setUsuario(user);
+			Utilidades.datosDeLogin(model,user);	
 			this.loadMapaReferencias();
 			this.loadData();			
 		}catch (Exception e) {

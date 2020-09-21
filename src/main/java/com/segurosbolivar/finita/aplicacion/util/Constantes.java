@@ -61,6 +61,7 @@ public final class Constantes {
 	public static String URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA="redirect:/configurarBeneficiariosAccionista";
 	public static String URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA="redirect:/agregarBeneficiariosAccionista";
 	public static String URL_HOME_GENERAR_ORDEN_PAGOS="redirect:/generarOrdenesDePagos";
+	public static String URL_HOME_APLICACION="redirect:/aplicacion";
 
 
 	/*
@@ -138,4 +139,7 @@ public final class Constantes {
 	 * Listado de PRC 
 	 */
 	public static final String PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO="PKG_FIN_ORDEN_PAGO.ENVIAR_A_PAGO";
+	public static final String PKG_FIN_ARCHIVO_CONTABLE_PBD_PROCESO_CIERRE="PKG_FIN_ARCHIVO_CONTABLE.PBD_PROCESO_CIERRE";
+	public static final String PKG_FIN_ARCHIVO_CONTABLE_PBD_PROCESO_REVERSION="PKG_FIN_ARCHIVO_CONTABLE.PBD_PROCESO_REVERSION";
+	public static final String PKG_FIN_ARCHIVO_CONTABLE_PBD_GENERA_ARCHIVO="PKG_FIN_ARCHIVO_CONTABLE.PBD_GENERA_ARCHIVO";
 }

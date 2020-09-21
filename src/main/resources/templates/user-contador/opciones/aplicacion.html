@@ -17,6 +17,7 @@
 <!-- Custom styles for this template -->
 <link href="css/scrolling-nav.css" rel="stylesheet">
 <link href="css/scrolling-nav.css" rel="stylesheet">
+<link href="css/override.css" rel="stylesheet">
 
 </head>
 
@@ -26,7 +27,7 @@
 
 	<section id="id" class="bg-light">
 		<div class="container align-items-center" style="padding-top: -200px">
-			<div class="col-lg-8 mx-auto">
+			<div class="col-lg-10 mx-auto">
 
 				<!--Contenido-->
 
@@ -35,7 +36,7 @@
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><span style=""
 							class="glyphicon glyphicon-user">&nbsp;</span><label>Rol:&nbsp;
-								<span th:text="${RolAut}"></span>
+								<span th:text="${usuarioLogin.rol}"></span>
 						</label></li>
 						<li class="breadcrumb-item"><a href="#"></a></li>
 					</ol>

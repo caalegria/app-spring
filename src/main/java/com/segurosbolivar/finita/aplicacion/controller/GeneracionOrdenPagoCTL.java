@@ -23,6 +23,7 @@ import com.segurosbolivar.finita.aplicacion.service.IComunidadService;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
+import com.segurosbolivar.finita.aplicacion.util.Utilidades;
 
 /**
  * 
@@ -56,6 +57,7 @@ public class GeneracionOrdenPagoCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			this.setUsuario(user);
+			Utilidades.datosDeLogin(model,user);	
 			model.addAttribute("userLogin",user);
 			if(reload.contentEquals("1")) {				
 				this.loadData();

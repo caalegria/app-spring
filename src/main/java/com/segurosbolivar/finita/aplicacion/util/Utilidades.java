@@ -35,8 +35,7 @@ public class Utilidades {
 	}
 	
 	public static void datosDeLogin(Model model,UsuarioLogin login) {		
-		model.addAttribute("userLogin",login.getUsername());
-		model.addAttribute("RolAut",login.getRol());
+		model.addAttribute("usuarioLogin",login);
 		logger.info(Log.getCurrentClassAndMethodNames(Utilidades.class.getName(), "Usuario Logeado: "+login.toString()));
 	}
 	

@@ -1,23 +1,29 @@
-<div>
-	<h5>Archivo Contable para DECEVAL</h5>
-	<form class="form" role="form" autocomplete="off" method="post">
-		<input type="submit" class="btn btn-primary" value="Generar">
-	</form>
+<h5 th:text="#{subtitlte.aplicacion}" />
+<div class="col-lg-12 alinearDerecha">
+	<a class="btn btn_verde_blanco" th:text="#{btn.cierre}"
+		th:href="@{/aplicacion/cierre}" /> <a class="btn btn_verde_blanco"
+		th:text="#{btn.reversion}" th:href="@{/aplicacion/reversion}" /><hr>
 
-	<br> <br>
-	<h5>Revisión cuentas contables</h5>
-	<table border="1" class="col-lg-8 mx-auto">
-		<thead>
-			<tr>
-				<th>Cuenta</th>
-				<th>Tipo</th>
-				<th>Fecha Creación</th>
-				<th>Fecha Modificación</th>
-			</tr>
-		</thead>
-		<tbody>
-			
-		</tbody>
-	</table>
+		<form class="form" role="form" autocomplete="off" method="post"
+			th:action="@{/aplicacion/generar}">
+			<div class="form-group row">
+				<div class="col-lg-3" th:object="${fechInicial}">
+					<label for="fecIni" th:text="#{label.fecha.inicio}" /> <input
+						id="fecIni" type="date" th:field="${fechInicial}" />
+				</div>
 
+				<div class="col-lg-3" th:object="${fechFinal}">
+					<label for="fecFin" th:text="#{label.fecha.fin}" /> <input
+						id="fecFin" type="date" th:field="${fechFinal}" />
+				</div>
+			</div>
+			<div class="col-lg-12 alinearDerecha">
+				<input type="submit" class="btn btn_verde_blanco"
+					th:value="#{btn.generar}">
+			</div>
+		</form>
 </div>
+
+<th:block th:if="${viewState == '0'}">
+
+</th:block>

@@ -92,6 +92,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {
 			this.setUsuario(user);		
+			Utilidades.datosDeLogin(model,user);	
 			this.loadData();			
 			this.setViewState(viewState);				
 		}catch (Exception e) {
