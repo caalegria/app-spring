@@ -39,7 +39,7 @@
 													th:href="@{/configurarBeneficiarios(viewState=0)}"
 													th:text="#{label.configurar.beneficiarios}" /></li>
 												<li><a class="dropdown-item"
-													th:href="@{/generarOrdenesDePagos(viewState=0)}"
+													th:href="@{/generarOrdenesDePagos(viewState=0,reload=1)}"
 													th:text="#{label.configurar.generar}" /></li>
 											</ul></li>
 										<li><a class="dropdown-item" th:href="@{/aplicacion}"
@@ -51,7 +51,7 @@
 						<!-- logout -->
 						<div class="align-items-end">
 							<a class="dropdown-item" href="#" th:href="@{/logout}"> <span
-								></span> <span
+								th:text="${usuarioLogin.username}"></span> <span
 								class="float-right">&nbsp; <i class="fas fa-sign-out-alt"></i>
 							</span>
 							</a>

@@ -1,5 +1,5 @@
 <div>
-	<h5 th:value="#{subtitlte.creacion.cuentas}" />
+	<h5 th:text="#{subtitlte.crear}" />
 	<hr>
 	<form class="form" role="form" autocomplete="off" method="post"
 		th:object="${cuenta}"
@@ -23,7 +23,7 @@
 		</div>
 	</form>
 	<br>
-	<h5 th:text="#{subtitlte.consultaCuentas}" />
+	<h5 th:text="#{subtitlte.buscar}" />
 	<hr>
 	<form class="form" role="form" autocomplete="off" method="post"
 		th:object="${filtroBusqueda}" th:action="@{/plaCuentas/buscar}">

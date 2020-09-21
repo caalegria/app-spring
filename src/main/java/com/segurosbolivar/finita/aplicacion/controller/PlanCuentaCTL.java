@@ -25,6 +25,7 @@ import com.segurosbolivar.finita.aplicacion.entity.Cuenta;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
+import com.segurosbolivar.finita.aplicacion.util.Utilidades;
 
 
 /**
@@ -62,6 +63,7 @@ public class PlanCuentaCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {
 			this.setUsuario(user);		
+			Utilidades.datosDeLogin(model,user);
 			if(editMode.contentEquals("redirect")) {
 				if(editMode.contentEquals("0")){
 					this.setCuenta(new Cuenta());
@@ -236,7 +238,7 @@ public class PlanCuentaCTL {
 		}
 	}
 
-	@ModelAttribute("userLogin")
+	@ModelAttribute("usuarioLogin.")
 	public UsuarioLogin getUsuario() {
 		return usuario;
 	}
