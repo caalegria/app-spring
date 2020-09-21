@@ -13,11 +13,11 @@
 
 <!-- Bootstrap core CSS -->
 <link href="css/bootstrap.css" rel="stylesheet">
-
 <!-- Custom styles for this template -->
 <link href="css/scrolling-nav.css" rel="stylesheet">
 <link href="css/scrolling-nav.css" rel="stylesheet">
 <link href="css/override.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto Condensed' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -27,10 +27,7 @@
 
 	<section id="id" class="bg-light">
 		<div class="container align-items-center" style="padding-top: -200px">
-			<div class="col-lg-10 mx-auto">
-
-				<!--Contenido-->
-
+			<div class="col-lg-11 mx-auto caja">
 				<!--Miga de pan-->
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
@@ -42,7 +39,7 @@
 					</ol>
 				</nav>
 
-				<!-- plancuentas -->
+				<!-- /.container -->
 				<div class="card-body">					
 					<div th:include="user-contador/includesAplicacion/home.html"
 						th:remove="tag"></div>
@@ -52,17 +49,13 @@
 			</div>
 			<!--Fin contenido-->
 		</div>
-	</section>
-
-	<!-- Borrar padding -->
-	<div style="padding-top: 280px;" class="bg-light"></div>
+	</section>	
 	<!-- Footer -->
 	<footer class="py-5 bg-dark ">
 		<div class="container">
 			<p class="m-0 text-center text-yellow-white">Copyright &copy;
 				Grupo Bolivar 2020</p>
-		</div>
-		<!-- /.container -->
+		</div>		
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->

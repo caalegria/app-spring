@@ -1,5 +1,9 @@
-.card-body{
-	    padding-top: 0px;
+body {
+	font-family: "Roboto Condensed", sans-serif !important;
+}
+
+.card-body {
+	padding-top: 0px;
 }
 
 .tabla1 {
@@ -9,15 +13,15 @@
 
 .tabla1 th, td {
 	padding: 0px;
-	text-align: center;	
-	
+	text-align: center;
 }
-.tabla1 td{
+
+.tabla1 td {
 	padding: 5px;
-    border-top: 0px;
-    border-right: 0px;
-    border-bottom: 2px solid gray;
-    border-left: 0px;
+	border-top: 0px;
+	border-right: 0px;
+	border-bottom: 2px solid gray;
+	border-left: 0px;
 }
 
 .tabla1 tr:hover {
@@ -115,34 +119,91 @@ hr {
 	cursor: pointer;
 }
 
-@keyframes hiddenTransition {
-  0% {
-    opacity: 1;
-    transform: none;
-    display: block;
-  }
-  
-  10% {
-    opacity: 0;
-    transform: translateY(20%);
-    display: block;
-    display: none;
-  }
-  
-  20% {
-    opacity: 0;
-    transform: translateY(20%);
-    display: block;
-    display: none;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(20%);
-    display: none;
-  }  
+@
+keyframes hiddenTransition { 0% {
+	opacity: 1;
+	transform: none;
+	display: block;
 }
 
+10%
+{
+opacity
+:
+ 
+0;
+transform
+:
+ 
+translateY
+(20%);
+
+    
+display
+:
+ 
+block
+;
+
+    
+display
+:
+ 
+none
+;
+
+  
+}
+20%
+{
+opacity
+:
+ 
+0;
+transform
+:
+ 
+translateY
+(20%);
+
+    
+display
+:
+ 
+block
+;
+
+    
+display
+:
+ 
+none
+;
+
+  
+}
+100%
+{
+opacity
+:
+ 
+0;
+transform
+:
+ 
+translateY
+(20%);
+
+    
+display
+:
+ 
+none
+;
+
+  
+}
+}
 .div_gris_gris {
 	color: gray;
 	background-color: #eee;
@@ -151,32 +212,132 @@ hr {
 	padding-left: 30px;
 	padding-right: 30px;
 	padding: 2px 15px;
-	border:1px solid gray;
+	border: 1px solid gray;
 	-webkit-box-shadow: 10px 10px 9px -7px rgba(128, 124, 128, 1);
 	-moz-box-shadow: 10px 10px 9px -7px rgba(128, 124, 128, 1);
 	box-shadow: 10px 10px 9px -7px rgba(128, 124, 128, 1);
 	border-radius: 0px;
 }
 
-.p_gris_bold{
+.p_gris_bold {
 	color: gray;
 	font-weight: bold;
 }
 
-.alinearDerecha{
+.alinearDerecha {
 	text-align: right;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
-.alinearIzquierda{
+.alinearIzquierda {
 	text-align: left;
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
-.alinearCentro{
+.alinearCentro {
 	text-align: center;
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.nav-link {
+	color: #333 !important;
+}
+
+.bg-primary {
+    background-color: #016d38 !important;
+}
+
+.bg-dark{
+	background-color: #016d38 !important;
+}
+
+.section {
+    padding: 0px 7px;
+    
+}
+
+.caja {
+	-webkit-box-shadow: 1px 8px 7px 1px rgba(46, 74, 117, 0.18);
+	-moz-box-shadow: 1px 8px 7px 1px rgba(46, 74, 117, 0.18);
+	box-shadow: 1px 8px 7px 1px rgba(46, 74, 117, 0.18);
+	margin-bottom: 7%;
+	min-height: 100vh;
+}
+
+.tituloAplicacion{
+	text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.subtituloAplicacion{
+	color: #016d38 !important;
+	margin-bottom: 35px;
+}
+
+@media ( min-width : 1200px) {
+	.navbar-brand {
+		width: 150px;
+		margin-right: 1.5rem;
+		height: 60px;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-image:
+			url(https://d9b6rardqz97a.cloudfront.net/staticImagesFront/seguros-color.svg);
+		background-size: contain;
+		font-size: 0;
+	}
+}
+
+/* Portrait tablet to landscape and desktop */
+@media ( min-width : 768px) and (max-width: 979px) {
+	...
+}
+
+/* Landscape phone to portrait tablet */
+@media ( max-width : 767px) {
+	...
+}
+
+/* Landscape phones and down */
+@media ( max-width : 480px) {
+	...
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width
+	: 480px) {
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) {
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) and (orientation : landscape) {
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) and (orientation : portrait) {
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
 }

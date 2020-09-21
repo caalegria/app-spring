@@ -1,8 +1,11 @@
-<h5 th:text="#{subtitlte.aplicacion}" />
-<div class="col-lg-12 alinearDerecha">
-	<a class="btn btn_verde_blanco" th:text="#{btn.cierre}"
-		th:href="@{/aplicacion/cierre}" /> <a class="btn btn_verde_blanco"
-		th:text="#{btn.reversion}" th:href="@{/aplicacion/reversion}" /><hr>
+<h3 th:text="#{label.page.aplicacion}" class="subtituloAplicacion" />
+<div>
+	<h5 th:text="#{subtitlte.aplicacion}" />
+	<div class="col-lg-12 alinearDerecha">
+		<a class="btn btn_verde_blanco" th:text="#{btn.cierre}"
+			th:href="@{/aplicacion/cierre}" /> <a class="btn btn_verde_blanco"
+			th:text="#{btn.reversion}" th:href="@{/aplicacion/reversion}" />
+		<hr>
 
 		<form class="form" role="form" autocomplete="off" method="post"
 			th:action="@{/aplicacion/generar}">
@@ -22,8 +25,9 @@
 					th:value="#{btn.generar}">
 			</div>
 		</form>
+	</div>
+
+	<th:block th:if="${viewState == '0'}">
+
+	</th:block>
 </div>
-
-<th:block th:if="${viewState == '0'}">
-
-</th:block>

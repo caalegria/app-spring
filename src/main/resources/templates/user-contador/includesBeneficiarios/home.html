@@ -1,12 +1,17 @@
+<h3 th:text="#{label.page.configurar.beneficiarios}" class="subtituloAplicacion" />
+<div>
+	<th:block th:if="${viewState == '0'}">
+		<div
+			th:include="user-contador/includesBeneficiarios/body/listadoPersonas.html" />
+	</th:block>
 
-<th:block th:if="${viewState == '0'}">
-	<div th:include="user-contador/includesBeneficiarios/body/listadoPersonas.html" />
-</th:block>
+	<th:block th:if="${viewState == '1'}">
+		<div
+			th:include="user-contador/includesBeneficiarios/body/formularioPersona.html" />
+	</th:block>
 
-<th:block th:if="${viewState == '1'}">
-	<div th:include="user-contador/includesBeneficiarios/body/formularioPersona.html" />		
-</th:block>
-
-<th:block th:if="${viewState == '2'} or ${viewState == '3'}">
-	<div th:include="user-contador/includesBeneficiarios/body/formularioBeneficiario.html" />		
-</th:block>
+	<th:block th:if="${viewState == '2'} or ${viewState == '3'}">
+		<div
+			th:include="user-contador/includesBeneficiarios/body/formularioBeneficiario.html" />
+	</th:block>
+</div>
