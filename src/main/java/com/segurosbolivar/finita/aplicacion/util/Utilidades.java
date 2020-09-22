@@ -1,8 +1,13 @@
 package com.segurosbolivar.finita.aplicacion.util;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -14,6 +19,7 @@ import javax.persistence.criteria.Root;
 import org.apache.log4j.Logger;
 import org.springframework.ui.Model;
 
+import com.segurosbolivar.finita.aplicacion.dto.ArchivoDeceval;
 import com.segurosbolivar.finita.aplicacion.dto.ObjectValueType;
 import com.segurosbolivar.finita.aplicacion.dto.UsuarioLogin;
 import com.segurosbolivar.finita.aplicacion.service.ConditionMap;
@@ -393,6 +399,55 @@ public class Utilidades {
 				sb.append("a.").append(me.getKey().toString()).append(" ").append((me.getValue() == null) || (me.getValue() == true) ? OrderBy.ASC : OrderBy.DESC);
 			}
 		}
+	}
+	
+	public static String rutaTemporal() {		
+		String ruta=System.getProperty("java.io.tmpdir");
+		String separadorSO= File.separator;
+		try {
+			if(!String.valueOf(ruta.charAt(ruta.length()-1)).equalsIgnoreCase(separadorSO)) {
+				ruta=ruta.concat(separadorSO);
+			}
+		}catch (Exception e) {
+			Log.getError(logger, e);	
+		}
+		return ruta; 
+	}	
+	
+	public static boolean escribirArchivoPlano (List<ArchivoDeceval> dataArchivoDeceval) {
+		logger.debug(Log.getCurrentClassAndMethodNames(Utilidades.class.getName(), ""));
+		String rutaFinal;
+		rutaFinal=Utilidades.rutaTemporal();		
+		rutaFinal=rutaFinal.concat(Constantes.DECEVAL).concat(".txt");
+		BufferedWriter writer = null;		
+		try{
+			writer = new BufferedWriter( new FileWriter(rutaFinal));
+			writer.write(ArchivoDeceval.cabezera());
+			writer.newLine();
+			if(!dataArchivoDeceval.isEmpty()) {				
+				for(ArchivoDeceval lin:dataArchivoDeceval) {					
+					writer.write(lin.toString());	
+					writer.newLine();					
+				}			
+			}
+		}
+		catch ( IOException e){
+			Log.getError(logger,e);
+		}
+		catch (Exception e){
+			Log.getError(logger,e);
+		}
+		finally	{
+			try	{
+				if ( writer != null)
+					writer.close( );				
+				logger.info(Log.getCurrentClassAndMethodNames(Utilidades.class.getName(), "Escibiendo el archivo plano en la ruta : "+rutaFinal));
+			}
+			catch ( IOException e){
+				Log.getError(logger,e);
+			}
+		}	
+		return true;
 	}
 
 }

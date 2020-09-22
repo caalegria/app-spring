@@ -295,7 +295,7 @@ public class GenericoDAO implements IGenericoDAO {
 			try {
 				query.execute();		
 				try{
-					List<?> data= (List<?>) query.getResultList();
+					List<?> data= (List<?>) query.getResultList();				
 					dataRespuesta.put(Constantes.CLAVE_LISTA, data);
 					logger.debug(Log.getCurrentClassAndMethodNames(getClass().getName(),"Tamaño de respuesta: "+ data.size()));
 				}catch (Exception e) {
@@ -303,10 +303,16 @@ public class GenericoDAO implements IGenericoDAO {
 				}
 
 				try{								
-					int tamano= pametros!=null?pametros.size()+1:1;
-					String nombreArchivoFinal= (String) query.getOutputParameterValue(tamano);
-					dataRespuesta.put(Constantes.CLAVE_NAME, nombreArchivoFinal);
-					logger.debug("Nombre del archivo: "+ nombreArchivoFinal);
+					int total= pametros.size()+typeSalidaSalida.size();		
+					int i=0;
+					for(int tamano= pametros.size()+1;tamano<=total;tamano++) {
+						String salida= (String) query.getOutputParameterValue(tamano);
+						dataRespuesta.put(Constantes.CLAVE_RESPUESTA.concat(String.valueOf(i)), salida);
+						i++;
+					}
+					for(Object obj:dataRespuesta.values()) {
+						logger.info("Respuesta: "+ obj.toString());	
+					}				
 				}catch (Exception e) {
 
 				}			
@@ -318,7 +324,7 @@ public class GenericoDAO implements IGenericoDAO {
 		}catch (Exception e) {
 			logger.error("Problemas de llamado del procedimiento."+e.getMessage());
 		}
-		return null;
+		return dataRespuesta;
 	}
 
 

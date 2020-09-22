@@ -15,6 +15,12 @@ public final class Constantes {
 	public static final int DBLIST_MAX_SIZE = 500;	
 	
 	/*
+	 * Nombre estandar de archivo generado para
+	 * deceval 
+	 */
+	public static final String DECEVAL="deceval";
+	
+	/*
 	 * Claves ENV properties Spring Boot
 	 * REST terceros
 	 */
@@ -31,7 +37,7 @@ public final class Constantes {
 	 */
 	public static String CLAVE_NAME="name";
 	public static String CLAVE_LISTA="list";
-	public static String CLAVE_RESPUSTA="respuesta";
+	public static String CLAVE_RESPUESTA="respuesta_";
 
 	/*
 	 * Constantes de capsula de errores

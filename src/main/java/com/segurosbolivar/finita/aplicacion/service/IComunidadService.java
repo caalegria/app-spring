@@ -14,6 +14,7 @@ public interface IComunidadService {
 	List<Beneficiario> getBeneficiariosPorAccionista(Accionista accionista);
 	List<Persona> getPersonasNoBeneficiarioAccionista(Accionista accionista);
 	boolean existePersona(Persona persona);
-	List<Catalogo> catalogoNit();	
+	List<Catalogo> catalogoNit();
+	boolean getArchivoDeceval();
 	
 }
