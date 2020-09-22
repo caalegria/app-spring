@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.segurosbolivar.finita.aplicacion.dto.ArchivoDeceval;
 import com.segurosbolivar.finita.aplicacion.dto.Catalogo;
 import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Accionista;
@@ -21,6 +22,7 @@ import com.segurosbolivar.finita.aplicacion.entity.BeneficiarioPK;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Log;
+import com.segurosbolivar.finita.aplicacion.util.Utilidades;
 
 /**
  * 
@@ -147,7 +149,48 @@ public class ComunidadDAO  implements IComunidadDAO {
 		return new ArrayList<Catalogo>();
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean getArchivoDeceval() {		
+		try {
+			StringBuffer hqlNative= new StringBuffer();			
+			hqlNative.append("SELECT empresa"); 
+			hqlNative.append(",oficina"); 
+			hqlNative.append(",fecha_apunte"); 
+			hqlNative.append(",clase_asiento"); 
+			hqlNative.append(",numero_asiento"); 
+			hqlNative.append(",lpad(to_char(numero_apunte),8,' ') numero_apunte"); 
+			hqlNative.append(",cuenta"); 
+			hqlNative.append(",codigo_agrupa"); 
+			hqlNative.append(",concepto_movto"); 
+			hqlNative.append(",ajuste_infla"); 
+			hqlNative.append(",rpad(numero_docto,10,' ') numero_docto"); 
+			hqlNative.append(",fecha_vcto"); 
+			hqlNative.append(",codigo_ramo"); 
+			hqlNative.append(",lpad(replace(to_char(valor_debito ,'999999999999.00'),'.',null),15,' ') valor_debito"); 
+			hqlNative.append(",lpad(replace(to_char(valor_credito,'999999999999.00'),'.',null),15,' ') valor_credito"); 
+			hqlNative.append(",benef_prod"); 
+			hqlNative.append(",clave_agente"); 
+			hqlNative.append(",codigo_act_pro"); 
+			hqlNative.append(",lpad(nit,16,'0') nit"); 
+			hqlNative.append(",lpad(to_char(consec_tercero),16,'0')"); 
+			hqlNative.append(" FROM finico010");
+
+			Query query= entityManager.createNativeQuery(hqlNative.toString());			
+			List<Object []> dataDeceval= query.getResultList();
+			List<ArchivoDeceval> archivoData= new ArrayList<ArchivoDeceval>();
+			for(Object[] obj:dataDeceval) {
+				archivoData.add(new ArchivoDeceval(obj[0].toString(), obj[1].toString(), obj[2].toString(), obj[3].toString(), obj[4].toString(), obj[5].toString(), obj[6].toString(), obj[7].toString(), obj[8].toString(), obj[9].toString(), obj[10].toString(), obj[11].toString(), obj[12].toString(), obj[13].toString(), obj[14].toString(), obj[15].toString(), obj[16].toString(), obj[17].toString(), obj[18].toString(), obj[19].toString()));
+			}
+			return Utilidades.escribirArchivoPlano(archivoData);
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		
+		return false;
+	}
+
+
 	
 	public boolean relacionAccionistaBeneficiario(Persona persona,Beneficiario beneficiario) {
 

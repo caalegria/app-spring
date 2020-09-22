@@ -1,5 +1,6 @@
 package com.segurosbolivar.finita.aplicacion.dao;
 
+import java.io.File;
 import java.util.List;
 
 import com.segurosbolivar.finita.aplicacion.dto.Catalogo;
@@ -19,6 +20,7 @@ public interface IComunidadDAO {
 	List<Beneficiario> getBeneficiariosPorAccionista(Accionista accionista);
 	List<Persona> getPersonasNoBeneficiarioAccionista(Accionista accionista);
 	boolean existePersona(Persona persona);
-	List<Catalogo> catalogoNit();   
+	List<Catalogo> catalogoNit();
+	boolean getArchivoDeceval();   
 }
  

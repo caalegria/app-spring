@@ -8,21 +8,22 @@
 		<hr>
 
 		<form class="form" role="form" autocomplete="off" method="post"
-			th:action="@{/aplicacion/generar}">
+			th:action="@{/aplicacion/generar}" th:object="${deceval}">
 			<div class="form-group row">
-				<div class="col-lg-3" th:object="${fechInicial}">
+				<div class="col-lg-3">
 					<label for="fecIni" th:text="#{label.fecha.inicio}" /> <input
-						id="fecIni" type="date" th:field="${fechInicial}" />
+						id="fecIni" type="date" th:field="${deceval.fechInicial}" />
 				</div>
 
-				<div class="col-lg-3" th:object="${fechFinal}">
+				<div class="col-lg-3">
 					<label for="fecFin" th:text="#{label.fecha.fin}" /> <input
-						id="fecFin" type="date" th:field="${fechFinal}" />
+						id="fecFin" type="date" th:field="${deceval.fechFinal}" />
 				</div>
 			</div>
 			<div class="col-lg-12 alinearDerecha">
-				<input type="submit" class="btn btn_verde_blanco"
-					th:value="#{btn.generar}">
+				<a class="btn btn_verde_blanco" th:text="#{btn.descargar}"
+					th:href="@{/aplicacion/downloadDeceval}" th:if="${download}" /> <input type="submit"
+					class="btn btn_verde_blanco" th:value="#{btn.generar}">
 			</div>
 		</form>
 	</div>

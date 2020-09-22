@@ -43,5 +43,10 @@ public class ComunidadService implements IComunidadService {
 	public List<Catalogo> catalogoNit(){
 		return this.iComunidadDAO.catalogoNit();
 	}
+	
+	@Override
+	public boolean getArchivoDeceval(){
+		return this.iComunidadDAO.getArchivoDeceval();
+	}
 
 }
