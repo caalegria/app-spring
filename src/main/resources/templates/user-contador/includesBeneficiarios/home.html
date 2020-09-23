@@ -1,5 +1,5 @@
 <h3 th:text="#{label.page.configurar.beneficiarios}" class="subtituloAplicacion" />
-<div>
+<div th:fragment="home">
 	<th:block th:if="${viewState == '0'}">
 		<div
 			th:include="user-contador/includesBeneficiarios/body/listadoPersonas.html" />

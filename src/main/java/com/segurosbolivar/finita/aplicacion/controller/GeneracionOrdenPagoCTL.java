@@ -82,7 +82,7 @@ public class GeneracionOrdenPagoCTL {
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
-		return Constantes.URL_HOME_GENERAR_ORDEN_PAGOS;
+		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_2+"::saldosTable";
 	}
 	
 	@PostMapping("/generarOrdenesDePagos/generar")
@@ -118,7 +118,7 @@ public class GeneracionOrdenPagoCTL {
 		}
 	}
 	
-	@ModelAttribute("userLogin")
+	@ModelAttribute("usuarioLogin")
 	public UsuarioLogin getUsuario() {
 		return usuario;
 	}

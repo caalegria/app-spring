@@ -9,7 +9,8 @@
 			<input type="submit" class="btn btn_verde_blanco"
 				th:value="#{btn.generar}" />
 		</div>
-		<table border="1" class="col-lg-12 mx-auto tabla1" th:fragment="saldosTable">
+		<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1"
+			th:fragment="saldosTable">
 			<thead>
 				<tr>
 					<th class="sizeCol5" /th>
@@ -34,6 +35,17 @@
 					<td th:text="|A pagar|" />
 				</tr>
 			</tbody>
+			<tfoot class="col-lg-12 mx-auto">
+				<td><input type="button" id="cargar_primera_pagina"
+					value="<< Primero" /></td>
+				<td><input type="button" id="cargar_anterior_pagina"
+					value="< Anterior" /></td>
+				<td id="indicador_paginas"></td>
+				<td><input type="button" id="cargar_siguiente_pagina"
+					value="Siguiente >" /></td>
+				<td><input type="button" id="cargar_ultima_pagina"
+					value="Ultimo >>" /></td>
+			</tfoot>
 		</table>
 	</form>
 </div>

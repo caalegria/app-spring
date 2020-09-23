@@ -291,6 +291,14 @@ none
 	}
 }
 
+table>thead>tr{
+	font-weight: bolder;
+}
+
+.linea-oculta{
+	display: none;
+}
+
 /* Portrait tablet to landscape and desktop */
 @media ( min-width : 768px) and (max-width: 979px) {
 	...

@@ -215,7 +215,7 @@ public class ConfigurarBeneficiariosCTL {
 		}
 	}
 
-	@ModelAttribute("userLogin")
+	@ModelAttribute("usuarioLogin")
 	public UsuarioLogin getUsuario() {
 		return usuario;
 	}

@@ -156,6 +156,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 	 */
 	@GetMapping("/agregarBeneficiariosAccionista/configurar")
 	public String irConfigurarBeneficiario(Model model,@RequestParam("idPersona")String idPersona) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			Persona tmp= new Persona(idPersona);
 			tmp= this.personas.get(this.personas.indexOf(tmp));
@@ -164,7 +165,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
-		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewState=2";
+		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewState=2";		
 	}
 	
 	/*
@@ -173,6 +174,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 	 */
 	@GetMapping("/agregarBeneficiariosAccionista/editar")
 	public String irEditarBeneficiario(Model model,@RequestParam("idBeneficiario")String idBeneficiario) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			this.beneficiario = new Beneficiario(new BeneficiarioPK(this.configurarBeneficiario.getAccionista().getId().getAccPerIdent(), this.configurarBeneficiario.getAccionista().getAccEmpCodigo(), idBeneficiario));
 			this.setBeneficiario(this.configurarBeneficiario.getAccionista().getBeneficiarios().get(this.configurarBeneficiario.getAccionista().getBeneficiarios().indexOf(this.beneficiario)));		
@@ -391,7 +393,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 		}		
 	}	
 
-	@ModelAttribute("userLogin")
+	@ModelAttribute("usuarioLogin")
 	public UsuarioLogin getUsuario() {
 		return usuario;
 	}
