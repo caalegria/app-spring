@@ -134,11 +134,17 @@ public final class Constantes {
 	
 	/*
 	 * Constantes Dividendos
-	 * Menu
+	 * 
 	 */
 	
 	public static String OPC_CARGUE= "Cargue Archivo Plano";
 	public static String OPC_VALIDACION= "Validación Cargue Plano";
+	public static String SIN_RESUTADO_DIVIDENDO = "Busquedad sin resultados";
+	public static String INGRESAR_FECHA = "Ingrese un rango de fechas";
+	public static String URL_HOME_SUPERUSER = "user-superusuario/home";
+	
+	public static String URL_HOME_CONTADOR = "user-contador/home";
+	public static String FILE_DIVIDENDOS = "cargueDividendos_";
 	
 	
 	/*

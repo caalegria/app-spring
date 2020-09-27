@@ -99,7 +99,6 @@ public class DividendosCTL {
 		bandPost = false;
 		this.usuario.setUsername(userDetails.getUsername());
 		
-		
 		model.addAttribute("OPC_CARGUE",Constantes.OPC_CARGUE);
 		model.addAttribute("OPC_VALIDACION",Constantes.OPC_VALIDACION);
 		
@@ -115,24 +114,22 @@ public class DividendosCTL {
 		FinsgusuariosRoles usersRoles = usersRolesRepository.findByUxrUsuario(usuario.getUsername());
 		String rol = usersRoles.getFinsgroles().getRolCodigo();
 		Utilidades.datosDeLogin(model,usuario);
-
-		
+	
 		if(rol.equalsIgnoreCase("SUPERUSUARIO")) {
 			usuario.setRol("SuperUsuario");
 			model.addAttribute("RolAut","SuperUsuario");
-			return "user-superusuario/home";
+			return  Constantes.URL_HOME_SUPERUSER;
 			
 			
 		}if (rol.equalsIgnoreCase("CONTADOR")){
 			usuario.setRol("SuperUsuario");
 			model.addAttribute("RolAut","Contador");
-			return "user-contador/home";
+			return Constantes.URL_HOME_CONTADOR;
 			
 		}else {
 			//Rol consultas no esta dentro del alcance
 			return "/";
-		}
-		
+		}		
 	}
 	
 	@PostMapping("/filtroCargues")
@@ -156,13 +153,12 @@ public class DividendosCTL {
 				}
 				
 				if(resultado.isEmpty())
-					this.setERROR("Busquedad sin resultados");
+					this.setERROR(Constantes.SIN_RESUTADO_DIVIDENDO);
 				
 			}else {
-				this.setERROR("Ingrese un rango de fechas");
+				this.setERROR(Constantes.INGRESAR_FECHA);
 			}
 				
-
 		} catch (Exception e) {
 			logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), e.getMessage().toString()));
 		}
@@ -176,10 +172,10 @@ public class DividendosCTL {
 	public ResponseEntity<InputStreamResource>  descargaPlano(Model model, @PathVariable java.sql.Date fecha)  {
 		
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
-		String nombFile = "cargueDividendos_"+fecha.toString()+".csv";
+		String nombFile = Constantes.FILE_DIVIDENDOS+fecha.toString()+".csv";
 		MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, nombFile);
 		File file = new File(Utilidades.rutaTemporal()+nombFile);
-		 InputStreamResource resource = null;
+		InputStreamResource resource = null;
 		
 		try {
             
