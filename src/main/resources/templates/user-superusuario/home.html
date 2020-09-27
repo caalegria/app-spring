@@ -33,8 +33,6 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
 <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-
-
 </head>
 
 <body id="page-top">
@@ -50,15 +48,15 @@
 					<!--Miga de pan-->
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><span style=""
-							class="glyphicon glyphicon-user">&nbsp;</span><label th:text = "#{label.migaPan.rol}">:&nbsp;
-								<span th:text="${RolAut}"></span></label></li>
+							class="glyphicon glyphicon-user">&nbsp;</span><label th:text = "#{label.migaPan.rol}">
+								</label>:&nbsp;<span th:text="${usuarioLogin.rol}"></span></li>
 						<li class="breadcrumb-item"><a href="#"></a><label th:text = "#{label.migaPan.dividendos.Cargue}"/></li>
 					</ol>
 				</nav>
 				
-				<div class="card-body">					
-					<div th:include="user-superusuario/includesDividendos/home.html"
-						th:remove="tag"></div>
+				<div class="card-body ">					
+					<div th:include="user-superusuario/includesDividendos/carguesDividendo.html"
+						th:remove="tag" ></div>
 				</div>
 				
 			</div>
