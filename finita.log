@@ -909,3 +909,146 @@
 [2020-09-27 13:35:09 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=]
 [2020-09-27 13:35:11 INFO  DividendosCTL:178] - [Llamado al metodo descargaPlano ] --> 
 [2020-09-27 13:35:11 INFO  DividendosCTL:210] - [Llamado al metodo loadDescarga ] --> 
+[2020-09-27 13:54:39 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:39 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:39 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:39 INFO  AutenticaciónACL:45] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:39 INFO  DividendosCTL:90] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:39 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:39 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-27 13:54:45 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 13:54:47 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:54:47 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 13:54:47 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=]
+[2020-09-27 13:54:50 INFO  DividendosCTL:137] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-27 13:54:50 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:54:50 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 13:55:01 INFO  DividendosCTL:137] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-27 13:55:01 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 13:55:01 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:55:02 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 13:55:12 INFO  DividendosCTL:137] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-27 13:55:12 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 13:55:12 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:55:12 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 13:55:16 INFO  DividendosCTL:174] - [Llamado al metodo descargaPlano ] --> 
+[2020-09-27 13:55:16 INFO  DividendosCTL:206] - [Llamado al metodo loadDescarga ] --> 
+[2020-09-27 13:55:31 INFO  PlanCuentaCTL:63] - [Llamado al metodo irPlanCuenta ] --> 
+[2020-09-27 13:55:31 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 13:55:31 INFO  PlanCuentaCTL:167] - [Llamado al metodo loadData ] --> 
+[2020-09-27 13:55:33 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:55:33 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 13:55:33 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 13:55:40 INFO  DividendosCTL:137] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-27 13:55:40 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:55:41 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 13:55:49 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 13:56:24 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 13:56:24 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 13:56:24 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:01:04 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:01:04 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:01:05 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:01:28 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:01:28 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:01:29 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:02:36 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:02:36 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:02:36 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:02:53 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:02:53 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:02:53 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:04:42 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:04:42 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:04:42 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:05:18 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:05:18 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:05:18 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:05:20 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:05:20 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:05:21 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:05:54 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:05:54 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:05:54 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:05:58 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:05:59 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:06:01 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:06:01 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:06:01 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:06:37 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:06:37 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:06:38 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:06:55 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:06:55 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:06:55 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:08:49 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:08:49 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:08:50 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:08:58 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:08:58 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:08:58 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:09:10 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:09:10 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:09:10 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:09:27 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:09:27 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:09:27 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:09:38 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:09:38 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:09:38 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:10:03 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:10:03 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:10:04 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:11:08 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:11:08 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:11:08 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:11:16 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:11:16 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:11:16 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:11:32 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:11:35 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:11:35 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:11:35 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:11:54 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:23:52 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:23:52 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:23:52 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:24:00 INFO  DividendosCTL:137] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-27 14:24:00 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:24:00 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:28:37 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:28:46 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:28:47 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:29:03 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:30:56 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:30:57 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:31:24 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:32:02 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:32:02 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:32:03 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:32:14 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:32:16 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:32:16 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:32:17 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:32:19 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:33:32 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:33:33 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:33:34 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:33:51 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:33:52 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:35:55 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:36:29 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:36:31 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:36:34 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:36:43 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:36:58 INFO  DividendosCTL:95] - [Llamado al metodo userForm ] --> 
+[2020-09-27 14:36:58 INFO  DividendosCTL:198] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-27 14:36:58 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-27 14:37:04 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:03 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:04 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:05 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:05 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:10 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:12 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-27 14:50:59 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
