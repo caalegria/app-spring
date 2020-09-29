@@ -349,7 +349,7 @@ public class DividendosCTL {
 		this.filtroBusqueda = filtro;
 	}
 	
-	@ModelAttribute("userLogin")
+	@ModelAttribute("usuarioLogin")
 	public UsuarioLogin getUsuario() {
 		return usuario;
 	}
