@@ -175,3 +175,29 @@
 [2020-09-23 10:41:34 INFO  PlanCuentaCTL:63] - [Llamado al metodo irPlanCuenta ] --> 
 [2020-09-23 10:41:34 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
 [2020-09-23 10:41:34 INFO  PlanCuentaCTL:167] - [Llamado al metodo loadData ] --> 
+[2020-09-29 09:21:18 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:21:18 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:21:18 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:21:18 INFO  AutenticaciónACL:45] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:21:18 INFO  DividendosCTL:99] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:21:18 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:21:18 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 09:48:43 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 09:49:08 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 09:49:08 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 09:49:09 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 09:49:09 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 09:49:09 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=]
+[2020-09-29 09:49:13 INFO  AplicacionCTL:70] - [Llamado al metodo irAplicacion ] --> 
+[2020-09-29 09:49:13 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-29 09:49:19 INFO  PlanCuentaCTL:63] - [Llamado al metodo irPlanCuenta ] --> 
+[2020-09-29 09:49:19 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-29 09:49:19 INFO  PlanCuentaCTL:167] - [Llamado al metodo loadData ] --> 
+[2020-09-29 09:49:35 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 09:49:35 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 09:49:36 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 09:49:36 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 09:49:36 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-29 09:49:39 INFO  PlanCuentaCTL:63] - [Llamado al metodo irPlanCuenta ] --> 
+[2020-09-29 09:49:39 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=SuperUsuario]
+[2020-09-29 09:49:39 INFO  PlanCuentaCTL:167] - [Llamado al metodo loadData ] --> 
