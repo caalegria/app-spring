@@ -23,3 +23,91 @@
 [2020-09-29 00:06:52 INFO  DividendosCTL:306] - [Llamado al metodo paginacionUtil ] --> 
 [2020-09-29 00:06:52 INFO  DividendosCTL:264] - [Llamado al metodo menuDiferenciado ] --> 
 [2020-09-29 00:06:52 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE, rol=SuperUsuario]
+[2020-09-29 00:10:47 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:47 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:47 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:47 INFO  AutenticaciónACL:45] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:48 INFO  DividendosCTL:99] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:48 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:48 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 00:10:58 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:11:00 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:11:00 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:11:01 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:11:01 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:11:01 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=]
+[2020-09-29 00:11:18 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:11:27 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:11:27 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:11:28 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:11:28 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:11:28 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=Contador]
+[2020-09-29 00:11:30 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:11:36 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:11:36 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:11:37 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:11:37 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:11:37 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE, rol=SuperUsuario]
+[2020-09-29 00:11:53 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:11:59 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:11:59 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:12:00 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:00 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:00 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=SuperUsuario]
+[2020-09-29 00:12:14 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:12:17 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:17 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:12:18 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:18 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:18 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=ADA_P2, rol=Contador]
+[2020-09-29 00:12:20 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:12:24 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:24 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:12:24 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:24 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:25 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=SuperUsuario]
+[2020-09-29 00:12:27 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:12:30 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:30 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:12:31 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:31 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:31 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE, rol=Contador]
+[2020-09-29 00:12:35 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 00:12:37 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:37 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:12:38 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:38 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:38 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=SuperUsuario]
+[2020-09-29 00:12:41 INFO  DividendosCTL:141] - [Llamado al metodo paginacion ] --> 
+[2020-09-29 00:12:41 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:41 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:41 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:41 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-29 00:12:48 INFO  DividendosCTL:141] - [Llamado al metodo paginacion ] --> 
+[2020-09-29 00:12:48 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:48 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:48 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:48 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-29 00:12:53 INFO  DividendosCTL:158] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-29 00:12:53 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:12:54 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:12:54 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:12:54 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:12:54 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-29 00:13:08 INFO  DividendosCTL:158] - [Llamado al metodo buscarDividendos ] --> 
+[2020-09-29 00:13:08 INFO  DividendosCTL:220] - [Llamado al metodo loadDataCargues ] --> 
+[2020-09-29 00:13:09 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:13:09 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:13:09 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:13:09 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-29 00:13:13 INFO  DividendosCTL:141] - [Llamado al metodo paginacion ] --> 
+[2020-09-29 00:13:13 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:13:13 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:13:13 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:13:13 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-29 00:13:17 INFO  DividendosCTL:141] - [Llamado al metodo paginacion ] --> 
+[2020-09-29 00:13:17 INFO  DividendosCTL:104] - [Llamado al metodo userForm ] --> 
+[2020-09-29 00:13:17 INFO  DividendosCTL:304] - [Llamado al metodo paginacionUtil ] --> 
+[2020-09-29 00:13:17 INFO  DividendosCTL:262] - [Llamado al metodo menuDiferenciado ] --> 
+[2020-09-29 00:13:18 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-29 00:13:25 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
