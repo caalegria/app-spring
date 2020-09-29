@@ -19,15 +19,15 @@ public class LogCargues extends Persistente{
 	@Column(name = "FECHA_CARGUE")
 	private Date fechaCargue;
 	
-
+	@Id
 	@Column(name = "DESCRIPCION", nullable = false, length = 200)
 	private String descripcion;
 	
-	
+	@Id
 	@Column(name = "TIPO_CARGUE", nullable = false, length = 25)
 	private String tipoCargue;
 	
-
+	
 	@DateTimeFormat(pattern="dd-MMM-YYYY")
 	public Date getFechaCargue() {
 		return fechaCargue;

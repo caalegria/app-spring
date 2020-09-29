@@ -65,7 +65,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr th:each="cargue,iterador: ${logCargues}">
+		<tr th:each="cargue,iterador: ${list}">
 			<form id="${iterador.index}">
 				<td th:text="${cargue.fechaCargue} " />
 				<td th:text="${cargue.tipoCargue}" />
@@ -82,3 +82,26 @@
 		</tr>
 	</tbody>
 </table>
+
+<!--Generico: paginacion -->
+<div class = "row">
+	<div class = "col-md-2"></div>
+	<div class = "col-md-8">
+		<nav aria-label = "Pagination">
+			<ul class = "pagination justify-content-center">
+				<li class = "page-item" th:classappend = "${prev == 0 ? 'disabled': ''}">
+					<a class = "page-link" th:href = "@{|/paginacion/?page=${prev}|}">Anterior</a>
+				</li>
+				<li class = "page-item" th:each = "page: ${pages}" th:classappend = "${current == page ? 'active': ''}">
+					<a class = "page-link" th:href = "@{|/paginacion/?page=${page}|}" th:text ="${page}"></a>
+				</li>
+				<li class = "page-item" th:classappend = "${current == last ? 'disabled': ''}">
+					<a class = "page-link" th:href = "@{|/paginacion/?page=${next}|}">Siguiente</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="col-md-2"></div>
+	</div>
+</div>
+<!-- fin paginacion -->
+

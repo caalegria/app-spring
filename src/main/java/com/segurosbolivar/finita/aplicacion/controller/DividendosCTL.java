@@ -10,6 +10,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
@@ -20,6 +23,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -84,6 +90,9 @@ public class DividendosCTL {
 	private String ERROR ="";
 	private boolean bandLoadData = false;
 	private boolean bandPost = false;
+	//paginacion
+	int paginaActual = 0;
+	private boolean bandPag = false;
 
 	@PostConstruct
 	private void init() {
@@ -91,46 +100,59 @@ public class DividendosCTL {
 	}
 	
 	@GetMapping("/cargueDividendos")
-	public String userForm(Model model ) {
+	public String userForm(Model model) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
-		
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String username = userDetails.getUsername();
 		bandPost = false;
-		this.usuario.setUsername(userDetails.getUsername());
 		
+		
+		//validacion wizard
 		model.addAttribute("OPC_CARGUE",Constantes.OPC_CARGUE);
 		model.addAttribute("OPC_VALIDACION",Constantes.OPC_VALIDACION);
-		
-		if( !bandLoadData ) {
+			
+		//@generico: validacion filtro busquedad - inicio - paginacion
+		if( !bandLoadData &&  !bandPag) {
 			this.loadDataCargues();
+			this.setERROR("");
 			model.addAttribute("ERROR","");
+			paginacionUtil(0,model);
 			bandPost = true;
 			
 		}else {
+			paginacionUtil(paginaActual,model);
 			bandLoadData = false;
+			bandPag = false;
+			setPaginaActual(0);
+			
 		}
-
-		FinsgusuariosRoles usersRoles = usersRolesRepository.findByUxrUsuario(usuario.getUsername());
-		String rol = usersRoles.getFinsgroles().getRolCodigo();
-		Utilidades.datosDeLogin(model,usuario);
-	
-		if(rol.equalsIgnoreCase("SUPERUSUARIO")) {
-			usuario.setRol("SuperUsuario");
-			model.addAttribute("RolAut","SuperUsuario");
-			return  Constantes.URL_HOME_SUPERUSER;
-			
-			
-		}if (rol.equalsIgnoreCase("CONTADOR")){
-			usuario.setRol("SuperUsuario");
-			model.addAttribute("RolAut","Contador");
-			return Constantes.URL_HOME_CONTADOR;
-			
-		}else {
-			//Rol consultas no esta dentro del alcance
-			return "/";
-		}		
+		
+		//inicio posterior a logeo unicamente
+		if(this.usuario.getUsername().isEmpty() || this.usuario.getUsername() ==null) {
+			return menuDiferenciado(model);
+		} else {
+			return Constantes.URL_HOME_SUPERUSER;
+		}
+		
 	}
+	
+	/**
+	 * @Generico:  obtencion numero paginas url - seccion paginacion carguesDividendo.html
+	 **/
+	@GetMapping("/paginacion")
+	public String paginacion ( @RequestParam Map<String, Object> params ) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+		
+		try {
+			int numPag = params.get("page") != null ? (Integer.valueOf(params.get("page").toString()) - 1) : 0;
+			this.setPaginaActual(numPag);
+			bandPag = true;
+			
+		}catch(Exception e) {
+			logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), e.getMessage().toString()));
+		}
+		
+		return "redirect:/cargueDividendos";
+	}
+	
 	
 	@PostMapping("/filtroCargues")
 	public String buscarDividendos(Model model, @ModelAttribute("filtroBusqueda") Deceval filtroBusqueda) {
@@ -188,11 +210,12 @@ public class DividendosCTL {
 			Log.getError(logger, e);
 		}
 		
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName()).contentType(mediaType).contentLength(file.length()).body(resource);
+		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName())
+				.contentType(mediaType).contentLength(file.length()).body(resource);
 	}
 	
 	/**
-	 * Util
+	 * Util: consulta log cargues
 	 **/
 	public void loadDataCargues() {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
@@ -202,6 +225,9 @@ public class DividendosCTL {
 		}
 	}
 	
+	/**
+	 * Util: Descarga archivo plano dividendos
+	 **/
 	public void loadDescarga(File file, java.sql.Date fecCargue) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 
@@ -230,6 +256,81 @@ public class DividendosCTL {
 		}
 	}
 	
+	/**
+	 * Util:  menu diferenciado
+	 **/
+	public String menuDiferenciado(Model model) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+
+		try {
+
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
+					.getPrincipal();
+			String username = userDetails.getUsername();
+			this.usuario.setUsername(userDetails.getUsername());
+
+			FinsgusuariosRoles usersRoles = usersRolesRepository.findByUxrUsuario(usuario.getUsername());
+			String rol = usersRoles.getFinsgroles().getRolCodigo();
+			Utilidades.datosDeLogin(model, usuario);
+
+			if (rol.equalsIgnoreCase("SUPERUSUARIO")) {
+				usuario.setRol("SuperUsuario");
+				model.addAttribute("RolAut", "SuperUsuario");
+				return Constantes.URL_HOME_SUPERUSER;
+
+			}
+			if (rol.equalsIgnoreCase("CONTADOR")) {
+				usuario.setRol("SuperUsuario");
+				model.addAttribute("RolAut", "Contador");
+				return Constantes.URL_HOME_CONTADOR;
+
+			} else {
+				// Rol consultas no esta dentro del alcance
+				return "redirect:/";
+			}
+
+		} catch (Exception e) {
+			logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), e.getMessage().toString()));
+		}
+		return "redirect:/logout";
+	}
+
+	/**
+	 * @Generico: paginacion
+	 * numPag: numero pagina actual
+	 * model: binding carguesDividnedo.html
+	 **/
+	public void paginacionUtil(int numPag, Model model) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+
+		try {
+			PageRequest pageReq = PageRequest.of(numPag, 10);
+
+			int totalPag = logCargues.size() % 10 == 0 ? logCargues.size() / 10 : logCargues.size() / 10 + 1;
+			int max = numPag + 1 >= totalPag ? logCargues.size() : 10 * (numPag + 1);
+			int min = numPag + 1 > totalPag ? max : 10 * numPag;
+			Page<LogCargues> pageLogCargue = new PageImpl<>(this.logCargues.subList(min, max), pageReq,
+					logCargues.size());
+
+			if (totalPag > 0) {
+				List<Integer> pags = IntStream.range(1, totalPag + 1).boxed().collect(Collectors.toList());
+				model.addAttribute("pages", pags);
+
+			}
+
+			model.addAttribute("list", pageLogCargue.getContent());
+			model.addAttribute("current", numPag + 1);
+			model.addAttribute("next", numPag + 2);
+			model.addAttribute("prev", numPag);
+			model.addAttribute("last", totalPag);
+
+		} catch (Exception e) {
+			logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), e.getMessage().toString()));
+		}
+
+	}
+		
+		
 	@ModelAttribute("logCargues")
 	public List<LogCargues> getLogCargues() {
 		return logCargues;
@@ -265,6 +366,15 @@ public class DividendosCTL {
 	public void setERROR(String eRROR) {
 		ERROR = eRROR;
 	}
+	
+	public int getPaginaActual() {
+		return paginaActual;
+	}
+
+	public void setPaginaActual(int paginaActual) {
+		this.paginaActual = paginaActual;
+	}
+
 
 
 }

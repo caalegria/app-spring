@@ -216,14 +216,10 @@ public class ComunidadDAO  implements IComunidadDAO {
 	public List<LogCargues> getLogCargues(){
 		try {
 			List<LogCargues> logCargue = new ArrayList<LogCargues>();
-			StringBuffer hql= new StringBuffer("SELECT cargue FROM LogCargues cargue ORDER BY cargue.fechaCargue DESC");			
+			StringBuffer hql= new StringBuffer("SELECT c FROM LogCargues c order by c.fechaCargue desc");			
 			Query query= entityManager.createQuery(hql.toString());
+			logCargue= query.getResultList();
 			
-			 if(entityManager == null) {
-		            System.out.println("null entityManager");
-			 }else {
-				 logCargue= query.getResultList();
-			 }
 		 
 			return logCargue;
 			

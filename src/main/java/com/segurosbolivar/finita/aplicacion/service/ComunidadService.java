@@ -1,9 +1,12 @@
 package com.segurosbolivar.finita.aplicacion.service;
 
+import com.segurosbolivar.finita.aplicacion.repository.*;
 import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.segurosbolivar.finita.aplicacion.dao.IComunidadDAO;
@@ -20,6 +23,7 @@ public class ComunidadService implements IComunidadService {
 
 	@Autowired
 	private IComunidadDAO iComunidadDAO;
+	
 
 	@Override
 	public 	List<SaldoBeneficiario> getSaldosBeneficiario(){
