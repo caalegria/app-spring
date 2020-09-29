@@ -1,0 +1,107 @@
+<script>
+	window.onload = function(){
+		  document.getElementById('fecInicio').value="";
+		  document.getElementById('fecFin').value="";
+	}
+	
+	 $(document).ready(function(){
+		 var timeout = setTimeout(function() {
+		        $("#errorDividendoFiltro").fadeOut(500);
+		    },2000);
+		 
+	});
+</script>
+
+<h3 th:text="#{label.page.dividendos}" class="subtituloAplicacion" />
+
+<div  id="errorDividendoFiltro" class="alert alert-danger col-lg-4" role="alert"  th:if = "${ERROR != '' }" >
+   <span th:if = "${ERROR != '' }"  th:text="${ERROR}" />      
+</div>
+
+<div id="msform" class="card">
+	<ul id="progressbar">
+
+		<li class="active" id="cargue"><strong
+			th:text="#{label.wizard.cargue}" /></li>
+		<li id="validar" class="active"><strong
+			th:text="#{label.wizard.validar}" /></li>
+	</ul>
+</div>
+
+<form id="formFiltro" class="form-inline" style="font-size: 12px" th:action="@{/filtroCargues}"  th:object="${filtroBusqueda}"  method="post">
+	<div class="form-group col-sm-12 row align-items-center">
+			<label for="fechaInicio">Fecha Inicio:</label> 
+			<input 
+				id="fecInicio" 
+				type="date" 
+				class="form-control mx-sm-3"
+				th:field="${filtroBusqueda.fechInicial}" />
+		
+		
+			<label>Fecha Fin: </label>
+			<input 
+				id="fecFin"
+				type="date" 
+				class="form-control mx-sm-3"
+				value = ""
+				th:field="${filtroBusqueda.fechFinal}" />
+		
+		<div class="col">
+			<button id="buscarCarges" type="submit" class="btn btn-primary">Buscar</button>
+		</div>
+		
+	</div>
+</form>
+
+<div style="padding-top: 20px;" class="bg-light" />
+
+<table class="table table-striped" style="font-size: 12px;"> 
+	<thead>
+		<tr>
+			<th scope="col" th:text = "#{label.dividendos.fecCargue }"></th>
+			<th scope="col" th:text = "#{label.dividendos.tipoCargue}"/>
+			<th scope="col" th:text = "#{label.dividendos.descripcion}"/>
+			<th scope="col"/>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="cargue,iterador: ${list}">
+			<form id="${iterador.index}">
+				<td th:text="${cargue.fechaCargue} " />
+				<td th:text="${cargue.tipoCargue}" />
+				<td th:text="${cargue.descripcion}" />
+				<td>
+					<a  th:if = "${#strings.contains(cargue.descripcion,'Error')}" 
+						 
+						title="Descargar Archivo"
+						th:href="@{/descargaPlano/} + ${cargue.fechaCargue}">
+						<span class="glyphicon glyphicon-glyphicon-download"></span>
+					</a>
+				</td>
+			</form>
+		</tr>
+	</tbody>
+</table>
+
+<!--Generico: paginacion -->
+<div class = "row">
+	<div class = "col-md-2"></div>
+	<div class = "col-md-8">
+		<nav aria-label = "Pagination">
+			<ul class = "pagination justify-content-center">
+				<li class = "page-item" th:classappend = "${prev == 0 ? 'disabled': ''}">
+					<a class = "page-link" th:href = "@{|/paginacion/?page=${prev}|}">Anterior</a>
+				</li>
+				<li class = "page-item" th:each = "page: ${pages}" th:classappend = "${current == page ? 'active': ''}">
+					<a class = "page-link" th:href = "@{|/paginacion/?page=${page}|}" th:text ="${page}"></a>
+				</li>
+				<li class = "page-item" th:classappend = "${current == last ? 'disabled': ''}">
+					<a class = "page-link" th:href = "@{|/paginacion/?page=${next}|}">Siguiente</a>
+				</li>
+			</ul>
+		</nav>
+		<div class="col-md-2"></div>
+	</div>
+</div>
+<!-- fin paginacion -->
+

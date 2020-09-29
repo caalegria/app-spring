@@ -2,6 +2,7 @@ package com.segurosbolivar.finita.aplicacion.dao;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.BeneficiarioPK;
+import com.segurosbolivar.finita.aplicacion.entity.LogCargues;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Log;
@@ -113,6 +115,7 @@ public class ComunidadDAO  implements IComunidadDAO {
 		return new ArrayList<Persona>();
 	}
 	
+
 	@Override
 	public boolean existePersona(Persona persona){
 		try {
@@ -190,8 +193,6 @@ public class ComunidadDAO  implements IComunidadDAO {
 		return false;
 	}
 
-
-	
 	public boolean relacionAccionistaBeneficiario(Persona persona,Beneficiario beneficiario) {
 
 		try {
@@ -207,5 +208,47 @@ public class ComunidadDAO  implements IComunidadDAO {
 			entityManager.getTransaction().rollback();
 			return false;
 		}
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LogCargues> getLogCargues(){
+		try {
+			List<LogCargues> logCargue = new ArrayList<LogCargues>();
+			StringBuffer hql= new StringBuffer("SELECT c FROM LogCargues c order by c.fechaCargue desc");			
+			Query query= entityManager.createQuery(hql.toString());
+			logCargue= query.getResultList();
+			
+		 
+			return logCargue;
+			
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		return new ArrayList<LogCargues>();
+	}
+
+	/*Sustituir cuando se conozca la tabla de cargues de dividendos*/
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<LogCargues> exportarCargue(java.sql.Date fecCargue) {
+		try {
+			List<LogCargues> logCargue = new ArrayList<LogCargues>();
+			StringBuffer hql= new StringBuffer("SELECT cargue FROM LogCargues cargue WHERE cargue.fechaCargue = :fechCargue");			
+			Query query= entityManager.createQuery(hql.toString()).setParameter("fechCargue", fecCargue);
+			
+			 if(entityManager == null) {
+		            System.out.println("null entityManager");
+			 }else {
+				 logCargue= query.getResultList();
+			 }
+		 
+			return logCargue;
+			
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		return new ArrayList<LogCargues>();
 	}
 }

@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Finita - Autenticaci&oacuten</title>
+  <title th:text="#{label.page.login}"> </title>
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
@@ -28,7 +28,7 @@
         <div class="col-lg-8 mx-auto">
           <h2>
             <img src="img/logo_grupo_bolivar.jpg" alt="logo_grupo_bolivar" >
-            Sistema de Accionistas
+            <span th:text="#{label.nombre.aplicacion.container}" class="col-lg-12" />
         </h2>
         </div>
       </div>
@@ -48,34 +48,26 @@
                         <input type="password" class="form-control" placeholder="Contrase&ntilde;a" name="password"/>
                     </div>
 
-                    <div class="col-lg-12" align="center">
+                    <div class="col-lg-6 mx-auto"  >
                       <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
                     </div>
           </form>
           </br>
-          <div class="col-lg-12" align = "center">
-            <p><a href="#" th:href="@{/signup}">Crear Usuario - Registro</a>
+   
+          <div th:if="${param.error}" class="alert alert-danger col-lg-10" role="alert">
+            <span th:text="#{msg.usuario.invalido}" />
           </div>
 
-          <div th:if="${param.error}" class="alert alert-danger col-lg-10 mx-auto" role="alert">
-            Usuario/contrase&ntilde;a invalidos.
+          <div th:if="${param.logout}" class="alert alert-success col-lg-10" role="alert">
+            <span th:text="#{msg.usuario.logout}" />
           </div>
-
-          <div th:if="${param.logout}" class="alert alert-success col-lg-10 mx-auto" role="alert">
-            Sesión cerrada con &eacute;xito. 
-          </div>
-          
-          <div th:if="${creacion}" class="alert alert-success col-lg-10 mx-auto" role="alert">
-            Usuario creado con &eacute;xito.
-          </div>
-
         </div>
 
       </div>
     </div>
   </section>
   <!-- Borrar padding -->
-  <div style="padding-top: 110px; " class="bg-light"></div>
+  <div style="padding-top: 140px; " class="bg-light"></div>
   <!-- Footer -->
   <footer class="py-5 bg-dark ">
     <div class="container" >
