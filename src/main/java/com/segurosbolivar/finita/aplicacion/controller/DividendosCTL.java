@@ -103,8 +103,7 @@ public class DividendosCTL {
 	public String userForm(Model model) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		bandPost = false;
-		
-		
+
 		//validacion wizard
 		model.addAttribute("OPC_CARGUE",Constantes.OPC_CARGUE);
 		model.addAttribute("OPC_VALIDACION",Constantes.OPC_VALIDACION);
@@ -113,7 +112,7 @@ public class DividendosCTL {
 		if( !bandLoadData &&  !bandPag) {
 			this.loadDataCargues();
 			this.setERROR("");
-			model.addAttribute("ERROR","");
+			model.addAttribute("ERROR",ERROR);
 			paginacionUtil(0,model);
 			bandPost = true;
 			
@@ -121,16 +120,16 @@ public class DividendosCTL {
 			paginacionUtil(paginaActual,model);
 			bandLoadData = false;
 			bandPag = false;
-			setPaginaActual(0);
-			
+			setPaginaActual(0);	
 		}
 		
 		//inicio posterior a logeo unicamente
-		if(this.usuario.getUsername().isEmpty() || this.usuario.getUsername() ==null) {
+		/*if(this.usuario.getUsername().isEmpty() || this.usuario.getUsername() ==null) {
 			return menuDiferenciado(model);
 		} else {
 			return Constantes.URL_HOME_SUPERUSER;
-		}
+		}*/
+		return menuDiferenciado(model);
 		
 	}
 	
@@ -275,14 +274,15 @@ public class DividendosCTL {
 
 			if (rol.equalsIgnoreCase("SUPERUSUARIO")) {
 				usuario.setRol("SuperUsuario");
-				model.addAttribute("RolAut", "SuperUsuario");
+				//model.addAttribute("RolAut", "SuperUsuario");
 				return Constantes.URL_HOME_SUPERUSER;
 
 			}
 			if (rol.equalsIgnoreCase("CONTADOR")) {
-				usuario.setRol("SuperUsuario");
-				model.addAttribute("RolAut", "Contador");
-				return Constantes.URL_HOME_CONTADOR;
+				usuario.setRol("Contador");
+				//model.addAttribute("RolAut", "Contador");
+				//return Constantes.URL_HOME_CONTADOR;
+				return Constantes.URL_HOME_SUPERUSER;
 
 			} else {
 				// Rol consultas no esta dentro del alcance
