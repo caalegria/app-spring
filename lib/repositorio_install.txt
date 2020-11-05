@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=Terceros.ws.rest-0.0.1-SNAPSHOT.jar -DgroupId=com.terceros.rest  -DartifactId=tercerosRest -Dversion=0.0.1 -Dpackaging=jar 
+mvn install:install-file -Dfile=ojdbc6-11.2.0.3.jar -DgroupId=oracle  -DartifactId=ojdbc6 -Dversion=11.2.0.3 -Dpackaging=jar 
