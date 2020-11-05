@@ -1,0 +1,194 @@
+[2020-09-23 09:08:25 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:08:25 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:08:25 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:08:25 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:08:25 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:08:25 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:35 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:35 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:35 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:35 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:35 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:35 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:10:41 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 09:10:41 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 09:10:43 INFO  AutenticaciónACL:107] - [Llamado al metodo userForm ] --> 
+[2020-09-23 09:10:43 INFO  AutenticaciónACL:95] - [Llamado al metodo baseAttributerForUserForm ] --> 
+[2020-09-23 09:10:45 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:10:45 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:10:45 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:12:31 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:12:31 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:12:31 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:12:31 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:12:31 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:12:31 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:12:32 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 09:12:59 INFO  AutenticaciónACL:107] - [Llamado al metodo userForm ] --> 
+[2020-09-23 09:12:59 INFO  AutenticaciónACL:95] - [Llamado al metodo baseAttributerForUserForm ] --> 
+[2020-09-23 09:13:00 INFO  AplicacionCTL:70] - [Llamado al metodo irAplicacion ] --> 
+[2020-09-23 09:13:00 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:13:01 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:13:01 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:13:01 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:18:48 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:18:48 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:18:48 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:18:48 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:18:48 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:18:48 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 09:20:21 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 09:20:21 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 09:20:25 INFO  AutenticaciónACL:107] - [Llamado al metodo userForm ] --> 
+[2020-09-23 09:20:25 INFO  AutenticaciónACL:95] - [Llamado al metodo baseAttributerForUserForm ] --> 
+[2020-09-23 09:20:27 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:20:27 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:20:27 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:23:15 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:23:15 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:23:15 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:24:14 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:24:14 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:24:14 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:24:16 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:24:16 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:24:16 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:24:20 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:24:20 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:24:20 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:25:45 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:25:45 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:25:45 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:28:58 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:28:58 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:28:58 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:31:09 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:31:09 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:31:09 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:32:01 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:32:01 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:32:01 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:34:53 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:34:53 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:34:53 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:35:30 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:35:30 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:35:30 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:37:10 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:37:10 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:37:10 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:38:05 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:38:05 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:38:05 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:38:05 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:38:05 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:38:05 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:43:55 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:43:55 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:43:55 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:44:23 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:44:23 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:44:23 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:46:03 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:46:03 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:46:03 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:46:24 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:46:24 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:46:24 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:46:40 INFO  GeneracionOrdenPagoCTL:57] - [Llamado al metodo irGenOrdPagos ] --> 
+[2020-09-23 09:46:40 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:46:40 INFO  GeneracionOrdenPagoCTL:112] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:50:27 INFO  AplicacionCTL:70] - [Llamado al metodo irAplicacion ] --> 
+[2020-09-23 09:50:27 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:50:29 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:50:29 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:50:29 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:50:30 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:55:10 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:55:10 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:55:10 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:55:10 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:56:51 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:56:51 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:56:51 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:56:51 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:57:15 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:57:15 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:57:15 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:57:15 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:57:34 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:57:34 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:57:34 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:57:34 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:57:52 INFO  ConfigurarBeneficiariosCTL:93] - [Llamado al metodo irBeneficiarosAccionista ] --> 
+[2020-09-23 09:57:52 INFO  ConfigurarBeneficiariosCTL:174] - [Llamado al metodo loadDataBeneficiarisAccionista ] --> 
+[2020-09-23 09:57:52 INFO  ConfigurarBeneficiariosCTL:98] - Accionista cargado: Accionista [id=AccionistaPK [accPerIdent=83252345, accOfiCodigo=OFP], accSecCodigo=PN, accEstado=A, accFormaPago=p0C, accNacionalidad=N0C, accPagoDividendo=N, accCuenta=null, accCodBanco=null, accEmpCodigo=50, accNumDeposito=1826124, accNombre=MEDINA MOLINA MILTON FREDY, accDireccion=null, accDireccion2=null, accTelefono=null, accTelefono2=null, accCiuCodigo=null, accCiuConsec=null, accCiuDptPaisCodigo=null, accCiuDptCodigo=null, accEmail=null, accFax=null, accAutIdent=null, accAutNombre=null, accIndEmp=N, accFIngreso=2018-07-23 00:00:00.0, accFRetiro=null, accDigitoControl=9, accTipoCuenta=null, accManejoCuenta=null, accTipoCapital=E02, accAplicarDcto=null, accCodAccionista=null, accResidente=null, finPersona=Finpersona [id=83252345, perNombre=MEDINA MOLINA MILTON FREDY, perFCreacion=2018-07-27 00:00:00.0, perDireccion=null, perTelefono=null, perTelefono2=null, perFax=null, perTipoIdent=PCC, perCiuCodigo=null, perCiuConsec=null, perCiuDptPaisCodigo=null, perCiuDptCodigo=null, perNaturaleza=c01, perDireccion2=null, perCiuCodigo2=null, perCiuConsec2=null, perCiuDptPaisCodigo2=null, perCiuDptCodigo2=null, perIndDeposito=S, perBasico=null, perIndent2=null, perNombreCorto=null, perClasifTributaria=Z01, perPrimerApellido=MEDINA, perSegundoApellido=MOLINA, perDetalleNombre=MILTON FREDY, perFichaResgistral=null, perNatBkp=null, perFNacimiento=null]]
+[2020-09-23 09:58:06 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:58:06 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:58:06 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:58:06 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 09:58:10 INFO  ConfigurarBeneficiariosCTL:93] - [Llamado al metodo irBeneficiarosAccionista ] --> 
+[2020-09-23 09:58:10 INFO  ConfigurarBeneficiariosCTL:174] - [Llamado al metodo loadDataBeneficiarisAccionista ] --> 
+[2020-09-23 09:58:10 INFO  ConfigurarBeneficiariosCTL:98] - Accionista cargado: Accionista [id=AccionistaPK [accPerIdent=79140614, accOfiCodigo=OFP], accSecCodigo=PN, accEstado=A, accFormaPago=p0E, accNacionalidad=N0C, accPagoDividendo=$, accCuenta=0067-0008064-8, accCodBanco=a02, accEmpCodigo=50, accNumDeposito=14584, accNombre=ESCOBAR JARAMILLO LUIS FERNANDO, accDireccion=Cra 5  86-52, accDireccion2=null, accTelefono=2562482, accTelefono2=null, accCiuCodigo=01, accCiuConsec=01, accCiuDptPaisCodigo=57, accCiuDptCodigo=01, accEmail=null, accFax=null, accAutIdent=null, accAutNombre=null, accIndEmp=null, accFIngreso=1997-01-01 00:00:00.0, accFRetiro=null, accDigitoControl=1, accTipoCuenta=null, accManejoCuenta=null, accTipoCapital=E02, accAplicarDcto=null, accCodAccionista=null, accResidente=null, finPersona=Finpersona [id=79140614, perNombre=ESCOBAR JARAMILLO LUIS FERNANDO, perFCreacion=1997-06-05 15:14:59.0, perDireccion=Carrera 5 No.  86-52, perTelefono=2562482, perTelefono2=null, perFax=null, perTipoIdent=PCC, perCiuCodigo=01, perCiuConsec=01, perCiuDptPaisCodigo=57, perCiuDptCodigo=01, perNaturaleza=c01, perDireccion2=null, perCiuCodigo2=null, perCiuConsec2=null, perCiuDptPaisCodigo2=null, perCiuDptCodigo2=null, perIndDeposito=N, perBasico=null, perIndent2=null, perNombreCorto=null, perClasifTributaria=null, perPrimerApellido=ESCOBAR, perSegundoApellido=JARAMILLO, perDetalleNombre=LUIS FERNANDO, perFichaResgistral=null, perNatBkp=null, perFNacimiento=null]]
+[2020-09-23 09:59:46 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 09:59:46 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 09:59:46 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 09:59:46 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 10:03:59 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:03:59 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:03:59 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:03:59 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:03:59 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:03:59 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:04:18 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 10:04:18 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 10:04:20 INFO  AutenticaciónACL:107] - [Llamado al metodo userForm ] --> 
+[2020-09-23 10:04:20 INFO  AutenticaciónACL:95] - [Llamado al metodo baseAttributerForUserForm ] --> 
+[2020-09-23 10:04:23 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 10:04:23 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 10:04:23 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 10:04:23 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 10:08:21 INFO  ConfigurarBeneficiariosCTL:93] - [Llamado al metodo irBeneficiarosAccionista ] --> 
+[2020-09-23 10:08:21 INFO  ConfigurarBeneficiariosCTL:174] - [Llamado al metodo loadDataBeneficiarisAccionista ] --> 
+[2020-09-23 10:08:21 INFO  ConfigurarBeneficiariosCTL:98] - Accionista cargado: Accionista [id=AccionistaPK [accPerIdent=41387378, accOfiCodigo=OFP], accSecCodigo=PN, accEstado=A, accFormaPago=p0E, accNacionalidad=N0C, accPagoDividendo=$, accCuenta=0067-0003977-6, accCodBanco=a02, accEmpCodigo=50, accNumDeposito=null, accNombre=CAMACHO OLARTE ELISA, accDireccion=CRA 26A # 80 - 23 APTO 601, accDireccion2=null, accTelefono=3128878, accTelefono2=null, accCiuCodigo=01, accCiuConsec=01, accCiuDptPaisCodigo=57, accCiuDptCodigo=01, accEmail=null, accFax=null, accAutIdent=null, accAutNombre=null, accIndEmp=null, accFIngreso=1997-01-01 00:00:00.0, accFRetiro=null, accDigitoControl=9, accTipoCuenta=null, accManejoCuenta=null, accTipoCapital=E02, accAplicarDcto=null, accCodAccionista=null, accResidente=null, finPersona=Finpersona [id=41387378, perNombre=CAMACHO OLARTE ELISA, perFCreacion=1997-06-05 15:14:59.0, perDireccion=Carrera  26A  No. 80 - 23 Apto 601, perTelefono=3128878, perTelefono2=null, perFax=null, perTipoIdent=PCC, perCiuCodigo=01, perCiuConsec=01, perCiuDptPaisCodigo=57, perCiuDptCodigo=01, perNaturaleza=c01, perDireccion2=null, perCiuCodigo2=null, perCiuConsec2=null, perCiuDptPaisCodigo2=null, perCiuDptCodigo2=null, perIndDeposito=N, perBasico=null, perIndent2=null, perNombreCorto=null, perClasifTributaria=null, perPrimerApellido=CAMACHO, perSegundoApellido=OLARTE, perDetalleNombre=ELISA, perFichaResgistral=null, perNatBkp=null, perFNacimiento=null]]
+[2020-09-23 10:09:43 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-23 10:09:43 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 10:09:43 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-23 10:09:43 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
+[2020-09-23 10:12:30 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:12:30 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:12:30 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:12:30 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:12:30 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:12:30 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:35:04 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:35:04 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:35:04 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:35:04 INFO  AutenticaciónACL:50] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:35:04 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:35:04 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-23 10:41:28 INFO  AutenticaciónACL:55] - [Llamado al metodo index ] --> 
+[2020-09-23 10:41:30 INFO  AutenticaciónACL:107] - [Llamado al metodo userForm ] --> 
+[2020-09-23 10:41:30 INFO  AutenticaciónACL:95] - [Llamado al metodo baseAttributerForUserForm ] --> 
+[2020-09-23 10:41:32 INFO  AplicacionCTL:70] - [Llamado al metodo irAplicacion ] --> 
+[2020-09-23 10:41:32 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 10:41:34 INFO  PlanCuentaCTL:63] - [Llamado al metodo irPlanCuenta ] --> 
+[2020-09-23 10:41:34 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=MARIAE2, rol=Contador]
+[2020-09-23 10:41:34 INFO  PlanCuentaCTL:167] - [Llamado al metodo loadData ] --> 
+[2020-09-29 10:03:05 INFO  ConfigurarBeneficiariosCTL:73] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 10:03:05 INFO  AgregarBeneficiarioAccionistaCTL:86] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 10:03:05 INFO  AplicacionCTL:64] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 10:03:06 INFO  AutenticaciónACL:45] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 10:03:06 INFO  GeneracionOrdenPagoCTL:52] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 10:03:06 INFO  PlanCuentaCTL:57] - [Iniciando el controlador metodo: init ].............
+[2020-09-29 10:07:10 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 10:07:10 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 10:07:25 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 10:07:42 INFO  AutenticaciónACL:50] - [Llamado al metodo index ] --> 
+[2020-09-29 10:07:43 INFO  PlanCuentaCTL:63] - [Llamado al metodo irPlanCuenta ] --> 
+[2020-09-29 10:07:43 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=, rol=]
+[2020-09-29 10:07:43 INFO  PlanCuentaCTL:167] - [Llamado al metodo loadData ] --> 
+[2020-09-29 10:10:41 INFO  ConfigurarBeneficiariosCTL:79] - [Llamado al metodo irConfiguracionBeneficiarios ] --> 
+[2020-09-29 10:16:10 INFO  Utilidades:45] - [Llamado al metodo datosDeLogin ] --> Usuario Logeado: UsuarioLogin [username=, rol=]
+[2020-09-29 10:16:10 INFO  ConfigurarBeneficiariosCTL:209] - [Llamado al metodo loadMapaReferencias ] --> 
+[2020-09-29 10:16:13 INFO  ConfigurarBeneficiariosCTL:125] - [Llamado al metodo loadData ] --> 
