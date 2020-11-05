@@ -44,8 +44,11 @@
 		</dependency>
 
 		<!-- Para funcionamiento en Weblogic -->
-		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId> 
-			<version>3.0.1</version> </dependency> -->
+		<dependency> 
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId> 
+			<version>3.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -72,8 +75,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
-				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> -->
+			<exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+		            <exclusion>
+		                <groupId>ch.qos.logback</groupId>
+		                <artifactId>logback-classic</artifactId>
+		            </exclusion>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                    <!-- Habilitar para weblogic -->
+                    <exclusion> 
+                    	<groupId>org.springframework.boot</groupId> 
+						<artifactId>spring-boot-starter-tomcat</artifactId>
+					</exclusion>
+            </exclusions>
 		</dependency>
 
 		<dependency>
@@ -114,7 +134,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		
+		<!-- dependencia faltante weblogic -->
+		<dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-simple</artifactId>
+	        <version>1.7.26</version>
+	    </dependency>
+	    
 		<!-- Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
