@@ -9,11 +9,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.segurosbolivar.finita.aplicacion.dto.MensajeVista;
 import com.segurosbolivar.finita.aplicacion.dto.RespuestaCallPL;
@@ -86,7 +88,7 @@ public class GeneracionOrdenPagoCTL {
 	}
 	
 	@PostMapping("/generarOrdenesDePagos/generar")
-	public String generarOrdenesDePago(Model model) {
+	public String generarOrdenesDePago(ModelMap model,RedirectAttributes redirAttrs) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			this.saldosApagar.clear();
@@ -96,8 +98,13 @@ public class GeneracionOrdenPagoCTL {
 					this.saldosApagar.add(saldo);
 				}
 			}			
-			RespuestaCallPL respuesta=this.genericoService.callProcedimientoGenerarOrdenPago(saldosApagar,new RespuestaCallPL());
-			logger.info("Respuesta de PRC --> "+respuesta.getCodigo());			
+			RespuestaCallPL respuesta=this.genericoService.callProcedimientoGenerarOrdenPago(saldosApagar,this.usuario.getUsername(),new RespuestaCallPL());			
+			if(respuesta.getMensaje().contentEquals("OK")) {
+				this.loadData();
+				redirAttrs.addFlashAttribute("success", "Los saldos se han pagado con exito.");
+			}else {
+				redirAttrs.addFlashAttribute("error", respuesta.getMensaje());
+			}				
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}

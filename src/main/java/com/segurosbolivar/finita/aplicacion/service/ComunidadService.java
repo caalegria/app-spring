@@ -1,12 +1,8 @@
 package com.segurosbolivar.finita.aplicacion.service;
 
-import com.segurosbolivar.finita.aplicacion.repository.*;
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.segurosbolivar.finita.aplicacion.dao.IComunidadDAO;
@@ -14,8 +10,8 @@ import com.segurosbolivar.finita.aplicacion.dto.Catalogo;
 import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
-import com.segurosbolivar.finita.aplicacion.entity.Persona;
 import com.segurosbolivar.finita.aplicacion.entity.LogCargues;
+import com.segurosbolivar.finita.aplicacion.entity.Persona;
 
 
 @Service

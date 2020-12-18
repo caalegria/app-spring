@@ -110,7 +110,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 			return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewSate=0";
 		}else if(this.getViewState().contentEquals("3")){
 			this.setViewState("0");
-			return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
+			return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accEmpCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccEmpCodigo();
 		}
 		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA+"?viewSate=0";		
 	}
@@ -131,7 +131,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 		this.validarTerceros(persona,ben,true);
 		this.setViewState("0");		
 		model.addAttribute(this.configurarBeneficiario.getAccionista());
-		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accEmpCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccEmpCodigo();
 	}
 
 	@PostMapping("/agregarBeneficiariosAccionista/buscar")	
@@ -147,8 +147,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 			condiciones.addContition(Persona.PROP_ID, persona.getPerPrimerApellido(),ConditionMap.CRITERIO_OPER_LIKE);
 		this.personas.clear();
 		return Constantes.URL_HOME_AGREGAR_BENEFICARIOS_ACCIONISTA;
-	}
-	
+	}	
 	
 	/*
 	 * Asigna un registro de tipo persona 
@@ -176,7 +175,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 	public String irEditarBeneficiario(Model model,@RequestParam("idBeneficiario")String idBeneficiario) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
-			this.beneficiario = new Beneficiario(new BeneficiarioPK(this.configurarBeneficiario.getAccionista().getId().getAccPerIdent(), this.configurarBeneficiario.getAccionista().getAccEmpCodigo(), idBeneficiario));
+			this.beneficiario = new Beneficiario(new BeneficiarioPK(this.configurarBeneficiario.getAccionista().getId().getAccPerIdent(), this.configurarBeneficiario.getAccionista().getId().getAccEmpCodigo(), idBeneficiario));
 			this.setBeneficiario(this.configurarBeneficiario.getAccionista().getBeneficiarios().get(this.configurarBeneficiario.getAccionista().getBeneficiarios().indexOf(this.beneficiario)));		
 			this.setPersona(this.beneficiario.getPersona());
 			this.persona.setBenValor(this.beneficiario.getBenValor().toString());
@@ -206,7 +205,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 			Log.getError(logger, e);
 		}
 		model.addAttribute(this.configurarBeneficiario.getAccionista());		
-		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccEmpCodigo();
 	}
 	
 	/*
@@ -225,7 +224,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 			Log.getError(logger, e);
 		}
 		model.addAttribute(this.configurarBeneficiario.getAccionista());		
-		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccOfiCodigo();
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS_ACCIONISTA+"?accPerIdent="+this.configurarBeneficiario.getAccionista().getId().getAccPerIdent()+"&accOfiCodigo="+this.configurarBeneficiario.getAccionista().getId().getAccEmpCodigo();
 	}
 	
 	@SuppressWarnings("unused")
@@ -375,7 +374,7 @@ public class AgregarBeneficiarioAccionistaCTL {
 	 */
 	private boolean agregarBeneficiario(Persona persona,Beneficiario beneficiario){
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));		
-		BeneficiarioPK id= new BeneficiarioPK(this.configurarBeneficiario.getAccionista().getId().getAccPerIdent(), this.configurarBeneficiario.getAccionista().getAccEmpCodigo(),persona.getId());
+		BeneficiarioPK id= new BeneficiarioPK(this.configurarBeneficiario.getAccionista().getId().getAccPerIdent(), this.configurarBeneficiario.getAccionista().getId().getAccEmpCodigo(),persona.getId());
 		beneficiario.setBenestado("A");			
 		beneficiario.setId(id);
 		beneficiario.setBenValor(new BigInteger(persona.getBenValor()));

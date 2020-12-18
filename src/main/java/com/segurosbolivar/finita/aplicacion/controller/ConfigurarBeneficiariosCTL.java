@@ -2,10 +2,10 @@ package com.segurosbolivar.finita.aplicacion.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.segurosbolivar.finita.aplicacion.dto.MensajeVista;
+import com.segurosbolivar.finita.aplicacion.dto.ObjetoBasico;
 import com.segurosbolivar.finita.aplicacion.dto.UsuarioLogin;
 import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.AccionistaPK;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
+import com.segurosbolivar.finita.aplicacion.entity.DividendosTitulo;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
 import com.segurosbolivar.finita.aplicacion.entity.Referencia;
+import com.segurosbolivar.finita.aplicacion.service.ConditionMap;
 import com.segurosbolivar.finita.aplicacion.service.IComunidadService;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
 import com.segurosbolivar.finita.aplicacion.util.Constantes;
@@ -60,13 +64,17 @@ public class ConfigurarBeneficiariosCTL {
 	@Autowired
 	IComunidadService comunidadService;
 
+	@Resource
+	CatalogosCTL catalogosCTL;
+
 	private UsuarioLogin usuario= new UsuarioLogin();
-	private Accionista accionista= new Accionista();	
+	private Accionista accionista= new Accionista();
+	private ObjetoBasico filtro=new ObjetoBasico();
 	private List<Accionista> accionistas= new ArrayList<Accionista>();
 	private String viewState=Constantes.INICIANDO;	
 	private MensajeVista mensaje= new MensajeVista();
-	private HashMap<String, Persona> mapaPersonas= new HashMap<String, Persona>();
-	private HashMap<String, Referencia> mapaReferencias= new HashMap<String, Referencia>();
+	
+	ConditionMap condiciones= new ConditionMap();
 
 	@PostConstruct
 	private void init() {
@@ -79,9 +87,12 @@ public class ConfigurarBeneficiariosCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {
 			this.setUsuario(user);
-			Utilidades.datosDeLogin(model,user);	
-			this.loadMapaReferencias();
-			this.loadData();			
+			Utilidades.datosDeLogin(model,user);
+			if(editMode.contentEquals("0")) {
+				this.accionistas.clear();
+				this.loadData();
+			}
+			
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}
@@ -89,10 +100,10 @@ public class ConfigurarBeneficiariosCTL {
 	}
 
 	@GetMapping(value = "/configurarBeneficiariosAccionista")	
-	public String irBeneficiarosAccionista(ModelMap model,@RequestParam String accPerIdent,@RequestParam String accOfiCodigo) {
+	public String irBeneficiarosAccionista(ModelMap model,@RequestParam String accPerIdent,@RequestParam String accEmpCodigo) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
 		try {			
-			this.setAccionista(new Accionista(new AccionistaPK(accPerIdent, accOfiCodigo)));
+			this.setAccionista(new Accionista(new AccionistaPK(accPerIdent, accEmpCodigo)));
 			this.setAccionista(this.accionistas.get(this.accionistas.indexOf(this.accionista)));						
 			this.loadDataBeneficiarisAccionista(this.accionista);
 			logger.info("Accionista cargado: "+this.accionista.toString());
@@ -103,17 +114,92 @@ public class ConfigurarBeneficiariosCTL {
 		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_1_1;
 	}	
 
-	@PostMapping("/configurarBeneficiarios/buscar")	
-	public String busPlaCuenta(ModelMap model,@ModelAttribute("accionista")Accionista filtroBusqueda,BindingResult result) {
+	@GetMapping(value = "/irAccionista/editar")	
+	public String irAccionista(ModelMap model,@RequestParam String accPerIdent,@RequestParam String accEmpCodigo) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
-		logger.info("Filtro: "+ filtroBusqueda);
+		try {			
+			this.setAccionista(new Accionista(new AccionistaPK(accPerIdent, accEmpCodigo)));
+			this.setAccionista(this.accionistas.get(this.accionistas.indexOf(this.accionista)));						
+			this.loadDataBeneficiarisAccionista(this.accionista);			
+			logger.info("Accionista cargado: "+this.accionista.toString());
+			model.addAttribute(accionista);			
+			model.addAttribute("catalogoPeriodicidad",this.catalogosCTL.devolverDataPorCodigo("PP"));
+			model.addAttribute("catalogoTipoPago",this.catalogosCTL.devolverDataPorCodigo("PA"));					
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_1_3;
+	}	
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping(value = "/irAccionista/historicoPagos")	
+	public String consultarHistoricoPagos(ModelMap model,@RequestParam String accPerIdent,@RequestParam String accEmpCodigo) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));	
+		try {			
+			this.setAccionista(new Accionista(new AccionistaPK(accPerIdent, accEmpCodigo)));
+			this.setAccionista(this.accionistas.get(this.accionistas.indexOf(this.accionista)));						
+			this.loadDataBeneficiarisAccionista(this.accionista);			
+			logger.info("Accionista cargado: "+this.accionista.toString());
+			model.addAttribute(accionista);			
+			List<DividendosTitulo> historicoPagos= (List<DividendosTitulo>) this.genericoService.findObjects(DividendosTitulo.class, DividendosTitulo.PROP_ACC_PER_IDENT,accPerIdent, null);	
+			for(DividendosTitulo div: historicoPagos) {
+				try {
+				div.setEstadoTram(this.catalogosCTL.getMapaReferencias().get(div.getEstadoTramite()));
+				}catch (Exception e) {
+					Log.getError(logger, e);
+				}
+			}
+			model.addAttribute("historicoPagos",historicoPagos);	
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
+		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_2_1_4;
+	}	
+
+	/*
+	 * 
+	 * 
+	 */
+	@PostMapping("/irAccionista/actualizar")
+	public String actualizarAccionista(ModelMap model,@ModelAttribute("accionista") Accionista accionista,BindingResult result,RedirectAttributes redirAttrs) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
+		try {			
+			this.genericoService.updateObject(accionista);
+			redirAttrs.addFlashAttribute("success", "El accionista se ha actualizado con exito.");			
+		}catch (Exception e) {
+			Log.getError(logger, e);
+			redirAttrs.addFlashAttribute("error", "El accionista no se ha actualizado con exito.");
+		}				
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS;
+	}
+
+	@SuppressWarnings("unchecked")	
+	@PostMapping("/configurarBeneficiarios/buscar")	
+	public String buscarUsuario(Model model,@ModelAttribute("filtroBusqueda")  ObjetoBasico filtroBusqueda,BindingResult result,RedirectAttributes redirAttrs) {
+		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), "Filtro: "+filtroBusqueda.getValue()));		
 		this.accionistas.clear();
-		if(!filtroBusqueda.getAccNombre().trim().contentEquals(""))
-			this.accionistas.add((Accionista) this.genericoService.getObjetctById(Accionista.class, filtroBusqueda.getId()));
-		else {
-			this.loadData();
-		}		
-		return Constantes.URL_HOME_PLAN_CUENTA;
+		this.condiciones.cleanAll();
+		try {
+			if(!filtroBusqueda.getValue().trim().contentEquals("")) {
+				StringBuffer sb = new StringBuffer();
+				sb.append("SELECT sb FROM ").append(Accionista.REF).append(" sb")
+				.append(" WHERE sb.").append(Accionista.PROP_ACC_NOMBRE).append(" like '%").append(filtroBusqueda.getValue()).append("%'")
+				.append(" AND sb.").append(Accionista.PROP_ID).append(".").append(Accionista.PROP_EMP_CODIGO).append(" = ").append(Constantes.CODIGO_EMPRESA_ACCIONISTA);
+				this.accionistas.addAll((Collection<? extends Accionista>) this.genericoService.findObjectsByQuery(sb.toString(), 0));
+				for(Accionista accionista:this.accionistas) {
+					propiedadesAccionista(accionista);
+				}
+				redirAttrs.addFlashAttribute("success", "Se han encontrado "+this.accionistas.size()+" resultados de busqueda");
+			}else {
+				redirAttrs.addFlashAttribute("error", "No se han encontrado resultados de busqueda");
+				this.loadData();				
+			}	
+		}catch (Exception e) {
+			Log.getError(logger, e);
+			redirAttrs.addFlashAttribute("error",e.getMessage());
+		}
+		model.addAttribute("accionistas", this.getAccionistas());
+		return Constantes.URL_HOME_CONFIGURAR_BENEFICARIOS; 
 	}
 
 
@@ -125,37 +211,14 @@ public class ConfigurarBeneficiariosCTL {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
 		try {
 			if(accionistas.isEmpty()) {
-				this.accionistas.addAll((Collection<? extends Accionista>) this.genericoService.findObjects(Accionista.class, Accionista.PROP_EMP_CODIGO, Constantes.CODIGO_EMPRESA_ACCIONISTA	, null));				
+				this.accionistas.addAll((Collection<? extends Accionista>) this.genericoService.findObjects(Accionista.class,Accionista.PROP_ID+"."+Accionista.PROP_EMP_CODIGO, Constantes.CODIGO_EMPRESA_ACCIONISTA	, null));				
 				List<Accionista> accionistasTmp= new ArrayList<Accionista>();
 				for(Accionista accionista:this.accionistas) {
-					if(accionista!=null ) {
-						if(accionista.getId().getAccPerIdent()!=null) {
-							try {
-
-								if(!mapaPersonas.containsKey(accionista.getId().getAccPerIdent()))
-									mapaPersonas.put(accionista.getId().getAccPerIdent(), (Persona) this.genericoService.getObjetctById(Persona.class, accionista.getId().getAccPerIdent()));
-
-								accionista.setFinPersona(mapaPersonas.get(accionista.getId().getAccPerIdent()));	
-								accionista.getFinPersona().setPerTipoIdentRef(mapaReferencias.get(accionista.getFinPersona().getPerTipoIdent()));
-								accionista.getFinPersona().setPerNaturalezaRef(mapaReferencias.get(accionista.getFinPersona().getPerNaturaleza()));
-								accionista.setAccSecCodigoRef(mapaReferencias.get(accionista.getAccTipoCapital()));								
-								accionista.setAccFormaPagoRef(accionista.getAccFormaPago()!=null?mapaReferencias.get(accionista.getAccFormaPago()):new Referencia());
-								accionista.setAccNacionalidadRef(accionista.getAccNacionalidad()!=null?mapaReferencias.get(accionista.getAccNacionalidad()):new Referencia());
-								accionista.setAccEmpCodigoRef(accionista.getAccEmpCodigo()!=null?mapaReferencias.get(accionista.getAccEmpCodigo()):new Referencia());								
-								accionista.setAccCiuCodigoRef(accionista.getAccCiuCodigo()!=null?mapaReferencias.get(accionista.getAccCiuCodigo()):new Referencia());
-								accionista.setAccCiuDptPaisCodigoRef(accionista.getAccCiuDptPaisCodigo()!=null?mapaReferencias.get(accionista.getAccCiuDptPaisCodigo().toString()):new Referencia());
-								accionista.setAccCiuDptCodigoRef(accionista.getAccCiuDptCodigo()!=null?mapaReferencias.get(accionista.getAccCiuDptCodigo()):new Referencia());
-								accionista.setAccTipoCuentaRef(accionista.getAccTipoCuenta()!=null?mapaReferencias.get(accionista.getAccTipoCuenta()):new Referencia());
-								accionista.setAccTipoCapitalRef(accionista.getAccTipoCapital()!=null?mapaReferencias.get(accionista.getAccTipoCapital()):new Referencia());
-
-								if(accionista.getFinPersona()!=null)
-									accionistasTmp.add(accionista);
-							}catch (Exception e) {
-								Log.getError(logger, e);
-							}
-						}					
-					}
+					propiedadesAccionista(accionista);
+					if(accionista.getFinPersona()!=null)
+						accionistasTmp.add(accionista);
 				}
+				
 				if(!accionistasTmp.isEmpty()) {
 					this.accionistas.clear();
 					this.accionistas.addAll(accionistasTmp);
@@ -165,6 +228,35 @@ public class ConfigurarBeneficiariosCTL {
 		}catch (Exception e) {
 			Log.getError(logger, e);
 		}	
+	}
+
+	private void propiedadesAccionista(Accionista accionista) {
+		if(accionista!=null ) {
+			if(accionista.getId().getAccPerIdent()!=null) {
+				try {
+
+					if(!catalogosCTL.getMapaPersonas().containsKey(accionista.getId().getAccPerIdent()))
+						catalogosCTL.getMapaPersonas().put(accionista.getId().getAccPerIdent(), (Persona) this.genericoService.getObjetctById(Persona.class, accionista.getId().getAccPerIdent()));
+
+					accionista.setFinPersona(catalogosCTL.getMapaPersonas().get(accionista.getId().getAccPerIdent()));	
+					accionista.getFinPersona().setPerTipoIdentRef(catalogosCTL.getMapaReferencias().get(accionista.getFinPersona().getPerTipoIdent()));
+					accionista.getFinPersona().setPerNaturalezaRef(catalogosCTL.getMapaReferencias().get(accionista.getFinPersona().getPerNaturaleza()));
+					accionista.setAccSecCodigoRef(catalogosCTL.getMapaReferencias().get(accionista.getAccTipoCapital()));								
+					accionista.setAccFormaPagoRef(accionista.getAccFormaPago()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccFormaPago()):new Referencia());
+					accionista.setAccNacionalidadRef(accionista.getAccNacionalidad()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccNacionalidad()):new Referencia());
+					accionista.setAccEmpCodigoRef(accionista.getId().getAccEmpCodigo()!=null?catalogosCTL.getMapaReferencias().get(accionista.getId().getAccEmpCodigo()):new Referencia());								
+					accionista.setAccCiuCodigoRef(accionista.getAccCiuCodigo()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccCiuCodigo()):new Referencia());
+					accionista.setAccCiuDptPaisCodigoRef(accionista.getAccCiuDptPaisCodigo()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccCiuDptPaisCodigo().toString()):new Referencia());
+					accionista.setAccCiuDptCodigoRef(accionista.getAccCiuDptCodigo()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccCiuDptCodigo()):new Referencia());
+					accionista.setAccTipoCuentaRef(accionista.getAccTipoCuenta()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccTipoCuenta()):new Referencia());
+					accionista.setAccTipoCapitalRef(accionista.getAccTipoCapital()!=null?catalogosCTL.getMapaReferencias().get(accionista.getAccTipoCapital()):new Referencia());
+
+					
+				}catch (Exception e) {
+					Log.getError(logger, e);
+				}
+			}					
+		}
 	}
 
 	/*
@@ -178,7 +270,7 @@ public class ConfigurarBeneficiariosCTL {
 			for(Beneficiario ben:this.accionista.getBeneficiarios()) {
 				try {				
 					ben.setPersona((Persona) this.genericoService.getObjetctById(Persona.class, ben.getId().getBenPerIdent()));
-					ben.getPersona().setPerTipoIdentRef(mapaReferencias.get(ben.getPersona().getPerTipoIdent()));					
+					ben.getPersona().setPerTipoIdentRef(catalogosCTL.getMapaReferencias().get(ben.getPersona().getPerTipoIdent()));					
 				}catch (Exception e) {
 					Log.getError(logger, e);
 				}
@@ -204,16 +296,7 @@ public class ConfigurarBeneficiariosCTL {
 		logger.info(respuesta.getJsonReviced());
 	}
 
-	@SuppressWarnings("unchecked")
-	protected void loadMapaReferencias() {
-		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
-		if(mapaReferencias.isEmpty()) {			
-			List<Referencia> referencias= (List<Referencia>) this.genericoService.getObjects(Referencia.class);		
-			for(Referencia ref:referencias) {
-				this.mapaReferencias.put(ref.getRefCodigo(), ref);
-			}
-		}
-	}
+	
 
 	@ModelAttribute("usuarioLogin")
 	public UsuarioLogin getUsuario() {
@@ -231,15 +314,24 @@ public class ConfigurarBeneficiariosCTL {
 
 	public void setAccionista(Accionista accionista) {
 		this.accionista = accionista;
-	}
+	}	
 
 	@ModelAttribute("accionistas")
 	public List<Accionista> getAccionistas() {
 		return accionistas;
-	}
-
+	}	
+	
 	public void setAccionistas(List<Accionista> accionistas) {
 		this.accionistas = accionistas;
+	}
+	
+	@ModelAttribute("filtro")
+	public ObjetoBasico getFiltro() {
+		return filtro;
+	}
+
+	public void setFiltro(ObjetoBasico filtro) {
+		this.filtro = filtro;
 	}
 
 	@ModelAttribute("viewState")

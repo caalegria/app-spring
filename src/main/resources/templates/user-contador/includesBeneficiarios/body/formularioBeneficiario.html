@@ -66,7 +66,7 @@
 
 		<div class="col-lg-3">
 			<label for="benNit" th:text="#{label.nit}" /> <select id="benNit"
-				th:field="${persona.benNit}">
+				class="form-control" th:field="${persona.benNit}">
 				<option th:each="i : ${catalogoNit}" th:value="${i.codigo}"
 					th:text="${i.label}" />
 			</select>
@@ -75,10 +75,10 @@
 
 	<div class="col-lg-12 alinearDerecha">
 		<a class="btn btn_verde_blanco" th:text="#{btn.regresar}"
-			th:href="@{/agregarBeneficiariosAccionista/regresar}" />
-		<input th:if="${viewState == '2'}" type="submit"
-			class="btn btn_verde_blanco" th:value="#{btn.guardar}" /> 
-		<input th:if="${viewState == '3'}" type="submit"
+			th:href="@{/agregarBeneficiariosAccionista/regresar}" /> <input
+			th:if="${viewState == '2'}" type="submit"
+			class="btn btn_verde_blanco" th:value="#{btn.guardar}" /> <input
+			th:if="${viewState == '3'}" type="submit"
 			class="btn btn_verde_blanco" th:value="#{btn.actualizar}" />
 	</div>
 

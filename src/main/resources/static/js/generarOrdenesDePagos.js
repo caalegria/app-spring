@@ -14,4 +14,12 @@ $(document).ready(function() {
 			$(this).load('/finita/generarOrdenesDePagos/eventoSeleccionar?posicion='+$(this).prop("id")+"&estado="+$(this).prop("value"), $('#form:input[type="checkbox"]').serialize());
 		}			    
 	});
+	
+	
+    let x = document.querySelectorAll(".moneyValue");     
+    for (let i = 0, len = x.length; i < len; i++) {     	
+        let num = Number(x[i].innerHTML).toLocaleString('en'); 
+        x[i].innerHTML = num; 
+        x[i].classList.add("currSign"); 
+    } 
 });		

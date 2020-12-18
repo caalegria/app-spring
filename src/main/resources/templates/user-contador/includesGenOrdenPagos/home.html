@@ -1,72 +1,88 @@
+<div class="alert alert-primary" role="alert" th:text="${success}"
+	th:if="${success}"></div>
+<div class="alert alert-danger" role="alert" th:text="${error}"
+	th:if="${error}"></div>
+
 <h3 th:text="#{label.page.configurar.beneficiarios}"
 	class="subtituloAplicacion" />
-<div>
+
+<th:div>
 	<h5 th:text="#{subtitlte.consulta.accionistas}" />
 	<hr>
 	<form class="form" role="form" autocomplete="off" method="post"
-		th:object="${accionista}"
-		th:action="@{/configurarBeneficiarios/buscar}">
-
+		th:object="${filtro}" th:action="@{/configurarBeneficiarios/buscar}">
 		<div class="form-group row">
-			<div class="col-lg-3">
-				<input class="form-control  form-control-sm" type="text"
-					th:field="${accionista.accNombre}"
+			<div class="col-lg-6">
+				<input id="filtroBusqueda" class="form-control  form-control-sm"
+					type="text" th:field="*{value}" required="true"
 					th:placeholder="|#{label.nombres} y/o #{label.apellidos}| "
 					maxlength="120">
 			</div>
 			<div class="col-lg-4">
-				<input type="submit" class="btn btn_verde_blanco"
+				<input class="btn btn_verde_blanco" type="submit"
 					th:value="#{btn.buscar}">
 			</div>
 		</div>
-	</form>
-	<hr>
-	<br>
-	<h5 th:text="#{subtitlte.listado.accionistas}"
-		th:title="|#{label.resultado}: ${#lists.size(accionistas)}|" />
-	<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
-		<thead>
-			<tr>
-				<th class="sizeCol15" th:text="#{label.tipo.documento}" /th>
-				<th class="sizeCol10" th:text="#{label.identificacion}" /th>
-				<th class="sizeCol10"
-					th:text="|#{label.nombres} #{label.apellidos}|" /th>
-				<th class="sizeCol20" th:text="#{label.detalle}" /th>
-				<th class="sizeCol5" th:text="#{label.acciones}" /th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="objAcc : ${accionistas}">
-				<td th:text="${objAcc.finPersona.perTipoIdentRef.refDescripcion}" />
-				<td th:text="${objAcc.finPersona.id}" />
-				<td th:text="${objAcc.finPersona.perNombre} " />
-				<td><label for="lblDir" th:text="|#{label.direccion}: |"
-					class="p_gris_bold" /> <output id="lblDir"
-						th:text="${objAcc.finPersona.perDireccion}" /> <br> <label
-					for="lblTel" th:text="|#{label.telefono}: |" class="p_gris_bold" />
-					<output id="lblTel" th:text="${objAcc.finPersona.perTelefono}" /> <br>
-					<label for="lblNatu" th:text="|#{label.tipo.accionista}: |"
-					class="p_gris_bold" /> <output id="lblNatu"
-						th:text="${objAcc.finPersona.perNaturalezaRef.refDescripcion}" />
-					<br> <label for="lblTipPag" th:text="|#{label.tipo.pago}: |"
-					class="p_gris_bold" /> <output id="lblTipPag"
-						th:text="${objAcc.accFormaPagoRef.refDescripcion}" /></td>
-				<td><a
-					th:href="@{/configurarBeneficiariosAccionista(accPerIdent=${objAcc.id.accPerIdent},accOfiCodigo=${objAcc.id.accOfiCodigo})}"
-					class="btn btn_gris_gris" th:text="#{subtitlte.beneficiarios}" /></td>
-			</tr>
-		</tbody>
-		<tfoot class="col-lg-12 mx-auto">
-			<td><input type="button" id="cargar_primera_pagina"
-				value="<< Primero" /></td>
-			<td><input type="button" id="cargar_anterior_pagina"
-				value="< Anterior" /></td>
-			<td id="indicador_paginas"></td>
-			<td><input type="button" id="cargar_siguiente_pagina"
-				value="Siguiente >" /></td>
-			<td><input type="button" id="cargar_ultima_pagina"
-				value="Ultimo >>" /></td>
-		</tfoot>
-	</table>
+		<hr>
+		<br>
+		<h5 th:text="#{subtitlte.listado.accionistas}"
+			th:title="|#{label.resultado}: ${#lists.size(accionistas)}|" />
 
-</div>
+		<h6 th:text="#{lable.no.data.table-found}" class="table-no-data"
+			th:if="${#lists.size(accionistas)==0}" />
+
+		<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1"
+			th:if="${#lists.size(accionistas)>0}" th:fragment="accionistasData">
+			<thead>
+				<tr>
+					<th class="sizeCol15" th:text="#{label.tipo.documento}" /th>
+					<th class="sizeCol10" th:text="#{label.identificacion}" /th>
+					<th class="sizeCol10"
+						th:text="|#{label.nombres} #{label.apellidos}|" /th>
+					<th class="sizeCol20" th:text="#{label.detalle}" /th>
+					<th class="sizeCol5" th:text="#{label.acciones}" /th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="objAcc : ${accionistas}">
+					<td th:text="${objAcc.finPersona.perTipoIdentRef.refDescripcion}" />
+					<td th:text="${objAcc.finPersona.id}" />
+					<td th:text="${objAcc.finPersona.perNombre} " />
+					<td><label for="lblDir" th:text="|#{label.direccion}: |"
+						class="p_gris_bold" /> <output id="lblDir"
+							th:text="${objAcc.finPersona.perDireccion}" /> <br> <label
+						for="lblTel" th:text="|#{label.telefono}: |" class="p_gris_bold" />
+						<output id="lblTel" th:text="${objAcc.finPersona.perTelefono}" />
+						<br> <label for="lblNatu"
+						th:text="|#{label.tipo.accionista}: |" class="p_gris_bold" /> <output
+							id="lblNatu"
+							th:text="${objAcc.finPersona.perNaturalezaRef.refDescripcion}" />
+						<br> <label for="lblTipPag" th:text="|#{label.tipo.pago}: |"
+						class="p_gris_bold" /> <output id="lblTipPag"
+							th:text="${objAcc.accFormaPagoRef.refDescripcion}" /></td>
+					<td><a
+						th:href="@{/irAccionista/editar(accPerIdent=${objAcc.id.accPerIdent},accEmpCodigo=${objAcc.id.accEmpCodigo})}"
+						th:title="#{btn.editar}"> <i class="far fa-edit"></i>
+					</a> <a
+						th:href="@{/configurarBeneficiariosAccionista(accPerIdent=${objAcc.id.accPerIdent},accEmpCodigo=${objAcc.id.accEmpCodigo})}"
+						th:title="#{subtitlte.beneficiarios}"> <i class="fas fa-users"></i>
+					</a> <a
+						th:href="@{/irAccionista/historicoPagos(accPerIdent=${objAcc.id.accPerIdent},accEmpCodigo=${objAcc.id.accEmpCodigo})}"
+						th:title="#{btn.historico.pagos}"> <i class="far fa-file-alt"></i></td>
+				</tr>
+			</tbody>
+			<tfoot class="col-lg-12 mx-auto"
+				th:if="${#lists.size(accionistas)>30}">
+				<td><input type="button" id="cargar_primera_pagina"
+					value="<< Primero" /></td>
+				<td><input type="button" id="cargar_anterior_pagina"
+					value="< Anterior" /></td>
+				<td id="indicador_paginas"></td>
+				<td><input type="button" id="cargar_siguiente_pagina"
+					value="Siguiente >" /></td>
+				<td><input type="button" id="cargar_ultima_pagina"
+					value="Ultimo >>" /></td>
+			</tfoot>
+		</table>
+	</form>
+</th:div>

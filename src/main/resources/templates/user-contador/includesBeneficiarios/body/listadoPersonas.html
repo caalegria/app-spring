@@ -1,8 +1,11 @@
 <h5 th:text="#{subtitlte.listado.personas}"
 	th:title="|#{label.resultado}: ${#lists.size(personas)}|" />
 <div class="col-lg-12 alinearDerecha">
-	<a class="btn btn_verde_blanco" th:text="#{btn.nuevo}"
-		th:href="@{/agregarBeneficiariosAccionista/nuevo}" />
+	<a th:title="#{btn.nuevo}"
+		th:href="@{/agregarBeneficiariosAccionista/nuevo}"> <i
+		class="fas fa-plus"></i>
+	</a>
+
 </div>
 <table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
 	<thead>
@@ -28,4 +31,16 @@
 			</form>
 		</tr>
 	</tbody>
+	<tfoot class="col-lg-12 mx-auto">
+		<td><input type="button" id="cargar_primera_pagina"
+			value="<< Primero" /></td>
+		<td><input type="button" id="cargar_anterior_pagina"
+			value="< Anterior" /></td>
+		<td id="indicador_paginas"></td>
+		<td><input type="button" id="cargar_siguiente_pagina"
+			value="Siguiente >" /></td>
+		<td><input type="button" id="cargar_ultima_pagina"
+			value="Ultimo >>" /></td>
+	</tfoot>	
 </table>
+

@@ -2,7 +2,6 @@ package com.segurosbolivar.finita.aplicacion.dao;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -18,11 +17,14 @@ import com.segurosbolivar.finita.aplicacion.dto.ArchivoDeceval;
 import com.segurosbolivar.finita.aplicacion.dto.Catalogo;
 import com.segurosbolivar.finita.aplicacion.dto.SaldoBeneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.Accionista;
+import com.segurosbolivar.finita.aplicacion.entity.AccionistaPK;
 import com.segurosbolivar.finita.aplicacion.entity.Beneficiario;
 import com.segurosbolivar.finita.aplicacion.entity.BeneficiarioPK;
 import com.segurosbolivar.finita.aplicacion.entity.LogCargues;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
+import com.segurosbolivar.finita.aplicacion.entity.Referencia;
 import com.segurosbolivar.finita.aplicacion.service.IGenericoService;
+import com.segurosbolivar.finita.aplicacion.util.Constantes;
 import com.segurosbolivar.finita.aplicacion.util.Log;
 import com.segurosbolivar.finita.aplicacion.util.Utilidades;
 
@@ -41,7 +43,8 @@ public class ComunidadDAO  implements IComunidadDAO {
 	private EntityManager entityManager;	
 	
 	@Autowired
-	IGenericoService genericoService;	
+	IGenericoService genericoService;		
+	
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -49,20 +52,66 @@ public class ComunidadDAO  implements IComunidadDAO {
 		List<SaldoBeneficiario> saldosData=new ArrayList<SaldoBeneficiario>();
 		try {
 			StringBuffer hqlNative= new StringBuffer();			
-			hqlNative.append("SELECT * FROM  FINVIEW_SALDOS_BENEFICIARIOS WHERE ROWNUM <= 10");		
+			hqlNative.append("SELECT * FROM  FINVIEW_SALDOS_BENEFICIARIOS order by DIVIDENDO asc");		
 			Query query= entityManager.createNativeQuery(hqlNative.toString());			
 			List<Object []> saldos= query.getResultList();
 			for(Object[] obj:saldos) {
 				SaldoBeneficiario saldobeneficiario = new SaldoBeneficiario();
 				saldobeneficiario.setEmpresa(obj[0].toString());
-				saldobeneficiario.setBeneficiario(obj[1].toString());
-				saldobeneficiario.setDiviendo(new BigInteger(obj[2].toString()));
-				saldobeneficiario.setMoneda(obj[3].toString());
-				saldobeneficiario.setGrupo(obj[4].toString());
-				saldobeneficiario.setSaldo(new BigDecimal(obj[5].toString()));
-				saldobeneficiario.setRetencion(new BigDecimal(obj[6].toString()));				
-				saldobeneficiario.setPersona((Persona) this.genericoService.getObjetctById(Persona.class, saldobeneficiario.getBeneficiario()));
+				saldobeneficiario.setAccionista(obj[1].toString());
+				saldobeneficiario.setBeneficiario(obj[2].toString());
+				saldobeneficiario.setDiviendo(new BigInteger(obj[3].toString()));
+				saldobeneficiario.setMoneda(obj[4].toString());
+				saldobeneficiario.setGrupo(obj[5].toString());
+				saldobeneficiario.setSaldo(new BigDecimal(obj[6].toString()));
+				saldobeneficiario.setRetencion(new BigDecimal(obj[7].toString()));	
+				try{
+					saldobeneficiario.setCuentaContable(new BigDecimal(obj[8].toString()));
+				}catch (Exception e) {
+					saldobeneficiario.setCuentaContable(new BigDecimal("0"));
+				}
+				saldobeneficiario.setEstadoTramite(obj[9].toString());
 				saldosData.add(saldobeneficiario);
+				
+				try {
+					saldobeneficiario.setPersona((Persona) this.genericoService.getObjetctById(Persona.class, saldobeneficiario.getBeneficiario()));
+				}catch (Exception e) {
+					Log.getError(logger, e);
+					
+				}
+
+				try{
+					saldobeneficiario.setAccionistaObj(new Accionista(new AccionistaPK(saldobeneficiario.getAccionista(), Constantes.CODIGO_EMPRESA_ACCIONISTA)));
+					saldobeneficiario.setAccionistaObj((Accionista) this.genericoService.getObjetctById(Accionista.class, saldobeneficiario.getAccionistaObj().getId()));
+				}catch (Exception e) {
+					Log.getError(logger, e);
+					
+				}
+
+				try{
+					saldobeneficiario.setPeriodicidad(new Referencia(saldobeneficiario.getAccionistaObj().getPeriodicidad()));
+					saldobeneficiario.setPeriodicidad((Referencia) this.genericoService.getObjetctById(Referencia.class,saldobeneficiario.getPeriodicidad().getRefCodigo()));
+				}catch (Exception e) {
+					Log.getError(logger, e);
+					saldobeneficiario.setPeriodicidad(new Referencia());					
+				}
+
+				try{
+					saldobeneficiario.setTipoPago(new Referencia(saldobeneficiario.getAccionistaObj().getPago()));
+					saldobeneficiario.setTipoPago((Referencia) this.genericoService.getObjetctById(Referencia.class,saldobeneficiario.getTipoPago().getRefCodigo()));
+				}catch (Exception e) {
+					Log.getError(logger, e);
+					saldobeneficiario.setTipoPago(new Referencia());					
+				}
+				
+				try{
+					saldobeneficiario.setEstadoTram(new Referencia(saldobeneficiario.getEstadoTramite()));
+					saldobeneficiario.setEstadoTram((Referencia) this.genericoService.getObjetctById(Referencia.class,saldobeneficiario.getEstadoTram().getRefCodigo()));
+				}catch (Exception e) {
+					Log.getError(logger, e);
+					saldobeneficiario.setTipoPago(new Referencia());					
+				}
+				
 			}
 			return saldosData;
 		}catch (Exception e) {
@@ -83,7 +132,7 @@ public class ComunidadDAO  implements IComunidadDAO {
 			hql.append(" AND ben.").append(Beneficiario.PROP_ID).append(".").append(BeneficiarioPK.PROP_ACC_EMP_CODIGO).append("= :accEmpCodigo");
 			Query query= entityManager.createQuery(hql.toString());
 			query.setParameter("accPerIdent", accionista.getId().getAccPerIdent());
-			query.setParameter("accEmpCodigo", accionista.getAccEmpCodigo());			
+			query.setParameter("accEmpCodigo", accionista.getId().getAccEmpCodigo());			
 			List<Beneficiario> beneficiarios= query.getResultList();
 			return beneficiarios;
 		}catch (Exception e) {
@@ -251,4 +300,5 @@ public class ComunidadDAO  implements IComunidadDAO {
 		}
 		return new ArrayList<LogCargues>();
 	}
+	
 }

@@ -12,17 +12,20 @@
 			<div class="form-group row">
 				<div class="col-lg-3">
 					<label for="fecIni" th:text="#{label.fecha.inicio}" /> <input
-						id="fecIni" type="date" th:field="${deceval.fechInicial}" />
+						class="form-control" id="fecIni" type="date"
+						th:field="${deceval.fechInicial}" />
 				</div>
 
 				<div class="col-lg-3">
 					<label for="fecFin" th:text="#{label.fecha.fin}" /> <input
-						id="fecFin" type="date" th:field="${deceval.fechFinal}" />
+						class="form-control" id="fecFin" type="date"
+						th:field="${deceval.fechFinal}" />
 				</div>
 			</div>
 			<div class="col-lg-12 alinearDerecha">
 				<a class="btn btn_verde_blanco" th:text="#{btn.descargar}"
-					th:href="@{/aplicacion/downloadDeceval}" th:if="${download}" /> <input type="submit"
+					th:href="@{/aplicacion/downloadDeceval}" th:if="${download}"
+					th:title="${folderPermisos}" /> <input type="submit"
 					class="btn btn_verde_blanco" th:value="#{btn.generar}">
 			</div>
 		</form>

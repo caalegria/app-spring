@@ -24,6 +24,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.log4j.Logger;
+import org.hibernate.QueryException;
 import org.hibernate.Session;
 import org.hibernate.jdbc.Work;
 import org.springframework.stereotype.Repository;
@@ -125,6 +126,26 @@ public class GenericoDAO implements IGenericoDAO {
 			Log.getError(logger, e);		
 		}
 		return new ArrayList<Persistente>();
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List<? extends Persistente> findObjectsByQuery(String query, Integer limit) throws Exception {
+		try {
+			TypedQuery objQuery = (TypedQuery) entityManager.createQuery(query);
+			if(limit!=0)
+				objQuery.setMaxResults(limit);
+			return objQuery.getResultList();
+		} catch (NullPointerException e) {
+			logger.error(e.getMessage(), e);	
+			throw new NullPointerException();
+		} catch (QueryException e) {
+			logger.error(e.getMessage(), e);		
+			throw new QueryException(e);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);	
+			throw new Exception();
+		}
 	}
 
 
@@ -334,7 +355,7 @@ public class GenericoDAO implements IGenericoDAO {
 	 * @param saldos
 	 */
 	@Override
-	public RespuestaCallPL callProcedimientoGenerarOrdenPago(List<SaldoBeneficiario> saldos,RespuestaCallPL respuesta) {
+	public RespuestaCallPL callProcedimientoGenerarOrdenPago(List<SaldoBeneficiario> saldos, String usuario,RespuestaCallPL respuesta) {
 		logger.info(Log.getCurrentClassAndMethodNames(getClass().getName(), "Llamado al PL "+Constantes.PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO));
 		try {			
 			Session session = entityManager.unwrap( Session.class );						
@@ -348,13 +369,13 @@ public class GenericoDAO implements IGenericoDAO {
 							}
 
 							if(connection!=null) {
-								String query = "{call " + Constantes.PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO + "(?,?,?)}";
+								String query = "{call " + Constantes.PKG_FIN_ORDEN_PAGO_ENVIAR_A_PAGO + "(?,?,?,?,?)}";
 								StructDescriptor descriptorType = StructDescriptor.createDescriptor("TYP_FILA_SALDOS_BENEF", connection);
 								Object[] type;			            
 								STRUCT[] estructurasTypoArchivo = new STRUCT[saldos.size()];
 								int i=0;
 								for(SaldoBeneficiario sb:saldos) {
-									type = new Object[]{sb.getEmpresa(),sb.getBeneficiario(),sb.getDividendo(),sb.getMoneda(),sb.getGrupo(),sb.getSaldo(),sb.getRetencion()};
+									type = new Object[]{sb.getEmpresa(),sb.getBeneficiario(),sb.getDiviendo(),sb.getMoneda(),sb.getGrupo(),sb.getSaldo(),sb.getRetencion()};
 									STRUCT estructuraTypoArchivo = new STRUCT(descriptorType, connection, type);
 									estructurasTypoArchivo[i] = estructuraTypoArchivo;
 									i++;
@@ -364,12 +385,15 @@ public class GenericoDAO implements IGenericoDAO {
 								ARRAY typoTBLArchivos = new ARRAY(descriptorTypeTBL, connection, estructurasTypoArchivo);
 
 								CallableStatement cs = connection.prepareCall(query);
-								cs.setDate(1,Date.valueOf("2020-09-18"));
+								cs.setDate(1,new Date(new java.util.Date().getTime()));
 								cs.setObject(2, (Object) typoTBLArchivos);								
-								cs.registerOutParameter(3, Types.VARCHAR);							
+								cs.registerOutParameter(3, Types.VARCHAR);
+								cs.registerOutParameter(4, Types.VARCHAR);
+								cs.setString(5,usuario);
 
-								cs.executeUpdate();															
-								respuesta.setCodigo(cs.getString(3));			                
+								cs.executeUpdate();
+								respuesta.setMensaje(cs.getString(3));
+								respuesta.setCodigo(cs.getString(4));										
 								logger.info("Resultado " + respuesta);		
 							}else {
 								logger.info("La OracleConnection no se pudo castear.");

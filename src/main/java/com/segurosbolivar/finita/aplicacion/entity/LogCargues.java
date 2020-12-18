@@ -74,7 +74,8 @@ public class LogCargues extends Persistente{
 
 	@Override
 	public String toString() {
-		return "Finreferencia [fechaCargue=" + fechaCargue + ", descripcion=" + descripcion + ", tipoCargue=" + tipoCargue+ "]";
+		return "[fechaCargue=" + fechaCargue + ", descripcion=" + descripcion + ", tipoCargue=" + tipoCargue
+				+ "]";
 	}	
 
 

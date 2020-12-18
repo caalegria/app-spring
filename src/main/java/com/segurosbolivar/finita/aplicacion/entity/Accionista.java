@@ -29,6 +29,7 @@ public class Accionista extends Persistente{
 	public static final String PROP_ID="id";
 	public static final String PROP_SEC_CODIGO	="accSecCodigo";
 	public static final String PROP_EMP_CODIGO	="accEmpCodigo";
+	public static final String PROP_ACC_NOMBRE	="accNombre";
 
 	@EmbeddedId
 	private AccionistaPK id= new AccionistaPK();
@@ -66,8 +67,8 @@ public class Accionista extends Persistente{
 	//	@Column(name="TOTAL_ACCIONES",length = 1)
 	//	private char totalAcciones;
 
-	@Column(name="ACC_EMP_CODIGO",length = 2)
-	private String accEmpCodigo;
+	@Column(name="ACC_OFI_CODIGO", length = 4)
+	private String accOfiCodigo;
 	
 	@Transient 
 	private Referencia accEmpCodigoRef;
@@ -164,6 +165,19 @@ public class Accionista extends Persistente{
 
 	@Transient	
 	private Persona finPersona;
+	
+	
+	@Column(name="ACC_PERIODICIDAD")
+	private String periodicidad;
+	
+	@Transient
+	private Referencia referenciaPeriodicidad;
+	
+	@Column(name="ACC_PAGO")
+	private String pago;
+	
+	@Transient
+	private Referencia referenciaPago;
 	
 	@Transient
 	private List<Beneficiario> beneficiarios= new ArrayList<Beneficiario>();
@@ -266,15 +280,13 @@ public class Accionista extends Persistente{
 	//	}
 
 
-	public String getAccEmpCodigo() {
-		return accEmpCodigo;
+	public String getAccOfiCodigo() {
+		return accOfiCodigo;
 	}
 
-
-	public void setAccEmpCodigo(String accEmpCodigo) {
-		this.accEmpCodigo = accEmpCodigo;
+	public void setAccOfiCodigo(String accOfiCodigo) {
+		this.accOfiCodigo = accOfiCodigo;
 	}
-
 
 	public String getAccNumDeposito() {
 		return accNumDeposito;
@@ -626,6 +638,38 @@ public class Accionista extends Persistente{
 
 	public void setBeneficiarios(List<Beneficiario> beneficiarios) {
 		this.beneficiarios = beneficiarios;
+	}	
+
+	public String getPeriodicidad() {
+		return periodicidad;
+	}
+
+	public void setPeriodicidad(String periodicidad) {
+		this.periodicidad = periodicidad;
+	}
+
+	public Referencia getReferenciaPeriodicidad() {
+		return referenciaPeriodicidad;
+	}
+
+	public void setReferenciaPeriodicidad(Referencia referenciaPeriodicidad) {
+		this.referenciaPeriodicidad = referenciaPeriodicidad;
+	}
+
+	public String getPago() {
+		return pago;
+	}
+
+	public void setPago(String pago) {
+		this.pago = pago;
+	}
+
+	public Referencia getReferenciaPago() {
+		return referenciaPago;
+	}
+
+	public void setReferenciaPago(Referencia referenciaPago) {
+		this.referenciaPago = referenciaPago;
 	}
 
 	@Override
@@ -660,7 +704,7 @@ public class Accionista extends Persistente{
 		return "Accionista [id=" + id.toString() + ", accSecCodigo=" + accSecCodigo + ", accEstado=" + accEstado
 				+ ", accFormaPago=" + accFormaPago + ", accNacionalidad=" + accNacionalidad + ", accPagoDividendo="
 				+ accPagoDividendo + ", accCuenta=" + accCuenta + ", accCodBanco=" + accCodBanco + ", accEmpCodigo="
-				+ accEmpCodigo + ", accNumDeposito=" + accNumDeposito + ", accNombre=" + accNombre + ", accDireccion="
+				+ id.getAccEmpCodigo() + ", accNumDeposito=" + accNumDeposito + ", accNombre=" + accNombre + ", accDireccion="
 				+ accDireccion + ", accDireccion2=" + accDireccion2 + ", accTelefono=" + accTelefono + ", accTelefono2="
 				+ accTelefono2 + ", accCiuCodigo=" + accCiuCodigo + ", accCiuConsec=" + accCiuConsec
 				+ ", accCiuDptPaisCodigo=" + accCiuDptPaisCodigo + ", accCiuDptCodigo=" + accCiuDptCodigo

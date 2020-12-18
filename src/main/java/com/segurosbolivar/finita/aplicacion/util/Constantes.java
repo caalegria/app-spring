@@ -19,6 +19,16 @@ public final class Constantes {
 	 * deceval 
 	 */
 	public static final String DECEVAL="deceval";
+	public static final String DECEVAL_ORIGIN="deceval_origen_";
+	public static final String DECEVAL_LOG_FINITA="log_finita_";
+	public static final String DECEVAL_LOG_CARGUE="log_cargue_";
+	
+	/*
+	 * Extensiones de archivos
+	 */
+	public static final String TXT=".txt";
+	public static final String PDF=".pdf";
+	public static final String CSV=".csv";
 	
 	/*
 	 * Claves ENV properties Spring Boot
@@ -57,9 +67,13 @@ public final class Constantes {
 	public static String NOMBRE_URL_CONTADOR_2_1="configurarBeneficiarios";
 	public static String NOMBRE_URL_CONTADOR_2_1_1="configurarBeneficiariosAccionista";
 	public static String NOMBRE_URL_CONTADOR_2_1_2="agregarBeneficiariosAccionista";	
-	public static String NOMBRE_URL_CONTADOR_2_2="generarOrdenesDePagos";
+	public static String NOMBRE_URL_CONTADOR_2_1_3="editarAccionista";
+	public static String NOMBRE_URL_CONTADOR_2_1_4="historicoPagosSaldos";
+	public static String NOMBRE_URL_CONTADOR_2_2="generarOrdenesDePagos";	
 	public static String NOMBRE_URL_CONTADOR_3="aplicacion";
-	
+	public static String NOMBRE_URL_CONTADOR_4="retenciones";
+	public static String NOMBRE_URL_CONTADOR_5="estadoOrdenesPago";
+	public static String NOMBRE_URL_CONTADOR_6="parametrizacion";	
 	
 	public static String URL_REDIRECT="redirect:";
 	public static String URL_HOME_PLAN_CUENTA="redirect:/plaCuentas";
@@ -131,6 +145,7 @@ public final class Constantes {
 	 */
 	
 	public static String CODIGO_EMPRESA_ACCIONISTA="50";
+	public static String CODIGO_ACCIONISTA_DECEVAL="800182091";
 	
 	/*
 	 * Constantes Dividendos

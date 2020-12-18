@@ -16,9 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @ComponentScan("com.segurosbolivar.finita.aplicacion.controller")
 public class WebSecurityConfig  extends  WebSecurityConfigurerAdapter{
 
-	String[] resources = new String[]{
-            "/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**"
-    };
+	String[] resources = new String[]{"/include/**","/css/**","/icons/**","/img/**","/js/**","/layer/**","/templates/**" };
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {

@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.Dividendo;
 import com.segurosbolivar.finita.aplicacion.entity.Persona;
+import com.segurosbolivar.finita.aplicacion.entity.Referencia;
 
 /**
  * 
@@ -20,29 +22,39 @@ public class SaldoBeneficiario implements Serializable{
 	private static final long serialVersionUID = 6288648792344764837L;
 	private boolean select=false;
 	private String empresa;
+	private String accionista;
 	private String beneficiario;
 	private BigInteger diviendo;
 	private String moneda;
 	private String grupo;
 	private BigDecimal saldo;
 	private BigDecimal retencion;
+	private BigDecimal cuentaContable;
+	private String estadoTramite;
 	
 	private Persona persona;
+	private Accionista accionistaObj;
+	private Referencia periodicidad;
+	private Referencia tipoPago;
+	private Referencia estadoTram;
 	private Dividendo dividendo;
 	
 	public SaldoBeneficiario() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public SaldoBeneficiario(String empresa, String beneficiario, BigInteger diviendo, String moneda, String grupo,	BigDecimal saldo, BigDecimal retencion) {
-		super();
+	public SaldoBeneficiario(String empresa,String accionista, String beneficiario, BigInteger diviendo, String moneda, String grupo,	BigDecimal saldo, BigDecimal retencion,BigDecimal cuentaContable,String estadoTramite) {
+		super();		
 		this.empresa = empresa;
+		this.accionista=accionista;
 		this.beneficiario = beneficiario;
 		this.diviendo = diviendo;
 		this.moneda = moneda;
 		this.grupo = grupo;
 		this.saldo = saldo;
 		this.retencion = retencion;
+		this.cuentaContable=cuentaContable;
+		this.estadoTramite=estadoTramite;
 	}
 
 	public String getEmpresa() {
@@ -51,6 +63,14 @@ public class SaldoBeneficiario implements Serializable{
 
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
+	}	
+
+	public String getAccionista() {
+		return accionista;
+	}
+
+	public void setAccionista(String accionista) {
+		this.accionista = accionista;
 	}
 
 	public String getBeneficiario() {
@@ -123,14 +143,62 @@ public class SaldoBeneficiario implements Serializable{
 
 	public void setSelect(boolean select) {
 		this.select = select;
+	}	
+
+	public Accionista getAccionistaObj() {
+		return accionistaObj;
+	}
+
+	public void setAccionistaObj(Accionista accionistaObj) {
+		this.accionistaObj = accionistaObj;
+	}		
+
+	public Referencia getPeriodicidad() {
+		return periodicidad;
+	}
+
+	public void setPeriodicidad(Referencia periodicidad) {
+		this.periodicidad = periodicidad;
+	}
+
+	public Referencia getTipoPago() {
+		return tipoPago;
+	}
+
+	public void setTipoPago(Referencia tipoPago) {
+		this.tipoPago = tipoPago;
+	}	
+
+	public BigDecimal getCuentaContable() {
+		return cuentaContable;
+	}
+
+	public void setCuentaContable(BigDecimal cuentaContable) {
+		this.cuentaContable = cuentaContable;
+	}
+
+	public String getEstadoTramite() {
+		return estadoTramite;
+	}
+
+	public void setEstadoTramite(String estadoTramite) {
+		this.estadoTramite = estadoTramite;
+	}	
+
+	public Referencia getEstadoTram() {
+		return estadoTram;
+	}
+
+	public void setEstadoTram(Referencia estadoTram) {
+		this.estadoTram = estadoTram;
 	}
 
 	@Override
 	public String toString() {
-		return "SaldoBeneficiario [select=" + select + ", empresa=" + empresa + ", beneficiario=" + beneficiario
-				+ ", diviendo=" + diviendo + ", moneda=" + moneda + ", grupo=" + grupo + ", saldo=" + saldo
-				+ ", retencion=" + retencion + ", persona=" + persona + ", dividendo=" + dividendo + "]";
-	}
-	
-	
+		return "SaldoBeneficiario [select=" + select + ", empresa=" + empresa + ", accionista=" + accionista
+				+ ", beneficiario=" + beneficiario + ", diviendo=" + diviendo + ", moneda=" + moneda + ", grupo="
+				+ grupo + ", saldo=" + saldo + ", retencion=" + retencion + ", cuentaContable=" + cuentaContable
+				+ ", estadoTramite=" + estadoTramite + ", persona=" + persona + ", accionistaObj=" + accionistaObj
+				+ ", periodicidad=" + periodicidad + ", tipoPago=" + tipoPago + ", dividendo=" + dividendo + "]";
+	}	
 }

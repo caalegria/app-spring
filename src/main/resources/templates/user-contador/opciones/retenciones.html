@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title
+	th:text=" |#{label.nombre.aplicacion } - #{label.page.retenciones}|" />
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/scrolling-nav.css" rel="stylesheet">
+<link href="css/scrolling-nav.css" rel="stylesheet">
+<link href="css/override.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Roboto Condensed'
+	rel='stylesheet' type='text/css'>
+
+</head>
+<body id="page-top">
+	<div class="row" th:replace="fragments/header :: header" />
+	<section id="id" class="bg-light">
+		<div class="container align-items-center" style="padding-top: -200px">
+			<div class="col-lg-11 mx-auto caja">
+				<!--Miga de pan-->
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><span style=""
+							class="glyphicon glyphicon-user">&nbsp;</span><label>Rol:&nbsp;
+								<span th:text="${usuarioLogin.rol}"></span>
+						</label></li>
+						<li class="breadcrumb-item"><a href="#"></a></li>
+					</ol>
+				</nav>
+				<div class="card-body">
+					<div class="alert alert-primary" role="alert" th:text="${success}"
+						th:if="${success}"></div>
+					<div class="alert alert-danger" role="alert" th:text="${error}"
+						th:if="${error}"></div>
+					<!-- <div th:include="user-contador/includesConfigurarBeneficiarios/historicoPagosSaldos.html" th:remove="tag"></div> -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer class="py-5 bg-dark ">
+		<div class="container">
+			<p class="m-0 text-center text-yellow-white">Copyright &copy;
+				Grupo Bolivar 2020</p>
+		</div>
+		<!-- /.container -->
+	</footer>
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+
+
+	<!-- Custom JavaScript for this theme -->
+	<script src="js/scrolling-nav.js"></script>
+
+	<!-- Los iconos tipo Solid de Fontawesome-->
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+	<script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+	<script src="js/paginador.js"></script>
+	<script src="js/utilidades.js"></script>
+
+</body>
+
+</html>

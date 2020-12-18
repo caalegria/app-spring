@@ -1,0 +1,64 @@
+<div class="alert alert-primary" role="alert" th:text="${success}"
+	th:if="${success}"></div>
+<div class="alert alert-danger" role="alert" th:text="${error}"
+	th:if="${error}"></div>
+
+<h3 th:text="#{label.page.historico.pagos}" class="subtituloAplicacion" />
+
+<th:div>
+	<h5 th:text="#{label.accionista}" />
+	<hr>
+	<div class="div_gris_gris col-lg-6">
+		<p th:text="|#{label.nombres}: ${accionista.finPersona.perNombre}|"
+			class="p_gris_bold" />
+		<p
+			th:text="|#{label.apellidos}: ${accionista.finPersona.perPrimerApellido} ${accionista.finPersona.perSegundoApellido}|"
+			class="p_gris_bold" />
+		<p th:text="|#{label.identificacion}: ${accionista.finPersona.id}|"
+			class="p_gris_bold" />
+	</div>
+	<br>
+	<h5 th:text="#{subtitlte.consulta.historico.saldos.pagos}" />
+	<hr />
+
+	<table id="dataTable" border="1"
+		class="col-lg-12 mx-auto tabla1 table-responsive">
+		<thead>
+			<tr>
+				<th class="sizeCol15" th:text="#{label.dividendo}" /th>
+				<th class="sizeCol5" th:text="#{label.fecha}" /th>
+				<th class="sizeCol10" th:text="#{label.valor.pagado}" /th>
+				<th class="sizeCol10" th:text="#{label.paquete}" /th>
+				<th class="sizeCol15" th:text="#{label.estado.tramite}" /th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="hisPa,i : ${historicoPagos}">
+				<td th:text="${hisPa.valorDividendo}" class="moneyValue" />
+				<td th:text="${#dates.format(hisPa.fechaPago, 'dd/MMM/yyyy')}"
+					th:title="${hisPa.fechaPago}" />
+				<td th:text="${hisPa.valorPagado}" class="moneyValue" />
+				<td th:text="${hisPa.paquete}" class="moneyValue" />
+				<td th:text="${hisPa.estadoTram.refDescripcion}" />
+			</tr>
+		</tbody>
+		<tfoot class="col-lg-12 mx-auto"
+			th:if="${#lists.size(historicoPagos)>30}">
+			<td><input type="button" id="cargar_primera_pagina"
+				th:value="#{paginador.primero}" /></td>
+			<td><input type="button" id="cargar_anterior_pagina"
+				th:value="#{paginador.anterior}" /></td>
+			<td id="indicador_paginas"></td>
+			<td><input type="button" id="cargar_siguiente_pagina"
+				th:value="#{paginador.siguiente}" /></td>
+			<td><input type="button" id="cargar_ultima_pagina"
+				th:value="#{paginador.ultimo}" /></td>
+		</tfoot>
+	</table>
+
+	<div class="col-lg-12 alinearDerecha">
+		<a class="btn btn_verde_blanco" th:text="#{btn.regresar}"
+			th:href="@{/configurarBeneficiarios(viewState=0)}" />
+	</div>
+
+</th:div>

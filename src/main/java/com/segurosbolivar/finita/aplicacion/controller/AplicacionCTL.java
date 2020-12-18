@@ -58,10 +58,22 @@ public class AplicacionCTL {
 	private String viewState=Constantes.INICIANDO;	
 	private MensajeVista mensaje= new MensajeVista();
 	private boolean download=false;
+	private String folderPermisos="";
 
 	@PostConstruct
 	private void init() {
 		logger.info(Log.logStartBeans(this.getClass().getName()));
+		this.folderPermisos+=System.getProperty("java.io.tmpdir");
+		try {
+			File f = new File(this.folderPermisos);
+			if(f.canWrite()) {
+			     this.folderPermisos+=",Puede Escribir";
+			} else {
+				this.folderPermisos+=", No puede Escribir";
+			}
+		}catch (Exception e) {
+			Log.getError(logger, e);
+		}
 	}
 
 
@@ -136,8 +148,7 @@ public class AplicacionCTL {
         MediaType mediaType = MediaTypeUtils.getMediaTypeForFileName(this.servletContext, Constantes.DECEVAL+".txt"); 
         File file = new File(Utilidades.rutaTemporal()+Constantes.DECEVAL+".txt");
         InputStreamResource resource = new InputStreamResource(new FileInputStream(file)); 
-        this.setDownload(false);
-        file.delete();
+        this.setDownload(false);        
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + file.getName()).contentType(mediaType).contentLength(file.length()).body(resource);
     }
 
@@ -188,5 +199,16 @@ public class AplicacionCTL {
 	public void setDownload(boolean download) {
 		this.download = download;
 	}
+
+	@ModelAttribute("folderPermisos")
+	public String getFolderPermisos() {		
+		return folderPermisos;
+	}
+
+	public void setFolderPermisos(String folderPermisos) {
+		this.folderPermisos = folderPermisos;
+	}
+	
+	
 	
 }

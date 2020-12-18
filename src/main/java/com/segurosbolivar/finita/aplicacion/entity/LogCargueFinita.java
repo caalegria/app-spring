@@ -1,14 +1,8 @@
 package com.segurosbolivar.finita.aplicacion.entity;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +19,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "LOG_CARGUE_FINITA")
-public class LogCargueFinita implements Serializable {
+public class LogCargueFinita extends Persistente {
     private static final long serialVersionUID = 1L;
     @Size(max = 4000)
     @Column(name = "DESCRIPCION")
@@ -114,8 +108,9 @@ public class LogCargueFinita implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "entities.LogCargueFinita[ secuencial=" + secuencial + " ]";
-    }
+	public String toString() {
+		return "[descripcion=" + descripcion + ", fechaProceso=" + fechaProceso + ", procesoCreacion="
+				+ procesoCreacion + ", tipoError=" + tipoError + ", secuencial=" + secuencial + "]";
+	}
     
 }

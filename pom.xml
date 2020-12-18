@@ -73,10 +73,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 			<exclusions>
-				<!-- <exclusion> -->
-				<!-- <groupId>org.springframework.boot</groupId> -->
-				<!-- <artifactId>spring-boot-starter-tomcat</artifactId> -->
-				<!-- </exclusion> -->
+				<!-- <exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> 
+					</exclusion> -->
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
@@ -170,6 +168,14 @@
 			<artifactId>resteasy-client</artifactId>
 			<version>3.0.2.Final</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>5.3</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -34,7 +34,8 @@ public class Utilidades {
 	public static final Logger logger = Logger.getLogger(Utilidades.class);
 	public static final String pattern_1 = "MM-dd-yyyy";
 	public static final String pattern_2= "MM/dd/yyyy";
-	public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+	public static SimpleDateFormat simpleDateFormat_1 = new SimpleDateFormat(pattern_1);
+	public static SimpleDateFormat simpleDateFormat_2 = new SimpleDateFormat(pattern_2);
 	
 	public static enum OrderBy {
 		ASC, DESC
@@ -449,5 +450,43 @@ public class Utilidades {
 		}	
 		return true;
 	}
-
+	
+	public static boolean escribirArchivoPlano (List<String> data,String nombreArchivo,String ext,String cabezera) {
+		logger.debug(Log.getCurrentClassAndMethodNames(Utilidades.class.getName(), ""));
+		String rutaFinal;
+		rutaFinal=Utilidades.rutaTemporal();		
+		rutaFinal=rutaFinal.concat(nombreArchivo).concat(ext);
+		BufferedWriter writer = null;		
+		try{
+			writer = new BufferedWriter( new FileWriter(rutaFinal));
+			if(cabezera!=null && !cabezera.trim().equals("")) {
+				writer.write(cabezera);
+				writer.newLine();
+			}
+			if(!data.isEmpty()) {				
+				for(String lin:data) {					
+					writer.write(lin.toString());	
+					writer.newLine();					
+				}			
+			}
+		}
+		catch ( IOException e){
+			Log.getError(logger,e);
+		}
+		catch (Exception e){
+			Log.getError(logger,e);
+		}
+		finally	{
+			try	{
+				if ( writer != null)
+					writer.close( );				
+				logger.info(Log.getCurrentClassAndMethodNames(Utilidades.class.getName(), "Escibiendo el archivo plano en la ruta : "+rutaFinal));
+			}
+			catch ( IOException e){
+				Log.getError(logger,e);
+			}
+		}	
+		return true;
+	}
+	
 }

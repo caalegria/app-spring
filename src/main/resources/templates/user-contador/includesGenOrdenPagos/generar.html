@@ -1,51 +1,69 @@
-<h3 th:text="#{label.page.generar}" class="subtituloAplicacion" />
-<div>
-	<h5 th:text="#{subtitlte.saldos}" />
-	<hr>
+<div class="alert alert-primary" role="alert" th:text="${success}"
+	th:if="${success}"></div>
+<div class="alert alert-danger" role="alert" th:text="${error}"
+	th:if="${error}"></div>
 
-	<form class="form" role="form" autocomplete="off" method="post"
-		th:action="@{/generarOrdenesDePagos/generar}">
-		<div class="col-lg-12 alinearDerecha">
-			<input type="submit" class="btn btn_verde_blanco"
-				th:value="#{btn.generar}" />
-		</div>
-		<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1"
-			th:fragment="saldosTable">
-			<thead>
-				<tr>
-					<th class="sizeCol5" /th>
-					<th class="sizeCol15" th:text="#{label.beneficiario}" /th>
-					<th class="sizeCol10" th:text="#{label.dividendo}" /th>
-					<th class="sizeCol10" th:text="#{label.moneda}" /th>
-					<th class="sizeCol10" th:text="#{label.saldo.bruto}" /th>
-					<th class="sizeCol10" th:text="#{label.impuestos}" /th>
-					<th class="sizeCol10" th:text="#{label.a.pagar}" /th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="objSaldo,i : ${saldos}">
-					<td><input th:id="${i.index}" type="checkbox" name="active"
-						class="save" th:attr="data-customer-id = ${i.index}"
-						th:value="${objSaldo.select}" th:checked="${objSaldo.select}" />
-					<td th:text="${objSaldo.persona.perNombre}" />
-					<td th:text="${objSaldo.diviendo}" />
-					<td th:text="${objSaldo.moneda}" />
-					<td th:text="${objSaldo.saldo}" />
-					<td th:text="${objSaldo.retencion}" />
-					<td th:text="|A pagar|" />
-				</tr>
-			</tbody>
-			<tfoot class="col-lg-12 mx-auto">
-				<td><input type="button" id="cargar_primera_pagina"
-					value="<< Primero" /></td>
-				<td><input type="button" id="cargar_anterior_pagina"
-					value="< Anterior" /></td>
-				<td id="indicador_paginas"></td>
-				<td><input type="button" id="cargar_siguiente_pagina"
-					value="Siguiente >" /></td>
-				<td><input type="button" id="cargar_ultima_pagina"
-					value="Ultimo >>" /></td>
-			</tfoot>
-		</table>
-	</form>
-</div>
+<h3 th:text="#{label.page.generar}" class="subtituloAplicacion" />
+<h5 th:text="#{subtitlte.saldos}" />
+<hr>
+
+<form class="form" role="form" autocomplete="off" method="post"
+	th:action="@{/generarOrdenesDePagos/generar}">
+	<div class="col-lg-12 alinearDerecha">
+		<input type="submit" class="btn btn_verde_blanco"
+			th:value="#{btn.generar}" />
+	</div>
+	<table id="dataTable" border="1"
+		class="col-lg-12 mx-auto tabla1 table-responsive"
+		th:fragment="saldosTable">
+		<thead>
+			<tr>
+				<th class="sizeCol2" /th>
+				<th class="sizeCol15" th:text="#{label.beneficiario}" /th>
+				<th class="sizeCol5" th:text="#{label.moneda}" /th>
+				<th class="sizeCol10" th:text="#{label.saldo.bruto}" /th>
+				<th class="sizeCol10" th:text="#{label.impuestos}" /th>
+				<th class="sizeCol10" th:text="#{label.cuenta.contable}" /th>
+				<th class="sizeCol15" th:text="#{label.estado.tramite}" /th>
+				<th class="sizeCol25" th:text="#{label.detalle}" /th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="objSaldo,i : ${saldos}">
+				<td><input th:id="${i.index}" type="checkbox" name="active"
+					class="save" th:attr="data-customer-id = ${i.index}"
+					th:value="${objSaldo.select}" th:checked="${objSaldo.select}" />
+				<td th:text="${objSaldo.persona.perNombre}" />
+				<td th:text="${objSaldo.moneda}" />
+				<td th:text="${objSaldo.saldo}" class="moneyValue" />
+				<td th:text="${objSaldo.retencion}" class="moneyValue" />
+				<td th:text="${objSaldo.cuentaContable}" class="moneyValue"/>
+				<td th:text="${objSaldo.estadoTram.refDescripcion}" />
+				<td>
+					<label for="lblDir" th:text="|#{label.periodicidad}: |"	class="p_gris_bold" />
+					<output id="lblDir"	th:text="${objSaldo.periodicidad.refDescripcion}" /> 
+					<br>
+					
+					<label for="lblDir" th:text="|#{label.tipo.pago}: |"	class="p_gris_bold" />
+					<output id="lblDir"	th:text="${objSaldo.tipoPago.refDescripcion}" /> 
+					<br>
+					
+					<label for="lblDir" th:text="|#{label.accionista}: |"	class="p_gris_bold" />
+					<output id="lblDir"	th:text="${objSaldo.accionistaObj.accNombre}" /> 
+					<br>
+				</td>				
+			</tr>
+		</tbody>
+		<tfoot class="col-lg-12 mx-auto" th:if="${#lists.size(saldos)>30}">
+			<td><input type="button" id="cargar_primera_pagina"
+				th:value="#{paginador.primero}" /></td>
+			<td><input type="button" id="cargar_anterior_pagina"
+				th:value="#{paginador.anterior}" /></td>
+			<td id="indicador_paginas"></td>
+			<td><input type="button" id="cargar_siguiente_pagina"
+				th:value="#{paginador.siguiente}" /></td>
+			<td><input type="button" id="cargar_ultima_pagina"
+				th:value="#{paginador.ultimo}" /></td>
+		</tfoot>
+	</table>
+</form>

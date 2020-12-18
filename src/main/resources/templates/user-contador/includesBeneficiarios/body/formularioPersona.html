@@ -20,7 +20,7 @@
 
 		<div class="col-lg-3">
 			<label for="tipoDoc" th:text="#{label.tipo.documento}" /> <select
-				id="tipoDoc" th:field="${persona.perTipoIdent}">
+				class="form-control" id="tipoDoc" th:field="${persona.perTipoIdent}">
 				<option th:value="PCC" th:text="|Cedula de Ciudadania|" />
 				<option th:value="PNI" th:text="|Nit|" />
 			</select>
@@ -28,7 +28,8 @@
 
 		<div class="col-lg-3">
 			<label for="naturalee" th:text="#{label.naturaleza}" /> <select
-				id="naturalee" th:field="${persona.perNaturaleza}">
+				class="form-control" id="naturalee"
+				th:field="${persona.perNaturaleza}">
 				<option th:value="c01" th:text="|No Aplica|" />
 				<option th:value="c06" th:text="|Sociedades Privadas Nacionales|" />
 			</select>
@@ -49,8 +50,8 @@
 		</div>
 
 		<div class="col-lg-3">
-			<label for="gene" th:text="#{label.segundo.apellido}" /> <select
-				id="gene" th:field="${persona.genero}">
+			<label for="gene" th:text="#{label.sexo}" /> <select
+				class="form-control" id="gene" th:field="${persona.genero}">
 				<option th:value="M" th:text="|Masculino|" />
 				<option th:value="F" th:text="|Femenino|" />
 			</select>
@@ -79,7 +80,8 @@
 
 		<div class="col-lg-3">
 			<label for="fecNac" th:text="#{label.fechaNacimiento}" /> <input
-				id="fecNac" type="date" th:field="${persona.perFNacimiento}" />
+				class="form-control" id="fecNac" type="date"
+				th:field="${persona.perFNacimiento}" />
 		</div>
 
 		<div class="col-lg-3">
@@ -91,7 +93,8 @@
 
 		<div class="col-lg-3">
 			<label for="autCom" th:text="#{label.autorizaCompartirInf}" /> <select
-				id="autCom" th:field="${persona.autorizaCompartirInf}">
+				class="form-control" id="autCom"
+				th:field="${persona.autorizaCompartirInf}">
 				<option th:value="S" th:text="Si" />
 				<option th:value="N" th:text="No" />
 			</select>
@@ -99,14 +102,15 @@
 
 		<div class="col-lg-3">
 			<label for="autRec" th:text="#{label.autorizaRecibirInf}" /> <select
-				id="autRec" th:field="${persona.autorizaRecibirInf}">
+				class="form-control" id="autRec"
+				th:field="${persona.autorizaRecibirInf}">
 				<option th:value="S" th:text="Si" />
 				<option th:value="N" th:text="No" />
 			</select>
 		</div>
 	</div>
 	<hr>
-	<div class="form-group row" >
+	<div class="form-group row">
 		<div class="col-lg-3">
 			<label for="benValor" th:text="#{label.porcentaje.accion}" /> <input
 				id="identi" class="form-control  form-control-sm" type="text"
@@ -116,15 +120,17 @@
 
 		<div class="col-lg-3">
 			<label for="benNit" th:text="#{label.nit}" /> <select id="benNit"
-				th:field="${persona.benNit}">
-				<option th:each="i : ${catalogoNit}" th:value="${i.codigo}" th:text="${i.label}" />
+				class="form-control" th:field="${persona.benNit}">
+				<option th:each="i : ${catalogoNit}" th:value="${i.codigo}"
+					th:text="${i.label}" />
 			</select>
 		</div>
 	</div>
 
 	<div class="col-lg-12 alinearDerecha">
-		<input type="submit" class="btn btn_verde_blanco"
-			th:value="#{btn.guardar}">
+		<a class="btn btn_verde_blanco" th:text="#{btn.regresar}"
+			th:href="@{/agregarBeneficiariosAccionista/regresar}" /><input
+			type="submit" class="btn btn_verde_blanco" th:value="#{btn.guardar}">
 	</div>
 
 </form>

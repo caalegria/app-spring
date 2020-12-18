@@ -1,107 +1,189 @@
 <script>
-	window.onload = function(){
-		  document.getElementById('fecInicio').value="";
-		  document.getElementById('fecFin').value="";
-	}
+	window.onload = function() {
+		document.getElementById('fecInicio').value = "";
+		document.getElementById('fecFin').value = "";		
+	}	
 	
-	 $(document).ready(function(){
-		 var timeout = setTimeout(function() {
-		        $("#errorDividendoFiltro").fadeOut(500);
-		    },2000);
-		 
-	});
+	$(document).ready(function() {
+		var timeout = setTimeout(function() {
+			$("#errorDividendoFiltro").fadeOut(500);
+		}, 2000);
+		openCity(event, 'dividendos');						
+	});	
 </script>
 
+<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success  != ''}"></div>
+<div class="alert alert-danger" role="alert" th:text="${error}" th:if="${error  != ''}"></div> 
+
 <h3 th:text="#{label.page.dividendos}" class="subtituloAplicacion" />
-
-<div  id="errorDividendoFiltro" class="alert alert-danger col-lg-4" role="alert"  th:if = "${ERROR != '' }" >
-   <span th:if = "${ERROR != '' }"  th:text="${ERROR}" />      
+<div id="errorDividendoFiltro" class="alert alert-danger col-lg-4"
+	role="alert" th:if="${ERROR != '' }">
+	<span th:if="${ERROR != '' }" th:text="${ERROR}" />
 </div>
 
-<div id="msform" class="card">
-	<ul id="progressbar">
-
-		<li class="active" id="cargue"><strong
-			th:text="#{label.wizard.cargue}" /></li>
-		<li id="validar" class="active"><strong
-			th:text="#{label.wizard.validar}" /></li>
-	</ul>
-</div>
-
-<form id="formFiltro" class="form-inline" style="font-size: 12px" th:action="@{/filtroCargues}"  th:object="${filtroBusqueda}"  method="post">
+<form id="formFiltro" class="form-inline" style="font-size: 12px"
+	th:action="@{/filtroCargues}" th:object="${filtroBusqueda}"
+	method="post">
 	<div class="form-group col-sm-12 row align-items-center">
-			<label for="fechaInicio">Fecha Inicio:</label> 
-			<input 
-				id="fecInicio" 
-				type="date" 
-				class="form-control mx-sm-3"
-				th:field="${filtroBusqueda.fechInicial}" />
-		
-		
-			<label>Fecha Fin: </label>
-			<input 
-				id="fecFin"
-				type="date" 
-				class="form-control mx-sm-3"
-				value = ""
-				th:field="${filtroBusqueda.fechFinal}" />
-		
+		<label for="fechaInicio">Fecha Inicio:</label> <input id="fecInicio"
+			type="date" class="form-control mx-sm-3"
+			th:field="${filtroBusqueda.fechInicial}" /> <label>Fecha
+			Fin: </label> <input id="fecFin" type="date" class="form-control mx-sm-3"
+			value="" th:field="${filtroBusqueda.fechFinal}" />
+
 		<div class="col">
 			<button id="buscarCarges" type="submit" class="btn btn-primary">Buscar</button>
 		</div>
-		
+
 	</div>
 </form>
 
 <div style="padding-top: 20px;" class="bg-light" />
 
-<table class="table table-striped" style="font-size: 12px;"> 
-	<thead>
-		<tr>
-			<th scope="col" th:text = "#{label.dividendos.fecCargue }"></th>
-			<th scope="col" th:text = "#{label.dividendos.tipoCargue}"/>
-			<th scope="col" th:text = "#{label.dividendos.descripcion}"/>
-			<th scope="col"/>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="cargue,iterador: ${list}">
-			<form id="${iterador.index}">
-				<td th:text="${cargue.fechaCargue} " />
-				<td th:text="${cargue.tipoCargue}" />
-				<td th:text="${cargue.descripcion}" />
-				<td>
-					<a  th:if = "${#strings.contains(cargue.descripcion,'Error')}" 
-						 
-						title="Descargar Archivo"
-						th:href="@{/descargaPlano/} + ${cargue.fechaCargue}">
-						<span class="glyphicon glyphicon-glyphicon-download"></span>
-					</a>
-				</td>
-			</form>
-		</tr>
-	</tbody>
-</table>
-
-<!--Generico: paginacion -->
-<div class = "row">
-	<div class = "col-md-2"></div>
-	<div class = "col-md-8">
-		<nav aria-label = "Pagination">
-			<ul class = "pagination justify-content-center">
-				<li class = "page-item" th:classappend = "${prev == 0 ? 'disabled': ''}">
-					<a class = "page-link" th:href = "@{|/paginacion/?page=${prev}|}">Anterior</a>
-				</li>
-				<li class = "page-item" th:each = "page: ${pages}" th:classappend = "${current == page ? 'active': ''}">
-					<a class = "page-link" th:href = "@{|/paginacion/?page=${page}|}" th:text ="${page}"></a>
-				</li>
-				<li class = "page-item" th:classappend = "${current == last ? 'disabled': ''}">
-					<a class = "page-link" th:href = "@{|/paginacion/?page=${next}|}">Siguiente</a>
-				</li>
-			</ul>
-		</nav>
-		<div class="col-md-2"></div>
-	</div>
+<div class="tab">
+	<button class="tablinks" onclick="openCity(event, 'dividendos')">Dividendos</button>
+	<button class="tablinks" onclick="openCity(event, 'logFinita')">Log
+		de Finita</button>
+	<button class="tablinks" onclick="openCity(event, 'logCargue')">Log
+		de Cargue</button>
 </div>
+
+<!-- Tab content -->
+<div id="dividendos" class="tabcontent">
+	<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
+		<thead>
+			<tr>
+				<th class="sizeCol5" th:text="#{label.fechaCargue}" /th>
+				<th class="sizeCol5" th:text="#{label.ruta}" /th>
+				<th class="sizeCol15" th:text="#{label.nombre.archivo}" /th>
+				<th class="sizeCol5" th:text="#{label.resultado}" /th>
+				<th class="sizeCol15" th:text="#{label.acciones}" /th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="agrupador,iterador: ${cargueDividendos}">
+				<form id="${iterador.index}">
+					<td th:text="${agrupador.fechaCargue} " />
+					<td th:text="|${agrupador.rutaArchivoOriginal}|" />
+					<td th:text="|${agrupador.nombreArchivo}${agrupador.extension}|" />
+					<td th:text="|#{label.resultado}: ${#lists.size(agrupador.data)}|" />
+
+					<td><a class="btn btn_gris_gris" th:title="#{btn.descargar}"
+						th:href="@{/download/(index=${iterador.index},idLista=1)}">
+							<span class="glyphicon glyphicon-glyphicon-download"></span>
+					</a></td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="logFinita" class="tabcontent">
+	<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
+		<thead>
+			<tr>
+				<th class="sizeCol5" th:text="#{label.fechaCargue}" /th>
+				<th class="sizeCol5" th:text="#{label.ruta}" /th>
+				<th class="sizeCol15" th:text="#{label.nombre.archivo}" /th>
+				<th class="sizeCol5" th:text="#{label.resultado}" /th>
+				<th class="sizeCol15" th:text="#{label.acciones}" /th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="agrupador,iterador: ${logsDeFinita}">
+				<form id="${iterador.index}">
+					<td th:text="${agrupador.fechaCargue} " />
+					<td th:text="|${agrupador.rutaArchivoOriginal}|" />
+					<td th:text="|${agrupador.nombreArchivo}${agrupador.extension}|" />
+					<td th:text="|#{label.resultado}: ${#lists.size(agrupador.data)}|" />
+
+					<td><a class="btn btn_gris_gris" th:title="#{btn.descargar}"
+						th:href="@{/download/(index=${iterador.index},idLista=2)}">
+							<span class="glyphicon glyphicon-glyphicon-download"></span>
+					</a></td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="logCargue" class="tabcontent">
+	<table id="dataTable" border="1" class="col-lg-12 mx-auto tabla1">
+		<thead>
+			<tr>
+				<th class="sizeCol5" th:text="#{label.fechaCargue}" /th>
+				<th class="sizeCol5" th:text="#{label.ruta}" /th>
+				<th class="sizeCol15" th:text="#{label.nombre.archivo}" /th>
+				<th class="sizeCol5" th:text="#{label.resultado}" /th>
+				<th class="sizeCol15" th:text="#{label.acciones}" /th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="agrupador,iterador: ${logsDeCargue}">
+				<form id="${iterador.index}">
+					<td th:text="${agrupador.fechaCargue} " />
+					<td th:text="|${agrupador.rutaArchivoOriginal}|" />
+					<td th:text="|${agrupador.nombreArchivo}${agrupador.extension}|" />
+					<td th:text="|#{label.resultado}: ${#lists.size(agrupador.data)}|" />
+
+					<td><a class="btn btn_gris_gris" th:title="#{btn.descargar}"
+						th:href="@{/download/(index=${iterador.index},idLista=3)}">
+							<span class="glyphicon glyphicon-glyphicon-download"></span>
+					</a></td>
+				</form>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+
+
+<!-- <table class="table table-striped" style="font-size: 12px;"> -->
+<!-- 	<thead> -->
+<!-- 		<tr> -->
+<!-- 			<th scope="col" th:text="#{label.dividendos.fecCargue }"></th> -->
+<!-- 			<th scope="col" th:text="#{label.dividendos.tipoCargue}" /> -->
+<!-- 			<th scope="col" th:text="#{label.dividendos.descripcion}" /> -->
+<!-- 			<th scope="col" /> -->
+<!-- 		</tr> -->
+<!-- 	</thead> -->
+<!-- 	<tbody> -->
+<!-- 		<tr th:each="cargue,iterador: ${list}"> -->
+<!-- 			<form id="${iterador.index}"> -->
+<!-- 				<td th:text="${cargue.fechaCargue} " /> -->
+<!-- 				<td th:text="${cargue.tipoCargue}" /> -->
+<!-- 				<td th:text="${cargue.descripcion}" /> -->
+<!-- 				<td><a th:if="${#strings.contains(cargue.descripcion,'Error')}" -->
+<!-- 					title="Descargar Archivo" -->
+<!-- 					th:href="@{/descargaPlano/} + ${cargue.fechaCargue}"> <span -->
+<!-- 						class="glyphicon glyphicon-glyphicon-download"></span> -->
+<!-- 				</a></td> -->
+<!-- 			</form> -->
+<!-- 		</tr> -->
+<!-- 	</tbody> -->
+<!-- </table> -->
+
+<!-- <!--Generico: paginacion -->
+<!-- <div class="row"> -->
+<!-- 	<div class="col-md-2"></div> -->
+<!-- 	<div class="col-md-8"> -->
+<!-- 		<nav aria-label="Pagination"> -->
+<!-- 			<ul class="pagination justify-content-center"> -->
+<!-- 				<li class="page-item" th:classappend="${prev == 0 ? 'disabled': ''}"> -->
+<!-- 					<a class="page-link" th:href="@{|/paginacion/?page=${prev}|}">Anterior</a> -->
+<!-- 				</li> -->
+<!-- 				<li class="page-item" th:each="page: ${pages}" -->
+<!-- 					th:classappend="${current == page ? 'active': ''}"><a -->
+<!-- 					class="page-link" th:href="@{|/paginacion/?page=${page}|}" -->
+<!-- 					th:text="${page}"></a></li> -->
+<!-- 				<li class="page-item" -->
+<!-- 					th:classappend="${current == last ? 'disabled': ''}"><a -->
+<!-- 					class="page-link" th:href="@{|/paginacion/?page=${next}|}">Siguiente</a> -->
+<!-- 				</li> -->
+<!-- 			</ul> -->
+<!-- 		</nav> -->
+<!-- 		<div class="col-md-2"></div> -->
+<!-- 	</div> -->
+<!-- </div> -->
 <!-- fin paginacion -->
 

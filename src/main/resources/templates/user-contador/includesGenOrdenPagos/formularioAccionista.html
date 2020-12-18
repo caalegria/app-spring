@@ -1,0 +1,68 @@
+<h5 th:text="#{label.accionista}" />
+<hr>
+<form class="form" role="form" autocomplete="off" method="post"
+	th:object="${accionista}" th:action="@{/irAccionista/actualizar}">
+	<div class="form-group row">
+		<div class="col-lg-3">
+			<label for="identi" th:text="#{label.identificacion}" /> <input
+				id="identi" class="form-control  form-control-sm" type="text"
+				required="true" th:field="${accionista.id.accPerIdent}" readonly="true"
+				th:placeholder="#{label.identificacion}" maxlength="20">
+		</div>
+
+		<div class="col-lg-6">
+			<label for="detalNombre" th:text="|#{label.nombres} #{label.apellidos}|" /> <input
+				id="detalNombre" class="form-control  form-control-sm" type="text"
+				required="true" th:field="${accionista.finPersona.perNombre}"
+				readonly="true" th:placeholder="#{label.nombres}" maxlength="60">
+		</div>
+		
+
+		<div class="col-lg-3">
+			<label for="direcc" th:text="#{label.direccion}" /> <input
+				id="direcc" class="form-control  form-control-sm" type="text"
+				required="true" th:field="${accionista.finPersona.perDireccion}"
+				readonly="true" th:placeholder="#{label.direccion}" maxlength="50">
+		</div>
+
+		<div class="col-lg-3">
+			<label for="telef" th:text="#{label.telefono}" /> <input id="telef"
+				class="form-control  form-control-sm" type="text" required="true"
+				th:field="${accionista.finPersona.perTelefono}" readonly="true"
+				th:placeholder="#{llabel.telefono}" maxlength="15">
+		</div>
+
+		<div class="col-lg-3">
+			<label for="telef2" th:text="#{label.telefono2}" /> <input id=""
+				class="form-control  form-control-sm" type="text" required="true"
+				th:field="${accionista.finPersona.perTelefono2}" readonly="true"
+				th:placeholder="#{label.telefono}" maxlength="15">
+		</div>
+
+		<div class="col-lg-3">
+			<label for="periodicidad" th:text="#{label.periodicidad}" /> <select
+				class="form-control " id="periodicidad"
+				th:field="${accionista.periodicidad}">
+				<option class="form-control" th:each="i : ${catalogoPeriodicidad}"
+					th:value="${i.refCodigo}" th:text="${i.refDescripcion}" />
+			</select>
+		</div>
+
+		<div class="col-lg-3">
+			<label for="tipPago" th:text="#{label.tipo.pago}" /> <select
+				id="tipPago" class="form-control" th:field="${accionista.pago}">
+				<option th:each="i : ${catalogoTipoPago}" th:value="${i.refCodigo}"
+					th:text="${i.refDescripcion}" />
+			</select>
+		</div>
+
+	</div>
+
+	<div class="col-lg-12 alinearDerecha">
+		<a class="btn btn_verde_blanco" th:text="#{btn.regresar}"
+			th:href="@{/configurarBeneficiarios(viewState=0)}" /> <input
+			type="submit" class="btn btn_verde_blanco"
+			th:value="#{btn.actualizar}" />
+	</div>
+
+</form>

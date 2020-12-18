@@ -20,6 +20,9 @@ public class Referencia extends Persistente{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public static final String REF="Referencia";
+	public static final String PROP_ID="refCodigo";
 
 
 	@Id
@@ -34,8 +37,15 @@ public class Referencia extends Persistente{
 	private BigInteger refValor;
 
 	public Referencia() {
-		// TODO Auto-generated constructor stub
+		this.refCodigo="NN";
+		this.refDescripcion="sin referencia";
+		this.refValor=new BigInteger("0"); 
 	}
+	
+	public Referencia(String refCodigo) {
+		super();
+		this.refCodigo = refCodigo;
+	}	
 
 	public String getRefCodigo() {
 		return refCodigo;

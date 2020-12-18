@@ -18,7 +18,12 @@ import javax.validation.constraints.Size;
  */
 @Embeddable
 public class FinsgusuariosRolesPK implements Serializable {
-    @Basic(optional = false)
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 8)
     @Column(name = "UXR_USU_CODIGO")

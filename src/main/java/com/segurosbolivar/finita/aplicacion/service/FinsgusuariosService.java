@@ -1,9 +1,5 @@
 package com.segurosbolivar.finita.aplicacion.service;
 
-import javax.validation.Valid;
-
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import com.segurosbolivar.finita.aplicacion.Exception.UsernameOrIdNotFound;
 import com.segurosbolivar.finita.aplicacion.dto.ChangePasswordForm;
 import com.segurosbolivar.finita.aplicacion.entity.rol.Finsgusuarios;

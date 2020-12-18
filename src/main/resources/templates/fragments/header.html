@@ -32,11 +32,16 @@
 									aria-expanded="false" th:text="#{label.configurar.pago}" />
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 										<a class="dropdown-item" th:href="@{/configurarBeneficiarios(viewState=0)}" th:text="#{label.configurar.beneficiarios}" />
-										<a class="dropdown-item" th:href="@{/generarOrdenesDePagos(viewState=0,reload=1)}" th:text="#{label.configurar.generar}"/>										
+										<a class="dropdown-item" th:href="@{/generarOrdenesDePagos(viewState=0,reload=1)}" th:text="#{label.configurar.generar}"/>	
+										<a class="dropdown-item" th:href="@{/retenciones(viewState=0,reload=1)}" th:text="#{label.generar.retenciones}"/>	
+										<a class="dropdown-item" th:href="@{/estadoOrdenesPago(viewState=0,reload=1)}" th:text="#{label.generar.ordenPagos}"/>										
 									</div></li>
 								<li class="nav-item"><a class="nav-link"
 									th:href="@{/aplicacion}"
 									th:text="#{label.configurar.aplicacion}"></a></li>
+								<li class="nav-item"><a class="nav-link"
+									th:href="@{/parametrizacion(viewState=0,reload=1)}"
+									th:text="#{label.parametrizacion}"></a></li>
 							</ul>
 						</div>
 

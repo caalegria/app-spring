@@ -24,6 +24,7 @@ public interface IGenericoDAO {
 	List<? extends Persistente> findObjects(Class<? extends Persistente> classz, String conditionField,Serializable conditionValue, Map<String, Boolean> ordering);
 	List<? extends Persistente> getObjects(Class<? extends Persistente> classz);
 	HashMap<String, Object> callProcedimientoPl(String nombrePL, List<Parametro> pametros,List<Class<?>> typeSalidaSalida, boolean tieneCursor);	
-	RespuestaCallPL callProcedimientoGenerarOrdenPago(List<SaldoBeneficiario> saldos, RespuestaCallPL respuesta);   
+	RespuestaCallPL callProcedimientoGenerarOrdenPago(List<SaldoBeneficiario> saldos, String usuario,RespuestaCallPL respuesta);
+	List<? extends Persistente> findObjectsByQuery(String query, Integer limit) throws Exception;   
 }
  
