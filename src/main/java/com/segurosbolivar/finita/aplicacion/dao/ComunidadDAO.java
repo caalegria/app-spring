@@ -2,6 +2,7 @@ package com.segurosbolivar.finita.aplicacion.dao;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -46,7 +47,7 @@ public class ComunidadDAO  implements IComunidadDAO {
 	IGenericoService genericoService;		
 	
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<SaldoBeneficiario> getSaldosBeneficiario(){
 		List<SaldoBeneficiario> saldosData=new ArrayList<SaldoBeneficiario>();
@@ -64,14 +65,25 @@ public class ComunidadDAO  implements IComunidadDAO {
 				saldobeneficiario.setMoneda(obj[4].toString());
 				saldobeneficiario.setGrupo(obj[5].toString());
 				saldobeneficiario.setSaldo(new BigDecimal(obj[6].toString()));
-				saldobeneficiario.setRetencion(new BigDecimal(obj[7].toString()));	
+				saldobeneficiario.setRetencion(new BigDecimal(obj[7].toString()));					
+				
 				try{
 					saldobeneficiario.setCuentaContable(new BigDecimal(obj[8].toString()));
 				}catch (Exception e) {
 					saldobeneficiario.setCuentaContable(new BigDecimal("0"));
 				}
+				
 				saldobeneficiario.setEstadoTramite(obj[9].toString());
 				saldosData.add(saldobeneficiario);
+
+				try{
+					saldobeneficiario.setConsecutivoDividendo(new BigDecimal(obj[10].toString()));
+				}catch (Exception e) {
+					saldobeneficiario.setConsecutivoDividendo(new BigDecimal("0"));
+				}
+
+				saldobeneficiario.setFecha((Date) obj[11]);
+
 				
 				try {
 					saldobeneficiario.setPersona((Persona) this.genericoService.getObjetctById(Persona.class, saldobeneficiario.getBeneficiario()));

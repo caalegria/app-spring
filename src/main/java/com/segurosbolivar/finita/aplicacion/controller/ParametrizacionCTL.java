@@ -42,7 +42,6 @@ public class ParametrizacionCTL {
 		
 	}
 
-
 	@GetMapping("/parametrizacion")
 	public String goHome(Model model,@SessionAttribute("usuarioLogin") UsuarioLogin user,@RequestParam(value = "viewState",defaultValue = "0")String viewState,@RequestParam(value = "reload",defaultValue = "0")String reload) {
 		logger.info(Log.getCurrentClassAndMethodNames(this.getClass().getName(), ""));
@@ -54,7 +53,6 @@ public class ParametrizacionCTL {
 		}		
 		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_6;
 	}
-
 
 
 	@ModelAttribute("usuarioLogin")

@@ -3,6 +3,7 @@ package com.segurosbolivar.finita.aplicacion.dto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
 
 import com.segurosbolivar.finita.aplicacion.entity.Accionista;
 import com.segurosbolivar.finita.aplicacion.entity.Dividendo;
@@ -32,6 +33,9 @@ public class SaldoBeneficiario implements Serializable{
 	private BigDecimal cuentaContable;
 	private String estadoTramite;
 	
+	private BigDecimal consecutivoDividendo;
+	private Date fecha;	
+	
 	private Persona persona;
 	private Accionista accionistaObj;
 	private Referencia periodicidad;
@@ -43,7 +47,7 @@ public class SaldoBeneficiario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public SaldoBeneficiario(String empresa,String accionista, String beneficiario, BigInteger diviendo, String moneda, String grupo,	BigDecimal saldo, BigDecimal retencion,BigDecimal cuentaContable,String estadoTramite) {
+	public SaldoBeneficiario(String empresa,String accionista, String beneficiario, BigInteger diviendo, String moneda, String grupo,	BigDecimal saldo, BigDecimal retencion,BigDecimal cuentaContable,String estadoTramite,BigDecimal consecutivoDividendo,Date fecha) {
 		super();		
 		this.empresa = empresa;
 		this.accionista=accionista;
@@ -55,6 +59,8 @@ public class SaldoBeneficiario implements Serializable{
 		this.retencion = retencion;
 		this.cuentaContable=cuentaContable;
 		this.estadoTramite=estadoTramite;
+		this.consecutivoDividendo=consecutivoDividendo;
+		this.fecha=fecha;
 	}
 
 	public String getEmpresa() {
@@ -191,6 +197,45 @@ public class SaldoBeneficiario implements Serializable{
 
 	public void setEstadoTram(Referencia estadoTram) {
 		this.estadoTram = estadoTram;
+	}	
+
+	public BigDecimal getConsecutivoDividendo() {
+		return consecutivoDividendo;
+	}
+
+	public void setConsecutivoDividendo(BigDecimal consecutivoDividendo) {
+		this.consecutivoDividendo = consecutivoDividendo;
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((consecutivoDividendo == null) ? 0 : consecutivoDividendo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof SaldoBeneficiario))
+			return false;
+		SaldoBeneficiario other = (SaldoBeneficiario) obj;
+		if (consecutivoDividendo == null) {
+			if (other.consecutivoDividendo != null)
+				return false;
+		} else if (!consecutivoDividendo.equals(other.consecutivoDividendo))
+			return false;
+		return true;
 	}
 
 	@Override

@@ -55,8 +55,6 @@ public class EstadoOrdernesPago {
 		return Constantes.NOMBRE_FOLDER_CONTADOR+"/"+Constantes.NOMBRE_FOLDER_CONTADOR_OPCIONES +"/"+Constantes.NOMBRE_URL_CONTADOR_5;
 	}
 
-
-
 	@ModelAttribute("usuarioLogin")
 	public UsuarioLogin getUsuario() {
 		return usuario;
